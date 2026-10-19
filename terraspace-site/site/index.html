@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TerraSpace.ai — Your land, reimagined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0E1A;
+  --ink:rgba(230,232,240,0.88);
+  --ink-mid:rgba(230,232,240,0.5);
+  --ink-low:rgba(230,232,240,0.3);
+  --line:rgba(230,232,240,0.14);
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-hover:cubic-bezier(0.215,0.61,0.355,1);
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:1px solid rgba(230,232,240,0.6);outline-offset:4px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(22px + env(safe-area-inset-top,0px)) 48px 22px;display:flex;align-items:center;justify-content:space-between;transition:background .4s ease-out,backdrop-filter .4s ease-out,padding .4s ease-out}
+.nav.scrolled{background:rgba(10,14,26,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding-top:calc(14px + env(safe-area-inset-top,0px));padding-bottom:14px}
+.wordmark{font-size:13px;font-weight:400;letter-spacing:5px;text-transform:uppercase;color:var(--ink)}
+.wordmark span{color:var(--ink-low);letter-spacing:3px;font-size:10px;margin-left:6px}
+.nav-right{display:flex;align-items:center;gap:36px}
+.nav-link{font-size:11px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--ink-low);position:relative;transition:color .4s ease-out}
+.nav-link::after{content:"";position:absolute;left:50%;bottom:-5px;width:0;height:1px;background:rgba(230,232,240,0.5);transition:width .4s ease-out,left .4s ease-out}
+.nav-link:hover{color:rgba(230,232,240,0.75)}
+.nav-link:hover::after{width:100%;left:0}
+.burger{width:28px;height:16px;position:relative;background:none;border:0;cursor:pointer}
+.burger span{position:absolute;left:0;right:0;height:1px;background:var(--ink-mid);transition:transform .5s var(--ease),opacity .4s ease-out,top .5s var(--ease)}
+.burger span:nth-child(1){top:0}.burger span:nth-child(2){top:7px}.burger span:nth-child(3){top:14px}
+.menu-open .burger span:nth-child(1){top:7px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){top:7px;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:40;background:rgba(10,14,26,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s ease-out,visibility .5s ease-out}
+.menu-open .menu{opacity:1;visibility:visible}
+.menu a{font-size:clamp(26px,4vw,36px);font-weight:200;letter-spacing:3px;color:var(--ink-mid);margin:14px 0;transition:color .4s ease-out,opacity .6s var(--ease),transform .6s var(--ease);opacity:0;transform:translateY(16px)}
+.menu-open .menu a{opacity:1;transform:translateY(0)}
+.menu a:hover{color:var(--ink)}
+.menu a:nth-child(1){transition-delay:.1s}.menu a:nth-child(2){transition-delay:.2s}.menu a:nth-child(3){transition-delay:.3s}.menu a:nth-child(4){transition-delay:.4s}.menu a:nth-child(5){transition-delay:.5s}.menu a:nth-child(6){transition-delay:.6s}
+
+/* ---------- sections ---------- */
+.scene{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;display:flex;align-items:flex-end}
+.media{position:absolute;inset:-4% -4% -4% -4%;will-change:transform}
+.media canvas,.media img{width:100%;height:100%;object-fit:cover;display:block}
+.kb{animation:kenBurns 18s ease-in-out infinite alternate}
+@keyframes kenBurns{from{transform:scale(1)}to{transform:scale(1.05)}}
+.overlay{position:absolute;inset:0;pointer-events:none;}
+#hero .overlay,#transform .overlay{background:linear-gradient(to bottom,rgba(10,14,26,0.45) 0%,rgba(10,14,26,0.08) 35%,rgba(10,14,26,0.25) 65%,rgba(10,14,26,0.85) 100%)!important}
+.overlay{background:linear-gradient(to bottom,rgba(10,14,26,0.45) 0%,rgba(10,14,26,0.05) 30%,rgba(10,14,26,0.05) 60%,rgba(10,14,26,0.7) 100%)}
+.copy{position:relative;z-index:2;padding:0 48px 100px 80px;max-width:760px}
+.copy>*{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.visible .copy>*{opacity:1;transform:translateY(0)}
+.copy>*:nth-child(1){transition-delay:0s}.copy>*:nth-child(2){transition-delay:.18s}.copy>*:nth-child(3){transition-delay:.36s}.copy>*:nth-child(4){transition-delay:.55s}
+.label{font-size:11px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--ink-low);margin-bottom:22px}
+h1,h2{font-weight:200;letter-spacing:2px;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,0.35)}
+h1{font-size:clamp(34px,5.4vw,66px);letter-spacing:3px}
+h2{font-size:clamp(28px,4.2vw,54px)}
+.sub{font-size:15px;color:var(--ink-mid);max-width:460px;margin-top:20px;line-height:1.8}
+.cta{display:inline-block;margin-top:34px;font-size:11px;font-weight:400;letter-spacing:3px;text-transform:uppercase;color:var(--ink-mid);position:relative;padding-bottom:6px;transition:color .4s ease-out}
+.cta::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:1px;background:rgba(230,232,240,0.5);transition:width .5s var(--ease-hover),left .5s var(--ease-hover)}
+.cta:hover{color:var(--ink)}.cta:hover::after{width:100%;left:0}
+
+.scroll-hint{position:absolute;bottom:calc(36px + env(safe-area-inset-bottom,0px));left:50%;width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(230,232,240,0.5));animation:hint 2.5s ease-in-out infinite;z-index:2}
+@keyframes hint{0%,100%{transform:translate(-50%,0);opacity:.15}50%{transform:translate(-50%,8px);opacity:.35}}
+
+/* hero entrance */
+#hero .copy>*{animation:fadeUp .9s var(--ease) forwards;transition:none}
+#hero .copy>*:nth-child(1){animation-delay:.4s}#hero .copy>*:nth-child(2){animation-delay:.7s}#hero .copy>*:nth-child(3){animation-delay:1s}#hero .copy>*:nth-child(4){animation-delay:1.3s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ---------- before / after ---------- */
+.compare{position:absolute;inset:0;cursor:ew-resize;touch-action:none}
+.compare canvas,.compare img{position:absolute;inset:0;width:100%;height:100%}
+.compare .after{clip-path:inset(0 0 0 var(--split,50%))}
+.handle{position:absolute;top:0;bottom:0;left:var(--split,50%);width:1px;background:rgba(230,232,240,0.5);pointer-events:none}
+.handle::before{content:"";position:absolute;top:50%;left:50%;width:46px;height:46px;border:1px solid rgba(230,232,240,0.5);border-radius:50%;transform:translate(-50%,-50%);background:rgba(10,14,26,0.4);backdrop-filter:blur(6px)}
+.handle::after{content:"";position:absolute;top:50%;left:50%;width:14px;height:1px;background:rgba(230,232,240,0.7);transform:translate(-50%,-50%)}
+.tag{position:absolute;top:calc(110px + env(safe-area-inset-top,0px));font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--ink-low);z-index:2;pointer-events:none}
+.tag.l{left:80px}.tag.r{right:48px}
+
+/* ---------- editorial grid ---------- */
+.grid-section{padding:0}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{position:relative;aspect-ratio:3/4;overflow:hidden;opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.visible .card{opacity:1;transform:translateY(0)}
+.card:nth-child(2){transition-delay:.1s}.card:nth-child(3){transition-delay:.2s}.card:nth-child(4){transition-delay:.3s}.card:nth-child(5){transition-delay:.4s}
+.card canvas,.card img{position:absolute;inset:0;width:100%;height:100%;transition:transform .9s var(--ease)}
+.card:hover canvas,.card:hover img{transform:scale(1.03)}
+.card-copy{position:absolute;left:0;right:0;bottom:0;padding:34px 28px;background:linear-gradient(to top,rgba(0,0,0,0.65),transparent)}
+.card-copy .n{font-size:10px;letter-spacing:4px;color:var(--ink-low);margin-bottom:10px}
+.card-copy h3{font-size:20px;font-weight:300;letter-spacing:1px;color:rgba(230,232,240,0.9);margin-bottom:6px}
+.card-copy p{font-size:13px;line-height:1.7;color:var(--ink-mid)}
+.grid-intro{padding:120px 80px 48px;max-width:720px}
+
+/* ---------- themes strip ---------- */
+.strip{position:absolute;inset:0;display:flex;animation:pan 46s linear infinite;width:200%}
+.strip canvas,.strip img{flex:0 0 auto;height:100%;width:16.666%}
+@keyframes pan{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.theme-names{position:absolute;right:48px;bottom:100px;z-index:2;text-align:right;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-low);line-height:2.6}
+
+/* ---------- pricing note ---------- */
+.units{display:flex;gap:48px;margin-top:36px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-low)}
+.units b{display:block;font-weight:200;font-size:30px;letter-spacing:1px;color:var(--ink);text-transform:none}
+
+/* ---------- nursery figure ---------- */
+.nursery{position:absolute;right:48px;bottom:100px;z-index:2;width:min(34vw,420px);opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s}
+.visible .nursery{opacity:1;transform:translateY(0)}
+.nursery img{width:100%;filter:brightness(.78) saturate(.9);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.nursery figcaption{margin-top:14px;font-size:12px;line-height:1.7;color:var(--ink-low)}
+/* ---------- enquiry ---------- */
+#enquiry{display:block;padding:140px 80px 100px}
+#enquiry .inner{max-width:560px}
+.field{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(230,232,240,0.12);padding:18px 0;font:inherit;font-size:14px;font-weight:300;color:rgba(230,232,240,0.75);outline:none;transition:border-color .4s ease-out;border-radius:0;-webkit-appearance:none;appearance:none}
+.field::placeholder{color:rgba(230,232,240,0.22)}
+.field:focus{border-bottom-color:rgba(230,232,240,0.5)}
+select.field{color:rgba(230,232,240,0.5)}
+select.field option{background:#0A0E1A}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.upload{margin-top:34px;padding:34px 0;border-bottom:1px solid rgba(230,232,240,0.12);font-size:13px;color:rgba(230,232,240,0.35);display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:color .4s}
+.upload:hover{color:var(--ink-mid)}
+.upload input{display:none}
+.submit{margin-top:48px;background:transparent;border:1px solid rgba(230,232,240,0.2);padding:15px 48px;font:inherit;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;transition:all .4s ease-out}
+.submit:hover{background:rgba(230,232,240,0.05);border-color:rgba(230,232,240,0.4);color:rgba(230,232,240,0.85)}
+.note{margin-top:22px;font-size:12px;color:var(--ink-low)}
+
+/* ---------- footer ---------- */
+footer{padding:60px 80px calc(48px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(230,232,240,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:28px}
+footer .links{display:flex;gap:34px}
+footer .links a{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-low);transition:color .4s}
+footer .links a:hover{color:var(--ink-mid)}
+.powered{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-low)}
+.powered img{height:11px;width:auto;opacity:.55}
+
+@media (max-width:900px){
+  .nav{padding-left:24px;padding-right:24px}
+  .nav-link{display:none}
+  .copy{padding:0 24px 90px 24px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .grid.three{grid-template-columns:1fr}
+  .grid-intro,#enquiry,footer{padding-left:24px;padding-right:24px}
+  .tag.l{left:24px}.tag.r{right:24px}
+  .theme-names{display:none}
+  .nursery{position:relative;right:auto;bottom:auto;width:auto;margin:0 24px 60px}
+  #business{flex-direction:column;justify-content:flex-end}
+  #business .copy{padding-bottom:30px}
+  .row{grid-template-columns:1fr;gap:0}
+  .strip canvas,.strip img{width:50%}
+  .units{gap:28px;flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+  .copy>*,.card,#hero .copy>*{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="wordmark" href="#hero">TerraSpace<span>.ai</span></a>
+  <div class="nav-right">
+    <a class="nav-link" href="#enquiry">Start a design</a>
+    <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="menu" id="menu">
+  <a href="#how">Designer</a>
+  <a href="#themes">Themes</a>
+  <a href="#packages">Packages</a>
+  <a href="#install">Installation</a>
+  <a href="#business">For business</a>
+  <a href="#enquiry">Enquiry</a>
+</div>
+
+<!-- 1 · HERO -->
+<section class="scene visible" id="hero">
+  <div class="media kb"><img src="assets/img-01.jpg" alt="Garden terraces stepping down a misty hillside"></div>
+  <div class="overlay"></div>
+  <div class="copy">
+    <p class="label">AI green-space design</p>
+    <h1>Your land.<br>Reimagined in seconds.</h1>
+    <p class="sub">Photograph any outdoor space and TerraSpace renders it as a finished landscape, priced and ready to build.</p>
+    <a class="cta" href="#enquiry">Start with a photo</a>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"></div>
+</section>
+
+<!-- 2 · TRANSFORMATION -->
+<section class="scene" id="transform">
+  <div class="compare" id="compare">
+    <img class="before" src="assets/img-02.jpg" alt="Raw surveyed terrain">
+    <img class="after" src="assets/img-03.jpg" alt="The same hillside with the estate rendered">
+    <div class="handle"></div>
+  </div>
+  <span class="tag l">Before</span><span class="tag r">After</span>
+  <div class="overlay"></div>
+  <div class="copy">
+    <p class="label">Before and after</p>
+    <h2>Photograph it.<br>Watch it come alive.</h2>
+    <p class="sub">Drag to compare. The land stays the same; only the design changes.</p>
+  </div>
+</section>
+
+<!-- 3 · HOW IT WORKS -->
+<section class="grid-section" id="how">
+  <div class="grid-intro copy">
+    <p class="label">How it works</p>
+    <h2>Five steps from a photo to a planted garden.</h2>
+  </div>
+  <div class="grid">
+    <div class="card"><img src="assets/img-02.jpg" alt="Site terrain"><div class="card-copy"><div class="n">01</div><h3>Upload</h3><p>A photo of your yard, rooftop, courtyard, lot or resort grounds.</p></div></div>
+    <div class="card"><img src="assets/img-04.jpg" alt="Planted garden beds"><div class="card-copy"><div class="n">02</div><h3>Generate</h3><p>AI places plants, paths and materials into your real space.</p></div></div>
+    <div class="card"><img src="assets/img-05.jpg" alt="Forest lake theme"><div class="card-copy"><div class="n">03</div><h3>Swap themes</h3><p>Tropical, dry-climate, courtyard, native. Change the style, keep the space.</p></div></div>
+    <div class="card"><img src="assets/img-06.jpg" alt="Courtyard with fire pit"><div class="card-copy"><div class="n">04</div><h3>Real quote</h3><p>Every rendering is tied to real plants, materials and labour.</p></div></div>
+    <div class="card"><img src="assets/img-07.jpg" alt="Glasshouse nursery"><div class="card-copy"><div class="n">05</div><h3>Book installation</h3><p>Choose a package and a date. Qualified partners build it.</p></div></div>
+  </div>
+</section>
+
+<!-- 4 · THEMES -->
+<section class="scene" id="themes">
+  <div class="media"><div class="strip" id="strip"><img src="assets/img-04.jpg" alt=""><img src="assets/img-05.jpg" alt=""><img src="assets/img-06.jpg" alt=""><img src="assets/img-08.jpg" alt=""><img src="assets/img-07.jpg" alt=""><img src="assets/img-09.jpg" alt=""><img src="assets/img-04.jpg" alt=""><img src="assets/img-05.jpg" alt=""><img src="assets/img-06.jpg" alt=""><img src="assets/img-08.jpg" alt=""><img src="assets/img-07.jpg" alt=""><img src="assets/img-09.jpg" alt=""></div></div>
+  <div class="overlay"></div>
+  <div class="theme-names" aria-hidden="true">Tropical<br>Dry climate<br>Courtyard<br>Rooftop<br>Resort<br>Native</div>
+  <div class="copy">
+    <p class="label">Themes</p>
+    <h2>Change the style.<br>Keep your space.</h2>
+    <a class="cta" href="#enquiry">Explore themes</a>
+  </div>
+</section>
+
+<!-- 5 · PRICED IN REALITY -->
+<section class="scene" id="pricing">
+  <div class="media kb"><img src="assets/img-10.jpg" alt="Timber and stone interior"></div>
+  <div class="overlay"></div>
+  <div class="copy">
+    <p class="label">Instant quote</p>
+    <h2>Every rendering is tied to real plants, materials and labour.</h2>
+    <div class="units"><div><b>per m²</b>PHP</div><div><b>per ft²</b>USD</div></div>
+  </div>
+</section>
+
+<!-- 6 · PACKAGES -->
+<section class="grid-section" id="packages">
+  <div class="grid-intro copy">
+    <p class="label">Packages</p>
+    <h2>Three ways to begin.</h2>
+  </div>
+  <div class="grid three">
+    <div class="card"><img src="assets/img-06.jpg" alt="Essential"><div class="card-copy"><h3>Essential</h3><p>One theme, planting plan and installation for a single space.</p></div></div>
+    <div class="card"><img src="assets/img-08.jpg" alt="Signature"><div class="card-copy"><h3>Signature</h3><p>Full property design with hardscape, lighting and a maintenance plan.</p></div></div>
+    <div class="card"><img src="assets/img-11.jpg" alt="Estate"><div class="card-copy"><h3>Estate</h3><p>Resort and commercial grounds, phased build and ongoing care.</p></div></div>
+  </div>
+</section>
+
+<!-- 7 · INSTALLATION -->
+<section class="scene" id="install">
+  <div class="media kb"><img src="assets/img-07.jpg" alt="Glasshouse nursery with mist"></div>
+  <div class="overlay"></div>
+  <div class="copy">
+    <p class="label">Installation network</p>
+    <h2>Designed by AI.<br>Built by qualified partners.</h2>
+    <p class="sub">Nurseries, landscapers and crews near you, scheduled from the same screen as your design.</p>
+  </div>
+</section>
+
+<!-- 8 · FOR BUSINESS -->
+<section class="scene" id="business">
+  <div class="media kb"><img src="assets/img-03.jpg" alt="Aerial view of a hillside estate at dawn"></div>
+  <div class="overlay"></div>
+  <div class="copy">
+    <p class="label">Resorts · Developers · Cities</p>
+    <h2>From a balcony to a hundred hectares.</h2>
+    <a class="cta" href="#enquiry">Talk to us</a>
+  </div>
+  <figure class="nursery">
+    <img src="assets/img-12.jpg" alt="TERA Park 2 nursery park plan on surveyed terrain">
+    <figcaption>Plants grown on our own land. TERA Park 2 nursery park, 84 ha on surveyed terrain, with a 30 ha smart nursery and an 8 ha themes garden.</figcaption>
+  </figure>
+</section>
+
+<!-- 9 · ENQUIRY -->
+<section id="enquiry">
+  <div class="inner copy">
+    <p class="label">Enquiry</p>
+    <h2>Start with a photo.</h2>
+    <form id="form" onsubmit="return send(event)">
+      <div class="row">
+        <input class="field" type="text" name="name" placeholder="Name" required>
+        <input class="field" type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="row">
+        <select class="field" name="type">
+          <option value="" disabled selected>Property type</option>
+          <option>Home garden</option><option>Rooftop or balcony</option><option>Vacant lot</option><option>Resort</option><option>Commercial</option><option>Public space</option>
+        </select>
+        <input class="field" type="text" name="area" placeholder="Approximate area (m² or ft²)">
+      </div>
+      <label class="upload"><span id="upname">Add a photo of the space</span><span>+</span><input type="file" accept="image/*" onchange="document.getElementById('upname').textContent=this.files[0]?this.files[0].name:'Add a photo of the space'"></label>
+      <button class="submit" type="submit">Send enquiry</button>
+      <p class="note" id="note">We reply with a first concept, not a sales call.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="wordmark">TerraSpace<span>.ai</span></span>
+  <div class="links"><a href="#how">Designer</a><a href="#themes">Themes</a><a href="#packages">Packages</a><a href="#enquiry">Enquiry</a></div>
+  <div class="powered">An<img src="assets/img-13.png" alt="Iozera">company</div>
+</footer>
+
+<script>
+/* ---------- nav / menu ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+document.getElementById('burger').onclick=()=>document.body.classList.toggle('menu-open');
+document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>document.body.classList.remove('menu-open'));
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.22});
+document.querySelectorAll('.scene,.grid-section,#enquiry').forEach(s=>io.observe(s));
+
+/* ---------- parallax ---------- */
+const medias=[...document.querySelectorAll('.scene .media')];
+function parallax(){const vh=innerHeight;medias.forEach(m=>{const r=m.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const p=(r.top+r.height/2-vh/2)/vh;m.style.translate='0 '+(p*-40)+'px'})}
+addEventListener('scroll',parallax,{passive:true});parallax();
+
+/* ---------- before / after ---------- */
+const cmp=document.getElementById('compare');
+function setSplit(x){const r=cmp.getBoundingClientRect();cmp.style.setProperty('--split',Math.max(4,Math.min(96,(x-r.left)/r.width*100))+'%')}
+let drag=false;
+cmp.addEventListener('pointerdown',e=>{drag=true;setSplit(e.clientX)});
+addEventListener('pointermove',e=>{if(drag)setSplit(e.clientX)});
+addEventListener('pointerup',()=>drag=false);
+
+/* ---------- procedural placeholder imagery ----------
+   Each canvas is a stand-in for real photography / renders.
+   Swap any <canvas data-scene> for <img src="…"> to use real media. */
+const rnd=(s)=>{let a=s*9301+49297;return()=>{a=(a*9301+49297)%233280;return a/233280}};
+function paint(c,scene,seed=1){
+  const r=rnd(seed+scene.length*7);
+  const W=c.width=c.clientWidth*devicePixelRatio||800,H=c.height=c.clientHeight*devicePixelRatio||600;
+  const x=c.getContext('2d');
+  const pal={
+    canopy:['#05100c','#0f2a1b','#1d4a2a','#3a7a3b','#7fae4c'],
+    garden:['#07120d','#143421','#245b2e','#4b8a3e','#a9c466'],
+    bare:['#15120e','#2b2419','#4a3d2c','#6b5a41','#8a7859'],
+    materials:['#0b0d0c','#1c1f1b','#3a3b32','#6b6a55','#9a9478'],
+    install:['#0a0f0c','#1a2c1e','#2e4d2a','#5c7f3a','#c0a46a'],
+    estate:['#060b12','#0f2130','#1b3d3a','#2f6b4a','#7fa36a'],
+    step1:['#0b0b0e','#1b1d24','#33363f','#5c5f66','#8d8f94'],
+    step2:['#071009','#0f2a17','#1f4f29','#3c7d3a','#86b55a'],
+    step3:['#120b0b','#2a1715','#54322a','#8a5a3c','#c9a06a'],
+    step4:['#0b0d0c','#1e221b','#3d4230','#6f7450','#a6a77a'],
+    step5:['#0a0c10','#182130','#2c3f4a','#4f6e5a','#9bb08a'],
+    pk1:['#071009','#13301c','#2a5a2e','#4e8a3f','#9ec163'],
+    pk2:['#0a0c12','#172334','#243d3f','#3c6b4a','#8aa87a'],
+    pk3:['#0b0a08','#241c13','#4a3a24','#7a6238','#b89a66'],
+    t0:['#061009','#0f2e1b','#1f5a2f','#3f8a3f','#9ccf63'],t1:['#14110a','#332a16','#5a4a26','#8a7a44','#c9b47a'],
+    t2:['#0b0c0e','#1b2020','#2c3d34','#4f6b52','#8ea88a'],t3:['#0a0c0f','#15202b','#23393e','#3f6650','#86a883'],
+    t4:['#070d10','#0e2630','#1a4a44','#2f7a56','#7fb57a'],t5:['#0c0f08','#20291a','#3a4f2a','#5f8640','#a8c56a']
+  }[scene]||['#000','#111','#222','#444','#666'];
+  // sky / depth gradient
+  const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,pal[0]);g.addColorStop(.55,pal[1]);g.addColorStop(1,pal[2]);
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  // soft light
+  const l=x.createRadialGradient(W*.7,H*.15,0,W*.7,H*.15,W*.9);l.addColorStop(0,'rgba(230,232,240,0.14)');l.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=l;x.fillRect(0,0,W,H);
+  // organic masses
+  const n=scene==='bare'?26:scene==='materials'?60:90;
+  for(let i=0;i<n;i++){
+    const px=r()*W,py=H*(0.35+r()*0.7),rad=(scene==='materials'?W*0.08:W*(0.05+r()*0.16))*(scene==='bare'?0.6:1);
+    const c0=pal[2+Math.floor(r()*3)];
+    const bg=x.createRadialGradient(px,py,0,px,py,rad);bg.addColorStop(0,c0);bg.addColorStop(1,'rgba(0,0,0,0)');
+    x.globalAlpha=scene==='bare'?0.35:0.55;x.fillStyle=bg;
+    if(scene==='materials'){x.globalAlpha=0.5;x.fillStyle=c0;x.fillRect(px,py,rad*1.6,rad*0.9)}
+    else{x.beginPath();x.ellipse(px,py,rad,rad*(0.55+r()*0.4),r()*3.14,0,6.283);x.fill()}
+  }
+  x.globalAlpha=1;
+  // horizon / path
+  if(scene!=='materials'){
+    const hz=x.createLinearGradient(0,H*0.62,0,H);hz.addColorStop(0,'rgba(0,0,0,0)');hz.addColorStop(1,'rgba(0,0,0,0.5)');x.fillStyle=hz;x.fillRect(0,H*0.62,W,H*0.38);
+    if(scene!=='bare'&&scene!=='step1'){x.strokeStyle='rgba(230,232,240,0.08)';x.lineWidth=W*0.02;x.beginPath();x.moveTo(W*0.45,H);x.bezierCurveTo(W*0.5,H*0.8,W*0.35,H*0.75,W*0.6,H*0.62);x.stroke()}
+  }
+  // grain
+  const img=x.getImageData(0,0,W,H),d=img.data;for(let i=0;i<d.length;i+=16){const v=(r()-0.5)*18;d[i]+=v;d[i+1]+=v;d[i+2]+=v}x.putImageData(img,0,0);
+}
+function paintAll(){document.querySelectorAll('canvas[data-scene]').forEach((c,i)=>paint(c,c.dataset.scene,i+1))}
+paintAll();
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(paintAll,250)});
+
+/* ---------- form (placeholder handler) ---------- */
+function send(e){e.preventDefault();const n=document.getElementById('note');n.textContent='Thank you. Your enquiry is noted and a first concept will follow.';e.target.querySelector('.submit').textContent='Sent';return false}
+</script>
+</body>
+</html>
