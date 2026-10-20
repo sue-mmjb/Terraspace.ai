@@ -624,6 +624,13 @@ body.landing main{padding-top:72px}
 .shop-hero .eyebrow{color:var(--muted)}
 .shop-hero .btn{color:var(--ink);border-color:var(--ink)}
 .shop-hero .btn:hover{background:var(--ink);color:#fff}
+/* Review note (21 Oct): hero label was wrapping onto a second line and the copy
+   column felt narrow. Let the label run on one line on wider screens and give
+   the intro paragraph a little more width. Type and layout otherwise unchanged. */
+.lp-copy .lbl{max-width:none}
+@media (min-width:700px){.lp-copy .lbl{white-space:nowrap}}
+.lp-copy p{max-width:52ch}
+
 </style>
 </head>
 <body>
