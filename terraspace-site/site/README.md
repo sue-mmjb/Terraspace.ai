@@ -1,11 +1,10 @@
 # TerraSpace.ai — website
 
-Static single-page site. No build step.
+Static site. No build step.
 
-- `index.html` — the page (HTML, CSS and JS in one file)
-- `assets/` — imagery; swap any file to change a section's photo
-- `vercel.json` — clean URLs and long cache for assets
-- `app/` — the clickable TerraSpace app prototype, served at `/app`. One HTML file plus its photos. Edit data in `app/index.html` (search for `const PLANTS`, `const BASE_THEMES`, `const AISLES`, `const CREWS`, `const CURRENCIES`). No backend: everything a visitor does stays in their own browser.
+- `app/` — the TerraSpace app (Sofia's design). Served at the root address `/` through a rewrite in `vercel.json`, and also at `/app` so the printed QR signs keep working. One HTML file plus its photos; photo paths are absolute (`/app/...`) so both addresses work. Edit data in `app/index.html` (search for `const PLANTS`, `const BASE_THEMES`, `const AISLES`, `const CREWS`, `const CURRENCIES`). No backend: everything a visitor does stays in their own browser.
+- `marketing/` — the light marketing page, served at `/marketing`. Its photos are in `marketing/assets/`.
+- `vercel.json` — root rewrite, clean URLs and long cache for photos
 
 ## Showroom QR signs
 
