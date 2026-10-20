@@ -1416,7 +1416,7 @@ function go(s){ const ch = s !== S.screen; S.screen = s; if (s === 'create' && S
 /* ===== Sheet + toast ===== */
 function menuOpen(o){ const m = $('#menuOv'); m.classList.toggle('open', o); m.setAttribute('aria-hidden', o ? 'false' : 'true'); document.body.classList.toggle('menu-open', o); }
 function openSheet(html){ $('#sheet').innerHTML = html; const b = $('#sheetBg'); b.classList.add('open'); b.setAttribute('aria-hidden', 'false'); }
-function closeSheet(){ const b = $('#sheetBg'); b.classList.remove('open'); b.setAttribute('aria-hidden', 'true'); }
+function closeSheet(){ const b = $('#sheetBg'); if (b.contains(document.activeElement)) document.activeElement.blur(); b.classList.remove('open'); b.setAttribute('aria-hidden', 'true'); }
 let tt; function toast(m){ const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2800); }
 
 /* ===== Images ===== */
