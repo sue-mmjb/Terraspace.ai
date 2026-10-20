@@ -559,6 +559,93 @@ body.landing .topbar.solid{background:rgba(255,255,255,.92);-webkit-backdrop-fil
 .lp-float b{font-weight:200;font-size:26px}
 .lp-foot{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.rv.pre{opacity:1;transform:none}.menu-item{opacity:1;transform:none}}
+/* ===================== Light web-app skin =====================
+   Reviewer feedback (Tim, Oct 2026): too dark for a web app, type too thin.
+   Photos stay full-bleed, but copy sits on a white panel with no dark shade,
+   headings are 600 weight, and buttons are solid green pills. Overrides the
+   editorial layer above; delete this block to go back. */
+body{font-weight:400;line-height:1.6;letter-spacing:0}
+h1,h2{font-weight:600;letter-spacing:-.02em}
+h3{font-weight:600;letter-spacing:0}
+b,strong{font-weight:600}
+.eyebrow,.rr-label{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--forest)}
+.brand{font-size:18px;font-weight:700;letter-spacing:-.01em;text-transform:none;gap:9px}
+.btn{min-height:46px;padding:0 22px;border-radius:999px;border:1px solid var(--forest);background:var(--forest);color:#fff;font-size:15px;font-weight:500;letter-spacing:0;text-transform:none}
+.btn:hover{background:var(--forest-2);border-color:var(--forest-2);color:#fff}
+.btn svg{width:18px;height:18px}
+.btn.ghost,.btn.soft{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover,.btn.soft:hover{background:var(--soft);border-color:var(--ink);color:var(--ink)}
+.btn.gold{background:var(--forest);color:#fff;border-color:var(--forest)}
+.btn.sm{min-height:38px;padding:0 16px;font-size:14px;border-radius:999px}
+.btn[disabled]:hover{background:var(--forest);color:#fff}
+.chips{gap:8px}
+.chip{height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink)}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.pill{font-size:11px;font-weight:600;letter-spacing:.08em}
+.stock{font-weight:500;letter-spacing:.04em}
+/* landing */
+.lp-scene{background:var(--soft)}
+.lp-scene .shade{background:linear-gradient(180deg,rgba(255,255,255,0) 55%,rgba(245,243,238,.4) 100%)}
+.lp-copy{color:var(--ink);background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:20px;padding:clamp(22px,3vw,36px);max-width:640px;margin-bottom:clamp(40px,8vh,88px);box-shadow:0 24px 60px rgba(22,33,27,.14)}
+.lp-copy h1{color:var(--ink);font-weight:600;letter-spacing:-.03em;font-size:clamp(36px,5vw,64px)}
+.lp-copy h2{color:var(--ink);font-weight:600;letter-spacing:-.025em;font-size:clamp(28px,3.6vw,46px)}
+.lp-copy p{color:var(--muted);font-weight:400;line-height:1.6}
+.lp-copy .lbl{color:var(--forest);font-weight:600;letter-spacing:.14em}
+.lp-copy .btn,.lp-copy .btn.light{background:var(--forest);color:#fff;border-color:var(--forest)}
+.lp-copy .btn:hover,.lp-copy .btn.light:hover{background:var(--forest-2);border-color:var(--forest-2);color:#fff}
+.lp-copy .btn.line{border:1px solid var(--line);padding:0 22px;min-height:46px;letter-spacing:0;background:#fff;color:var(--ink)}
+.lp-copy .btn.line::after{display:none}
+.lp-copy .btn.line:hover{background:var(--soft);color:var(--ink)}
+.lp-copy .lp-link{color:var(--forest)}
+.lp-link{font-size:15px;font-weight:500;letter-spacing:0;text-transform:none}
+.scroll-cue{display:none}
+body.landing .topbar,body.landing .topbar:not(.solid){background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+body.landing .topbar:not(.solid) .brand,body.landing .topbar:not(.solid) .rr-link,body.landing .topbar:not(.solid) .nav-cta,body.landing .topbar:not(.solid) .cur{color:var(--ink)}
+body.landing .topbar:not(.solid) .brand .mark{color:var(--forest)}
+body.landing .topbar:not(.solid) .burger span{background:var(--ink)}
+body.landing .topbar:not(.solid) .cur{border-bottom-color:var(--line)}
+.lp-statement{font-weight:600;letter-spacing:-.02em}
+.lp-statement em{color:var(--forest);font-style:normal}
+.lp-3 h3,.lp-steps h3,.chain h3,.pk h3{font-weight:600}
+.lp-head h2{font-weight:600;letter-spacing:-.025em}
+.lp-steps .ph{border-radius:16px}
+.lp-steps .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--forest);font-size:12px;font-weight:700;letter-spacing:0}
+.lp-edit{gap:16px}
+.ecard{border-radius:16px}
+.ecard .c{background:linear-gradient(to top,rgba(255,255,255,.97) 0%,rgba(255,255,255,.92) 55%,rgba(255,255,255,0) 100%);padding-top:90px}
+.ecard h3{color:var(--ink);font-weight:600;font-size:19px;letter-spacing:0}
+.ecard .by{color:var(--muted)}
+.ecard .xs{color:var(--muted)!important}
+.chain .k{font-weight:600;color:var(--forest)}
+.pk{border:1px solid var(--line);border-radius:18px;padding:24px;background:#fff}
+.pk.on{border:2px solid var(--forest);padding:23px}
+.pk .price{font-weight:600;font-size:30px;letter-spacing:-.02em}
+.lp-duo{gap:16px}
+.lp-duo > div{border-radius:20px;color:var(--ink)}
+.lp-duo .c{background:linear-gradient(to top,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 60%,rgba(255,255,255,0) 100%)}
+.lp-duo h2{color:var(--ink)}
+.lp-duo .c p{color:var(--muted)!important}
+.lp-duo .c p.eyebrow{color:var(--forest)!important}
+.lp-duo .btn{background:var(--forest)!important;color:#fff!important;border-color:var(--forest)!important}
+.lp-duo .btn:hover{background:var(--forest-2)!important}
+.lp-form label{font-weight:600;letter-spacing:.06em;text-transform:none;font-size:13px}
+.lp-form input,.lp-form select{font-weight:400;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+.lp-proof .cmp{border-radius:20px}
+.lp-float{border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 6px 20px rgba(22,33,27,.18)}
+.lp-float b{font-weight:600;font-size:24px}
+.lp-foot{font-size:13px;letter-spacing:0;text-transform:none}
+.rr-link,.nav-cta{font-size:14px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted)}
+.rr-link::after,.nav-cta::after{display:none}
+.nav-cta{color:#fff;background:var(--forest);border:1px solid var(--forest);border-radius:999px;padding:9px 16px;min-height:0}
+.nav-cta:hover{background:var(--forest-2);border-color:var(--forest-2);color:#fff}
+body.landing .topbar:not(.solid) .nav-cta{color:#fff}
+.cur{border:1px solid var(--line);border-radius:999px;background:#fff;padding:7px 10px;font-size:13px;font-weight:600;letter-spacing:0;color:var(--ink)}
+.burger span{height:2px;border-radius:2px}
+.menu-item{font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.menu-item:hover,.menu-item[aria-current="page"]{color:var(--forest)}
+.lp-duo h2{color:var(--ink);font-weight:600;letter-spacing:-.025em}
+
 </style>
 </head>
 <body>

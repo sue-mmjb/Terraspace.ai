@@ -136,6 +136,25 @@ h2{font-size:clamp(30px,3.6vw,46px)}
 .grid.three h3{font-size:22px}
 .grid.three p{font-size:15px}
 
+/* ---------- what you get ---------- */
+.get{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.plan svg{width:100%;height:auto;display:block;border-radius:12px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:13px;color:var(--ink-mid)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(22,33,27,.08)}
+.sched{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.layers{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.layers span{padding:6px 12px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:12px;font-weight:600}
+.sched h3{font-size:18px;font-weight:600;letter-spacing:-0.2px;margin-bottom:4px}
+.sched .meta{font-size:13px;color:var(--ink-low);margin-bottom:12px}
+.sched table{width:100%;border-collapse:collapse;font-size:14px}
+.sched td{padding:10px 0;border-top:1px solid var(--line);vertical-align:top}
+.sched td:last-child{text-align:right;color:var(--ink-mid);white-space:nowrap;padding-left:12px}
+.sched td b{font-weight:600;display:block;color:var(--ink)}
+.sched td small{color:var(--ink-low);font-size:12px}
+.sched .foot{margin-top:auto;padding-top:18px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--ink-mid)}
+
 /* ---------- themes strip ---------- */
 .strip-frame{position:relative;height:clamp(320px,52vh,560px);border-radius:var(--radius);overflow:hidden;background:var(--surface-2);box-shadow:var(--shadow-lg)}
 .strip{position:absolute;inset:0;display:flex;animation:pan 46s linear infinite;width:200%}
@@ -202,6 +221,7 @@ footer .links a:hover{color:var(--ink)}
   .form-card{padding:28px 22px;border-radius:18px}
   .strip img{width:50%}
   .units{gap:10px}
+  .get{grid-template-columns:1fr}
   footer{padding-left:20px;padding-right:20px}
 }
 @media (max-width:480px){
@@ -279,23 +299,77 @@ footer .links a:hover{color:var(--ink)}
   </div>
 </section>
 
+<!-- 3 · WHAT YOU GET -->
+<section class="section alt" id="get">
+  <div class="copy intro">
+    <p class="label">What you get</p>
+    <h2>A plan, a planting schedule and a price. Not just a picture.</h2>
+    <p class="sub">Every design is built from zones, a plant list and real materials for your plot, so it can be quoted and built exactly as drawn.</p>
+  </div>
+  <div class="get">
+    <div class="plan">
+      <svg viewBox="0 0 600 420" role="img" aria-label="Plan view of a 240 square metre garden with a seating terrace, planting beds, a path, lawn, water and a fire pit">
+        <defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0v30" fill="none" stroke="#16211B" stroke-opacity=".07"/></pattern></defs>
+        <rect width="600" height="420" fill="#F5F3EE"/><rect width="600" height="420" fill="url(#grid)"/>
+        <rect x="20" y="20" width="560" height="70" fill="#E3E0D8"/>
+        <text x="40" y="60" font-size="13" font-weight="600" fill="#4B564F">House</text>
+        <rect x="250" y="84" width="100" height="6" fill="#B9B3A6"/>
+        <rect x="20" y="90" width="180" height="120" fill="#CFE3D3"/>
+        <rect x="400" y="90" width="180" height="150" fill="#CFE3D3"/>
+        <rect x="200" y="90" width="200" height="90" fill="#E8E2D4"/>
+        <rect x="20" y="210" width="330" height="190" fill="#DDEBD5"/>
+        <path d="M300 180c0 40-40 60-40 100s40 60 40 120" fill="none" stroke="#EADFCB" stroke-width="34" stroke-linecap="round"/>
+        <ellipse cx="490" cy="320" rx="70" ry="50" fill="#CFE2E8"/>
+        <circle cx="110" cy="350" r="22" fill="#E3E0D8" stroke="#B9B3A6"/><circle cx="110" cy="350" r="9" fill="#C9B18A"/>
+        <g fill="#9FC7A8"><circle cx="50" cy="185" r="18"/><circle cx="172" cy="112" r="16"/><circle cx="540" cy="118" r="22"/><circle cx="430" cy="216" r="15"/></g>
+        <rect x="20" y="90" width="560" height="310" fill="none" stroke="#16211B" stroke-opacity=".35" stroke-dasharray="6 6"/>
+        <g font-size="13" font-weight="600" text-anchor="middle">
+          <text x="300" y="140" fill="#4B564F">Seating terrace</text>
+          <text x="110" y="150" fill="#1E6B3C">Planting bed</text>
+          <text x="490" y="165" fill="#1E6B3C">Planting bed</text>
+          <text x="120" y="290" fill="#4B564F">Lawn</text>
+          <text x="490" y="325" fill="#3C6A7A">Water</text>
+          <text x="110" y="390" font-size="12" fill="#4B564F">Fire pit</text>
+          <text x="228" y="300" font-size="12" fill="#7A5714">Path</text>
+        </g>
+        <path d="M440 392h100" stroke="#16211B" stroke-width="2"/><text x="490" y="384" text-anchor="middle" font-size="11" fill="#4B564F">5 m</text>
+        <text x="30" y="110" font-size="11" fill="#7C8680">18 × 13 m · 240 m²</text>
+      </svg>
+      <div class="legend"><span><i style="background:#CFE3D3"></i>Planting</span><span><i style="background:#DDEBD5"></i>Lawn</span><span><i style="background:#E8E2D4"></i>Terrace</span><span><i style="background:#EADFCB"></i>Path</span><span><i style="background:#CFE2E8"></i>Water</span><span><i style="background:#9FC7A8"></i>Trees</span></div>
+    </div>
+    <div class="sched">
+      <div class="layers"><span>Structure</span><span>Planting</span><span>Hardscape</span><span>Water</span></div>
+      <h3>Coastal Olive Terraces</h3>
+      <p class="meta">Planting schedule per 100 m² · white gravel ground, stone path</p>
+      <table>
+        <tr><td><b>Olive tree, 2 m</b><small>Full sun · low water</small></td><td>× 2</td></tr>
+        <tr><td><b>Italian cypress</b><small>Full sun · low water</small></td><td>× 3</td></tr>
+        <tr><td><b>Lavender</b><small>Full sun · low water</small></td><td>× 8</td></tr>
+        <tr><td><b>Rosemary</b><small>Full sun · low water</small></td><td>× 4</td></tr>
+        <tr><td><b>Ornamental grass</b><small>Full sun · low water</small></td><td>× 5</td></tr>
+      </table>
+      <div class="foot"><a class="btn btn-sm" href="/app#aisle-1">Open in the designer</a><span>Grown at TERA Park 2. Prices and stock update live in the app.</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- 4 · THEMES -->
-<section class="section alt" id="themes">
+<section class="section" id="themes">
   <div class="strip-foot">
     <div class="copy intro">
       <p class="label">Themes</p>
       <h2>Change the style.<br>Keep your space.</h2>
-      <div class="chips" aria-label="Available themes">
-        <span class="chip">Tropical</span><span class="chip">Dry climate</span><span class="chip">Courtyard</span><span class="chip">Rooftop</span><span class="chip">Resort</span><span class="chip">Native</span>
+      <div class="chips" aria-label="Themes in the designer">
+        <a class="chip" href="/app#aisle-1">Coastal Olive Terraces</a><a class="chip" href="/app#aisle-2">Golden Hour Garden</a><a class="chip" href="/app#aisle-3">Desert Modern</a><a class="chip" href="/app#aisle-4">Tropical Atrium</a><a class="chip" href="/app#aisle-5">Courtyard Vines</a><a class="chip" href="/app#aisle-6">Lavender Gravel</a><a class="chip" href="/app#aisle-7">Courtyard Olive</a><a class="chip" href="/app#aisle-8">Forest Shade</a>
       </div>
     </div>
-    <a class="btn btn-ghost" href="#enquiry" style="margin-bottom:48px">Explore themes</a>
+    <a class="btn btn-ghost" href="/app" style="margin-bottom:48px">Explore themes in the app</a>
   </div>
   <div class="strip-frame"><div class="strip" id="strip"><img src="assets/coastal-olive.jpg" alt=""><img src="assets/tropical-atrium.jpg" alt=""><img src="assets/desert-modern.jpg" alt=""><img src="assets/courtyard-olive.jpg" alt=""><img src="assets/golden-hour.jpg" alt=""><img src="assets/lavender-gravel.jpg" alt=""><img src="assets/coastal-olive.jpg" alt=""><img src="assets/tropical-atrium.jpg" alt=""><img src="assets/desert-modern.jpg" alt=""><img src="assets/courtyard-olive.jpg" alt=""><img src="assets/golden-hour.jpg" alt=""><img src="assets/lavender-gravel.jpg" alt=""></div></div>
 </section>
 
 <!-- 5 · PRICED IN REALITY -->
-<section class="split" id="pricing">
+<section class="split alt" id="pricing">
   <div class="copy">
     <p class="label">Instant quote</p>
     <h2>Every rendering is tied to real plants, materials and labour.</h2>
@@ -307,7 +381,7 @@ footer .links a:hover{color:var(--ink)}
 </section>
 
 <!-- 6 · PACKAGES -->
-<section class="section alt" id="packages">
+<section class="section" id="packages">
   <div class="copy intro">
     <p class="label">Packages</p>
     <h2>Three ways to begin.</h2>
@@ -320,7 +394,7 @@ footer .links a:hover{color:var(--ink)}
 </section>
 
 <!-- 7 · INSTALLATION -->
-<section class="split flip" id="install">
+<section class="split flip alt" id="install">
   <div class="copy">
     <p class="label">Installation network</p>
     <h2>Designed by AI.<br>Built by qualified partners.</h2>
@@ -332,7 +406,7 @@ footer .links a:hover{color:var(--ink)}
 </section>
 
 <!-- 8 · FOR BUSINESS -->
-<section class="split alt" id="business">
+<section class="split" id="business">
   <div class="copy">
     <p class="label">Resorts · Developers · Cities</p>
     <h2>From a balcony to a hundred hectares.</h2>
@@ -348,7 +422,7 @@ footer .links a:hover{color:var(--ink)}
 </section>
 
 <!-- 9 · ENQUIRY -->
-<section class="section" id="enquiry">
+<section class="section alt" id="enquiry">
   <div class="inner">
     <div class="copy intro" style="margin-bottom:0">
       <p class="label">Enquiry</p>
