@@ -48,8 +48,8 @@ img{max-width:100%;display:block}
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(16px + env(safe-area-inset-top,0px)) 48px 16px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:background .3s ease-out,border-color .3s ease-out}
 .nav.scrolled{background:rgba(255,255,255,0.88);border-bottom-color:var(--line)}
-.wordmark{font-size:16px;font-weight:700;letter-spacing:-0.2px;color:var(--ink)}
-.wordmark span{color:var(--green);font-weight:600}
+.wordmark{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:700;letter-spacing:-0.2px;color:var(--ink)}
+.wordmark svg{width:20px;height:20px;color:var(--green);flex:none}
 .nav-right{display:flex;align-items:center;gap:30px}
 .nav-links{display:flex;gap:28px}
 .nav-link{font-size:14px;font-weight:500;color:var(--ink-mid);transition:color .25s ease-out}
@@ -201,7 +201,7 @@ footer .links{display:flex;gap:28px}
 footer .links a{font-size:14px;font-weight:500;color:var(--ink-mid);transition:color .25s}
 footer .links a:hover{color:var(--ink)}
 .powered{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-low)}
-.powered img{height:12px;width:auto;filter:brightness(0);opacity:.7}
+.powered img{height:13px;width:auto;opacity:.85}
 
 @media (max-width:1100px){
   .grid{grid-template-columns:repeat(3,1fr)}
@@ -237,7 +237,7 @@ footer .links a:hover{color:var(--ink)}
 <body>
 
 <nav class="nav" id="nav">
-  <a class="wordmark" href="#hero">TerraSpace<span>.ai</span></a>
+  <a class="wordmark" href="#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M12 13c0-5 3.5-8 9-8 0 5.5-3.5 8.5-9 8z" fill="currentColor"/><path d="M12 16c0-4-3-6.5-8-6.5 0 4.5 3 7 8 6.5z" fill="currentColor" opacity=".7"/></svg>TerraSpace</a>
   <div class="nav-right">
     <div class="nav-links">
       <a class="nav-link" href="#how">Designer</a>
@@ -452,9 +452,9 @@ footer .links a:hover{color:var(--ink)}
 </section>
 
 <footer>
-  <span class="wordmark">TerraSpace<span>.ai</span></span>
+  <span class="wordmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M12 13c0-5 3.5-8 9-8 0 5.5-3.5 8.5-9 8z" fill="currentColor"/><path d="M12 16c0-4-3-6.5-8-6.5 0 4.5 3 7 8 6.5z" fill="currentColor" opacity=".7"/></svg>TerraSpace</span>
   <div class="links"><a href="#how">Designer</a><a href="#themes">Themes</a><a href="#packages">Packages</a><a href="#enquiry">Enquiry</a><a href="/app">Try the app</a></div>
-  <div class="powered">An<img src="assets/img-13.png" alt="Iozera">company</div>
+  <div class="powered">An<img src="assets/iozera.png" alt="Iozera">company</div>
 </footer>
 
 <script>
