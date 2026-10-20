@@ -656,14 +656,14 @@ const DESIGNERS = {
 const ME_DESIGNER = 'd1';
 const T = (id, name, by, img, tags, blurb, plants, ground, builds, rating) => ({ id, name, by, img, tags, blurb, plants, ground, builds, rating });
 const BASE_THEMES = [
-  T('coastal-olive','Coastal Olive Terraces','d1','coastal-olive.jpg',['Dry climate','Resort'],'Olive trees, lavender drifts and dry-stone terraces.',[['olive',2],['cypress',3],['lavender',8],['rosemary',4],['grasses',5]],'gravel',412,4.9),
-  T('golden-hour','Golden Hour Garden','d3','golden-hour.jpg',['Home garden'],'Soft grasses and silver shrubs along a stone path.',[['olive',1],['lavender',6],['grasses',8],['boxwood',4],['rosemary',3]],'pavers',157,4.8),
-  T('desert-modern','Desert Modern','ai','desert-modern.jpg',['Dry climate'],'Agave, cactus and granite. Very little water.',[['agave',4],['barrel',5],['column',2],['grasses',6],['rosemary',3]],'dg',286,4.7),
-  T('tropical-atrium','Tropical Atrium','d2','tropical-atrium.jpg',['Tropical','Courtyard'],'Fan palms and big leaves around a timber deck.',[['palm',2],['monstera',5],['bird',3],['fern',6],['mondo',10]],'deck',198,4.8),
-  T('courtyard-vines','Courtyard Vines','ai','courtyard-vines.jpg',['Courtyard','Rooftop'],'Hanging vines, still water and filtered light.',[['fig',20],['bamboo',4],['grasses',6],['fern',4]],'pavers',121,4.6),
-  T('lavender-gravel','Lavender Gravel','d3','lavender-gravel.jpg',['Dry climate','Home garden'],'Lavender and silver groundcover in warm gravel.',[['lavender',14],['rosemary',4],['olive',1],['grasses',4]],'gravel',96,4.8),
-  T('courtyard-olive','Courtyard Olive','d1','courtyard-olive.jpg',['Rooftop','Courtyard'],'One sculptural olive in a stone planter.',[['olive',1],['agave',3],['grasses',6],['boxwood',3]],'pavers',41,4.7),
-  T('forest-shade','Forest Shade','d1','forest-shade.jpg',['Native','Shade'],'Layered shade planting under a canopy.',[['maple',2],['fern',10],['hydrangea',4],['mondo',12],['bamboo',2]],'bark',9,4.5)
+  T('coastal-olive','Coastal Olive Terraces','d1','/app/coastal-olive.jpg',['Dry climate','Resort'],'Olive trees, lavender drifts and dry-stone terraces.',[['olive',2],['cypress',3],['lavender',8],['rosemary',4],['grasses',5]],'gravel',412,4.9),
+  T('golden-hour','Golden Hour Garden','d3','/app/golden-hour.jpg',['Home garden'],'Soft grasses and silver shrubs along a stone path.',[['olive',1],['lavender',6],['grasses',8],['boxwood',4],['rosemary',3]],'pavers',157,4.8),
+  T('desert-modern','Desert Modern','ai','/app/desert-modern.jpg',['Dry climate'],'Agave, cactus and granite. Very little water.',[['agave',4],['barrel',5],['column',2],['grasses',6],['rosemary',3]],'dg',286,4.7),
+  T('tropical-atrium','Tropical Atrium','d2','/app/tropical-atrium.jpg',['Tropical','Courtyard'],'Fan palms and big leaves around a timber deck.',[['palm',2],['monstera',5],['bird',3],['fern',6],['mondo',10]],'deck',198,4.8),
+  T('courtyard-vines','Courtyard Vines','ai','/app/courtyard-vines.jpg',['Courtyard','Rooftop'],'Hanging vines, still water and filtered light.',[['fig',20],['bamboo',4],['grasses',6],['fern',4]],'pavers',121,4.6),
+  T('lavender-gravel','Lavender Gravel','d3','/app/lavender-gravel.jpg',['Dry climate','Home garden'],'Lavender and silver groundcover in warm gravel.',[['lavender',14],['rosemary',4],['olive',1],['grasses',4]],'gravel',96,4.8),
+  T('courtyard-olive','Courtyard Olive','d1','/app/courtyard-olive.jpg',['Rooftop','Courtyard'],'One sculptural olive in a stone planter.',[['olive',1],['agave',3],['grasses',6],['boxwood',3]],'pavers',41,4.7),
+  T('forest-shade','Forest Shade','d1','/app/forest-shade.jpg',['Native','Shade'],'Layered shade planting under a canopy.',[['maple',2],['fern',10],['hydrangea',4],['mondo',12],['bamboo',2]],'bark',9,4.5)
 ];
 const TAGS = ['Dry climate','Tropical','Courtyard','Rooftop','Resort','Home garden','Native'];
 const PROPERTY = ['Home garden','Rooftop or balcony','Vacant lot','Resort','Commercial','Public space'];
@@ -768,7 +768,7 @@ function themeCard(t){
 function vHome(){
   const top = themes().slice().sort((a, b) => b.builds - a.builds).slice(0, 4);
   return `
-  <section class="hero"><img src="golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path">
+  <section class="hero"><img src="/app/golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path">
     <div class="hero-c">
       <p class="eyebrow" style="color:#A9DDB9">AI outdoor design · ready-made projects</p>
       <h1>Design your outdoor space from one photo.</h1>
@@ -1067,7 +1067,7 @@ function vNursery(){
   const rows = PLANTS.map(p => { const need = (fc[p.id] || 0) + (dm[p.id] || 0); return { p, need, r: need / p.stock }; }).filter(x => x.need > 0).sort((a, b) => b.r - a.r);
   const hot = rows.filter(x => x.r >= 0.8);
   const sales = allOrders().reduce((s, o) => s + o.total, 0);
-  return `<section class="shop-hero" style="min-height:46vh;margin-bottom:36px"><img src="green-brain.jpg" alt="The Green Brain terrace with solar, the power hall and the terraced nursery" style="object-position:55% 45%"><div class="c"><p class="eyebrow">Nursery owner · Green Brain</p><h1>TERA Nursery</h1><p>Demand from every design and order in the app, against what is growing on the terraces.</p></div></section>
+  return `<section class="shop-hero" style="min-height:46vh;margin-bottom:36px"><img src="/app/green-brain.jpg" alt="The Green Brain terrace with solar, the power hall and the terraced nursery" style="object-position:55% 45%"><div class="c"><p class="eyebrow">Nursery owner · Green Brain</p><h1>TERA Nursery</h1><p>Demand from every design and order in the app, against what is growing on the terraces.</p></div></section>
   <div class="head" style="margin-bottom:16px"><p class="eyebrow">Today</p><span class="pill">Includes example orders</span></div>
   <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div class="tile"><b>${open.length}</b><span class="xs muted">Open projects</span></div><div class="tile"><b>${reserved.toLocaleString('en-US')}</b><span class="xs muted">Plants reserved</span></div><div class="tile"><b>${new Set(open.map(o => o.crew)).size}</b><span class="xs muted">Crews working</span></div><div class="tile"><b>${money(sales)}</b><span class="xs muted">Project sales</span></div></div>
   <div class="two" style="margin-top:20px">
@@ -1084,7 +1084,7 @@ function vNursery(){
 }
 function vShop(){
   const list = AISLES.map(([id, n]) => ({ t: theme(id), n })).filter(x => x.t && x.t.id === x.n && false || x.t);
-  return `<section class="shop-hero"><img src="showcase-aisles.jpg" alt="The showcase aisles at the foot of the hill, TERA Park 2">
+  return `<section class="shop-hero"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles at the foot of the hill, TERA Park 2">
     <div class="c"><p class="eyebrow">Shop the Themes · TERA Park 2, Hoang Lam</p><h1>Every garden, built full size.</h1><p>Walk the showcase aisles at the foot of the hill. Each garden carries a QR price per square metre. Order on the spot, and a Hoang Lam crew installs it.</p><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-act="planVisit">Plan a visit</button></div></div>
   </section>
   <div class="facts">
@@ -1128,7 +1128,7 @@ function aisleSheet(id){
 }
 function visitSheet(){
   const ds = days().slice(0, 10);
-  return `<div class="sheet-img"><img src="showcase-aisles.jpg" alt="The showcase aisles"><button class="sheet-x" data-act="closeSheet" aria-label="Close">Close</button></div>
+  return `<div class="sheet-img"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles"><button class="sheet-x" data-act="closeSheet" aria-label="Close">Close</button></div>
   <div class="sheet-c"><div><p class="eyebrow">Plan a visit</p><h2 style="margin-top:6px">Walk the showcase aisles</h2><p class="sm muted" style="margin-top:6px">TERA Park 2, Hoang Lam. A guide walks you through the gardens and helps you order.</p></div>
     <div class="dates" style="grid-template-columns:repeat(5,minmax(0,1fr))">${ds.map(d => { const v = iso(d); return `<button type="button" class="date" data-act="visitDate" data-d="${v}" aria-pressed="${S.visitDate === v}"><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div>
     <div class="chips">${['9:00 AM','11:00 AM','2:00 PM','4:00 PM'].map(x => `<button class="chip" data-act="visitSlot" data-s="${x}" aria-pressed="${S.visitSlot === x}">${x}</button>`).join('')}</div>
@@ -1204,7 +1204,7 @@ function vLanding(){
   const top = themes().slice().sort((a, b) => b.builds - a.builds).slice(0, 4);
   const pr = k => money(quote('coastal-olive', 240, k).total);
   return `<div class="lp">
-  <section class="lp-scene"><div class="media"><img src="golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path" style="object-position:62% 58%"></div><div class="shade"></div>
+  <section class="lp-scene"><div class="media"><img src="/app/golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path" style="object-position:62% 58%"></div><div class="shade"></div>
     <div class="lp-wrap" style="width:100%"><div class="lp-copy lp-in">
       <p class="lbl">AI outdoor design · Ready-made projects</p>
       <h1>Your garden, before it grows.</h1>
@@ -1232,16 +1232,16 @@ function vLanding(){
     </div>
     <div class="rv" style="--d:.2s">${lpCmp()}</div>
   </div></section>
-  ${scene('coastal-olive.jpg', '68% 55%', 'Coastal Olive Terraces · by Linh Nguyen', 'Olive, lavender and sun-warmed stone.', 'coastal-olive')}
+  ${scene('/app/coastal-olive.jpg', '68% 55%', 'Coastal Olive Terraces · by Linh Nguyen', 'Olive, lavender and sun-warmed stone.', 'coastal-olive')}
 
   <section class="lp-block"><div class="lp-wrap">
     <div class="lp-head"><div><p class="eyebrow rv">How it works</p><h2 class="rv" style="--d:.15s;margin-top:10px">From photo to planted in five steps.</h2></div><button class="btn rv" style="--d:.3s" data-go="create">Start a design</button></div>
     <ol class="lp-steps">
-      <li class="rv" style="--d:.05s"><span class="ph"><img src="courtyard-olive.jpg" alt=""></span><span class="n">01</span><h3>Upload</h3><p class="sm muted">One photo of your yard, rooftop, courtyard or lot.</p></li>
-      <li class="rv" style="--d:.15s"><span class="ph"><img src="desert-modern.jpg" alt="" style="object-position:62% 50%"></span><span class="n">02</span><h3>Generate</h3><p class="sm muted">AI places plants, paths and materials in your space.</p></li>
-      <li class="rv" style="--d:.25s"><span class="ph"><img src="tropical-atrium.jpg" alt=""></span><span class="n">03</span><h3>Swap themes</h3><p class="sm muted">Same space, new look. Themes by designers and AI.</p></li>
-      <li class="rv" style="--d:.35s"><span class="ph"><img src="lavender-gravel.jpg" alt=""></span><span class="n">04</span><h3>Real quote</h3><p class="sm muted">Every plant priced and in stock at our nursery.</p></li>
-      <li class="rv" style="--d:.45s"><span class="ph"><img src="golden-hour.jpg" alt="" style="object-position:30% 60%"></span><span class="n">05</span><h3>Book installation</h3><p class="sm muted">Pick a ready-made project, a crew and a date.</p></li>
+      <li class="rv" style="--d:.05s"><span class="ph"><img src="/app/courtyard-olive.jpg" alt=""></span><span class="n">01</span><h3>Upload</h3><p class="sm muted">One photo of your yard, rooftop, courtyard or lot.</p></li>
+      <li class="rv" style="--d:.15s"><span class="ph"><img src="/app/desert-modern.jpg" alt="" style="object-position:62% 50%"></span><span class="n">02</span><h3>Generate</h3><p class="sm muted">AI places plants, paths and materials in your space.</p></li>
+      <li class="rv" style="--d:.25s"><span class="ph"><img src="/app/tropical-atrium.jpg" alt=""></span><span class="n">03</span><h3>Swap themes</h3><p class="sm muted">Same space, new look. Themes by designers and AI.</p></li>
+      <li class="rv" style="--d:.35s"><span class="ph"><img src="/app/lavender-gravel.jpg" alt=""></span><span class="n">04</span><h3>Real quote</h3><p class="sm muted">Every plant priced and in stock at our nursery.</p></li>
+      <li class="rv" style="--d:.45s"><span class="ph"><img src="/app/golden-hour.jpg" alt="" style="object-position:30% 60%"></span><span class="n">05</span><h3>Book installation</h3><p class="sm muted">Pick a ready-made project, a crew and a date.</p></li>
     </ol>
   </div></section>
 
@@ -1251,9 +1251,9 @@ function vLanding(){
     <div class="lp-edit">${top.map((t, i) => `<button class="ecard rv" style="--d:${(i * .12).toFixed(2)}s" data-act="openTheme" data-id="${t.id}"><img src="${t.img}" alt="${esc(t.name)}"><span class="c"><h3>${esc(t.name)}</h3>${byline(t)}<span class="xs" style="color:rgba(255,255,255,.7)">${t.builds} builds · ★ ${t.rating.toFixed(1)}</span></span></button>`).join('')}</div>
   </section>
 
-  ${scene('desert-modern.jpg', '60% 55%', 'Desert Modern · by TerraSpace AI', 'Shaped by sun. Made for little water.', 'desert-modern')}
+  ${scene('/app/desert-modern.jpg', '60% 55%', 'Desert Modern · by TerraSpace AI', 'Shaped by sun. Made for little water.', 'desert-modern')}
 
-  <section class="lp-scene"><div class="media"><img src="showcase-aisles.jpg" alt="Visitors walking the showcase aisles of full-size gardens at the foot of the hill, with greenhouses above" style="object-position:50% 60%"></div><div class="shade"></div>
+  <section class="lp-scene"><div class="media"><img src="/app/showcase-aisles.jpg" alt="Visitors walking the showcase aisles of full-size gardens at the foot of the hill, with greenhouses above" style="object-position:50% 60%"></div><div class="shade"></div>
     <div class="lp-wrap" style="width:100%"><div class="lp-copy">
       <p class="lbl rv">Shop the Themes · TERA Park 2, Hoang Lam</p>
       <h2 class="rv" style="--d:.15s">Walk the gardens before you buy them.</h2>
@@ -1261,7 +1261,7 @@ function vLanding(){
       <div class="rv" style="--d:.45s;display:flex;gap:28px;flex-wrap:wrap;align-items:center"><button class="btn light" data-go="shop">Shop the Themes</button><button class="lp-link" data-act="planVisit">Plan a visit</button></div>
     </div></div></section>
 
-  <section class="lp-scene"><div class="media"><img src="green-brain.jpg" alt="Aerial view of the upper terrace: a research pavilion under a planted roof, the power hall, a bamboo drying shed, solar arrays with battery storage, and terraced greenhouses below" style="object-position:55% 45%"></div><div class="shade"></div>
+  <section class="lp-scene"><div class="media"><img src="/app/green-brain.jpg" alt="Aerial view of the upper terrace: a research pavilion under a planted roof, the power hall, a bamboo drying shed, solar arrays with battery storage, and terraced greenhouses below" style="object-position:55% 45%"></div><div class="shade"></div>
     <div class="lp-wrap" style="width:100%"><div class="lp-copy">
       <p class="lbl rv">The Green Brain · TERA Park</p>
       <h2 class="rv" style="--d:.15s">The park's brain and its power, on one terrace.</h2>
@@ -1284,8 +1284,8 @@ function vLanding(){
   </div></section>
 
   <section class="lp-block" style="padding-top:0"><div class="lp-wrap"><div class="lp-duo">
-    <div class="rv"><img src="tropical-atrium.jpg" alt=""><div class="c"><p class="eyebrow" style="color:#CFEBD8">Request a design</p><h2>Want a human designer?</h2><p style="color:rgba(255,255,255,.85);max-width:40ch">Share a photo, a brief and a budget. Get an AI concept now and designer proposals in days.</p><button class="btn sm" style="background:#fff;color:var(--forest)" data-go="requests">Request a design</button></div></div>
-    <div class="rv" style="--d:.15s"><img src="lavender-gravel.jpg" alt=""><div class="c"><p class="eyebrow" style="color:#CFEBD8">For designers</p><h2>Earn 10% on every build.</h2><p style="color:rgba(255,255,255,.85);max-width:40ch">Upload your themes to the marketplace. When a customer builds one, you earn 10% of the project.</p><button class="btn sm" style="background:#fff;color:var(--forest)" data-act="role" data-role="designer">Open designer studio</button></div></div>
+    <div class="rv"><img src="/app/tropical-atrium.jpg" alt=""><div class="c"><p class="eyebrow" style="color:#CFEBD8">Request a design</p><h2>Want a human designer?</h2><p style="color:rgba(255,255,255,.85);max-width:40ch">Share a photo, a brief and a budget. Get an AI concept now and designer proposals in days.</p><button class="btn sm" style="background:#fff;color:var(--forest)" data-go="requests">Request a design</button></div></div>
+    <div class="rv" style="--d:.15s"><img src="/app/lavender-gravel.jpg" alt=""><div class="c"><p class="eyebrow" style="color:#CFEBD8">For designers</p><h2>Earn 10% on every build.</h2><p style="color:rgba(255,255,255,.85);max-width:40ch">Upload your themes to the marketplace. When a customer builds one, you earn 10% of the project.</p><button class="btn sm" style="background:#fff;color:var(--forest)" data-act="role" data-role="designer">Open designer studio</button></div></div>
   </div></div></section>
 
   <section class="lp-block" style="padding-top:clamp(24px,4vh,48px)"><div class="lp-wrap">
