@@ -5,6 +5,11 @@ Static single-page site. No build step.
 - `index.html` — the page (HTML, CSS and JS in one file)
 - `assets/` — imagery; swap any file to change a section's photo
 - `vercel.json` — clean URLs and long cache for assets
+- `app/` — the clickable TerraSpace app prototype, served at `/app`. One HTML file plus its photos. Edit data in `app/index.html` (search for `const PLANTS`, `const BASE_THEMES`, `const AISLES`, `const CREWS`, `const CURRENCIES`). No backend: everything a visitor does stays in their own browser.
+
+## Showroom QR signs
+
+`../showroom-qr-codes/` holds the eight printable aisle signs. They point to `https://terraspace-ai.vercel.app/app#aisle-1` through `#aisle-8`. If the domain or the `/app` path changes, regenerate them. The QR codes shown inside the app use the current address automatically.
 
 ## Hero before/after
 
