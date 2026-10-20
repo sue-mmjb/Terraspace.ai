@@ -259,8 +259,8 @@ body.landing .topbar:not(.solid) .open-app{background:#fff;color:var(--forest)}
 .lp-link.dark{color:var(--forest)}
 .scroll-cue{position:absolute;z-index:1;bottom:24px;left:50%;width:1px;height:48px;background:linear-gradient(rgba(255,255,255,.75),rgba(255,255,255,0));animation:cue 2.6s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translateX(-50%) translateY(0);opacity:.35}50%{transform:translateX(-50%) translateY(8px);opacity:.8}}
-.lp-in > *{animation:rise 1s var(--ease) both}
-.lp-in > :nth-child(1){animation-delay:.2s}.lp-in > :nth-child(2){animation-delay:.4s}.lp-in > :nth-child(3){animation-delay:.6s}.lp-in > :nth-child(4){animation-delay:.8s}
+.lp-in > *{animation:rise .6s var(--ease) both}
+.lp-in > :nth-child(1){animation-delay:.05s}.lp-in > :nth-child(2){animation-delay:.12s}.lp-in > :nth-child(3){animation-delay:.2s}.lp-in > :nth-child(4){animation-delay:.28s}
 @keyframes rise{from{opacity:.3;transform:translateY(24px)}to{opacity:1;transform:none}}
 .rv{transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
 .rv.pre{opacity:0;transform:translateY(36px)}
@@ -631,6 +631,29 @@ body.landing main{padding-top:72px}
 @media (min-width:700px){.lp-copy .lbl{white-space:nowrap}}
 .lp-copy p{max-width:52ch}
 
+/* Review fixes (21 Oct): order sheet. Close is pinned to the viewport, the sheet is
+   solid white and clears the top bar, dates have a default and accessible names,
+   a plant list and a confirmation step were added. */
+.sheet-bg{z-index:60;opacity:1!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(27,30,28,0);transition:background-color .35s var(--ease),visibility .35s}
+.sheet-bg.open{background:rgba(27,30,28,.34)}
+.sheet{background:#fff!important;isolation:isolate;max-height:calc(100% - 72px - env(safe-area-inset-top,0px))}
+.sheet-x{display:none}
+.sheet-close{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:61;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:9px 14px;font:inherit;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:none}
+.sheet-bg.open .sheet-close{display:block}
+.dates-8{grid-template-columns:repeat(8,minmax(0,1fr))}
+@media (max-width:520px){.dates-8{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.date:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.plist{list-style:none;margin:0;padding:0}
+.plist li{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:9px 0;border-top:1px solid var(--line);font-size:14px;align-items:baseline}
+.plist li:first-child{border-top:0;padding-top:0}
+.next{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:n}
+.next li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.next li::before{counter-increment:n;content:counter(n);width:28px;height:28px;border:1px solid var(--ink);display:grid;place-items:center;font-size:11px}
+.next b{display:block;font-weight:500;margin-bottom:2px}
+.next span{grid-column:2;color:var(--muted);font-size:14px;line-height:1.5}
+.iozera-word{display:inline-flex;align-items:center}
+.iozera-word i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
 </style>
 </head>
 <body>
@@ -677,7 +700,7 @@ body.landing main{padding-top:72px}
     <div class="menu-roles" id="menuRoles"></div>
   </div>
 </div>
-<div class="sheet-bg" id="sheetBg" aria-hidden="true"><div class="sheet" role="dialog" aria-modal="true" aria-label="Details" id="sheet"></div></div>
+<div class="sheet-bg" id="sheetBg" aria-hidden="true"><button type="button" class="sheet-close" data-act="closeSheet" aria-label="Close">Close</button><div class="sheet" role="dialog" aria-modal="true" aria-label="Details" id="sheet"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <input type="file" id="photoIn" accept="image/*" hidden>
 <input type="file" id="themePhotoIn" accept="image/*" hidden>
@@ -866,7 +889,7 @@ function vHome(){
     <div class="promo gold"><p class="eyebrow" style="color:var(--gold-ink)">Request a design</p><h2>Want a human designer?</h2><p class="sm" style="color:var(--gold-ink)">Share a photo, a short brief and your budget. Get an AI concept now and designer proposals in a few days.</p><div><button class="btn gold sm" data-go="requests">Request a design</button></div></div>
     <div class="promo green"><p class="eyebrow" style="color:#A9DDB9">For designers</p><h2 style="color:#fff">Earn 10% on every build.</h2><p class="sm muted">Upload your themes. When a customer builds one, you earn 10% of the project.</p><div><button class="btn sm" style="background:#fff;color:var(--forest)" data-act="role" data-role="designer">Open designer studio</button></div></div>
   </section>
-  <footer class="foot"><span class="foot-brand">TerraSpace · An <img class="iozera" src="/app/iozera.png" alt="Iozera"> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer>`;
+  <footer class="foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer>`;
 }
 
 function filteredThemes(){
@@ -1180,9 +1203,22 @@ const qrURL = n => location.origin + location.pathname + '#aisle-' + n;
 function drawQRs(){
   $$('[data-qr]').forEach(el => { if (el.dataset.done) return; el.dataset.done = '1'; if (window.QRCode){ el.textContent = ''; try { new window.QRCode(el, { text: qrURL(el.dataset.qr), width: 160, height: 160, colorDark:'#1B1E1C', colorLight:'#ffffff', correctLevel: window.QRCode.CorrectLevel.M }); el.removeAttribute('title'); } catch(e){ el.textContent = 'AISLE ' + el.dataset.qr; } } });
 }
+function plantRows(id, area){ return quote(id, area, 'essential').lines.filter(l => l.g === 'plants').map(l => `<li><span>${esc(l.name)}</span><span class="num">× ${l.qty}</span><span class="muted">${l.stock.toLocaleString('en-US')} in stock</span></li>`).join(''); }
+function orderDoneSheet(oid, q, area, when){
+  return `<div class="sheet-c">
+    <div><p class="eyebrow">Order ${esc(oid)}</p><h2 style="margin-top:6px">Booked. Here is what happens next.</h2></div>
+    <ol class="next">
+      <li><b>Deposit request</b><span>We send a payment link for the 30% deposit, ${money(q.total * 0.3)}. Prototype: nothing is charged.</span></li>
+      <li><b>Crew confirms the date</b><span>A Hoang Lam crew confirms ${esc(when)} and measures the site. The final price is confirmed then.</span></li>
+      <li><b>Plants reserved</b><span>${q.plantsN} plants for ${esc(q.t.name)}, ${area} m², are reserved at TERA Park 2.</span></li>
+    </ol>
+    <button class="btn block" data-act="closeSheet">View my project</button>
+  </div>`;
+}
 function aisleSheet(id){
   const t = theme(id), n = aisleOf(id), pm = perM2(id), area = S.shopArea || S.flow.area;
-  const ds = days().filter(d => d.getDay() !== 0).slice(0, 8);
+  const ds = days().filter(d => d.getDay() !== 0).slice(0, 8), full = new Set([iso(ds[2])]);
+  if (!S.soDate || !ds.some(d => iso(d) === S.soDate) || full.has(S.soDate)) S.soDate = iso(ds.find(d => !full.has(iso(d))));
   return `<div class="sheet-img"><img src="${t.img}" alt="${esc(t.name)}"><button class="sheet-x" data-act="closeSheet" aria-label="Close">Close</button><span class="no" style="position:absolute;left:0;top:0;background:#fff;padding:8px 12px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase">Aisle ${String(n || 0).padStart(2, '0')}</span></div>
   <div class="sheet-c">
     <div><p class="eyebrow">Order on the spot</p><h2 style="margin-top:6px">${esc(t.name)}</h2><div style="margin-top:8px">${byline(t)}</div></div>
@@ -1191,7 +1227,8 @@ function aisleSheet(id){
       <div><p class="eyebrow">Price per m²</p><p class="num" style="font-size:26px;font-weight:200;margin-top:6px">${money(pm)}</p></div>
     </div>
     <div class="total" style="position:static"><dl><div><dt>Garden, installed</dt><dd id="soTotal">${money(quote(id, area, 'essential').total)}</dd></div><div><dt>Deposit today · 30%</dt><dd id="soDep">${money(quote(id, area, 'essential').total * 0.3)}</dd></div></dl></div>
-    <div><p class="eyebrow" style="margin-bottom:10px">Hoang Lam crew · install date</p><div class="dates" style="grid-template-columns:repeat(8,minmax(0,1fr))">${ds.map(d => { const v = iso(d); return `<button type="button" class="date" data-act="soDate" data-d="${v}" aria-pressed="${S.soDate === v}"><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div></div>
+    <div><p class="eyebrow" style="margin-bottom:10px">Plants in this garden · <span id="soPlantsArea">${area}</span> m²</p><ul class="plist" id="soPlants">${plantRows(id, area)}</ul></div>
+    <div><p class="eyebrow" style="margin-bottom:10px">Hoang Lam crew · install date</p><div class="dates dates-8">${ds.map(d => { const v = iso(d), isFull = full.has(v), lbl = d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' }); return `<button type="button" class="date" data-act="soDate" data-d="${v}" aria-pressed="${S.soDate === v}" aria-label="${lbl}${isFull ? ', fully booked' : ''}"${isFull ? ' disabled' : ''}><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${isFull ? 'Full' : d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div></div>
     <div class="form2"><label class="field">Full name<input type="text" id="soName" autocomplete="name"></label><label class="field">Mobile number<input type="tel" id="soPhone" autocomplete="tel"></label><label class="field full">Site address<input type="text" id="soAddr" autocomplete="street-address"></label></div>
     <p class="err" id="soErr" hidden>Pick an install date and add your name, mobile number and site address.</p>
     <button class="btn block" data-act="soPlace" data-id="${id}">Order and book the crew</button>
@@ -1370,7 +1407,7 @@ function vLanding(){
       <button class="btn" type="submit">Begin design</button>
     </form>
   </div></section>
-  <div class="lp-wrap"><footer class="lp-foot"><span class="foot-brand">TerraSpace · An <img class="iozera" src="/app/iozera.png" alt="Iozera"> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer></div>
+  <div class="lp-wrap"><footer class="lp-foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer></div>
   </div>`;
 }
 let lpIO = null;
@@ -1455,7 +1492,7 @@ document.addEventListener('click', e => {
       const q = quote(id, area, 'essential'), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty);
       const oid = 'TS-' + String(Date.now()).slice(-5);
       S.orders.push({ id:oid, themeId:id, area, pkg:'essential', total:q.total, plants, crew:'c4', date:S.soDate, slot:'8:00 AM', status:'Booked', created:iso(new Date()), by:q.t.by, src:'showroom' });
-      S.shopArea = area; save(); closeSheet(); S.role = 'customer'; go('projects'); toast('Ordered. A Hoang Lam crew is booked for ' + pretty(S.soDate) + '.'); break; }
+      S.shopArea = area; save(); S.role = 'customer'; go('projects'); openSheet(orderDoneSheet(oid, q, area, pretty(S.soDate))); break; }
     case 'planVisit': S.visitDate = null; S.visitSlot = null; openSheet(visitSheet()); break;
     case 'visitDate': S.visitDate = a.dataset.d; $$('[data-act="visitDate"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === S.visitDate)); break;
     case 'visitSlot': S.visitSlot = a.dataset.s; $$('[data-act="visitSlot"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === S.visitSlot)); break;
@@ -1522,7 +1559,7 @@ document.addEventListener('input', e => {
   if (el.id === 'lpCmpIn'){ S.lpCmp = +el.value; $('#lpCmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'cmpIn'){ S.flow.cmp = +el.value; $('#cmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'rBrief'){ S.reqForm.brief = el.value; }
-  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').textContent = money(q.total); $('#soDep').textContent = money(q.total * 0.3); } }
+  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').textContent = money(q.total); const pl = $('#soPlants'); if (pl){ pl.innerHTML = plantRows(id, a2); $('#soPlantsArea').textContent = a2; } $('#soDep').textContent = money(q.total * 0.3); } }
 });
 document.addEventListener('submit', e => {
   if (e.target.id !== 'lpForm') return;
