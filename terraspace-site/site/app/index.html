@@ -807,6 +807,13 @@ body.ar-open{overflow:hidden}
 .topnav{gap:22px}
 .iozera{height:11px;width:auto;display:inline-block;vertical-align:-1px;margin:0 2px}
 .foot-brand{white-space:normal}
+
+/* Review note (22 Oct): too much side margin on wide screens. Widen the content
+   column from 1240px to 1480px and cut the side padding from 5vw to about 3vw.
+   Phones keep the 16px gutter. */
+.lp-wrap,.shell{max-width:1480px;padding-left:max(16px,3vw,env(safe-area-inset-left,0px));padding-right:max(16px,3vw,env(safe-area-inset-right,0px))}
+.topbar-in{padding-left:max(16px,3vw,env(safe-area-inset-left,0px));padding-right:max(16px,3vw,env(safe-area-inset-right,0px))}
+.lp-copy p{max-width:60ch}
 </style>
 </head>
 <body>
