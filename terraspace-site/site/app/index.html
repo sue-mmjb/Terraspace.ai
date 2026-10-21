@@ -717,7 +717,15 @@ tr.click{cursor:pointer}tr.click:hover td{background:var(--soft)}
 .total dl div{flex-wrap:wrap}.total dd{text-align:right;margin-left:auto}#bOut .grand dd{font-size:24px}
 .kpis .tile{min-width:0}.kpis .tile b{font-size:clamp(20px,2.3vw,30px)!important;overflow-wrap:anywhere}.acct{max-width:none!important;letter-spacing:.14em!important;flex:none;overflow:visible!important}
 .sheet{min-width:0}.sheet-c{grid-template-columns:minmax(0,1fr)}.sheet-c > *{min-width:0}.vcard{min-width:0}
+
+/* Iozera mark in both footers. Keep this on every handoff: the Iozera logo must always appear. */
+.foot-brand{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap}
+.iozera{height:11px;width:auto;display:inline-block;vertical-align:-1px;opacity:.85}
+.iozera-word{display:inline-flex;align-items:center}
+.iozera-word i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
+</head>
+<body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M12 13c0-5 3.5-8 9-8 0 5.5-3.5 8.5-9 8z" fill="currentColor"/><path d="M12 16c0-4-3-6.5-8-6.5 0 4.5 3 7 8 6.5z" fill="currentColor" opacity=".7"/></symbol>
@@ -1038,7 +1046,7 @@ function vHome(){
     <div class="promo gold"><p class="eyebrow" style="color:var(--gold-ink)">Request a design</p><h2>Want a human designer?</h2><p class="sm" style="color:var(--gold-ink)">Share a photo, a short brief and your budget. Get an AI concept now and designer proposals in a few days.</p><div><button class="btn gold sm" data-go="requests">Request a design</button></div></div>
     <div class="promo green"><p class="eyebrow" style="color:#A9DDB9">For designers</p><h2 style="color:#fff">Earn 10% on every build.</h2><p class="sm muted">Upload your themes. When a customer builds one, you earn 10% of the project.</p><div><button class="btn sm" style="background:#fff;color:var(--forest)" data-act="role" data-role="designer">Open designer studio</button></div></div>
   </section>
-  <footer class="foot"><span>TerraSpace · An Iozera company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer>`;
+  <footer class="foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer>`;
 }
 
 function filteredThemes(){
@@ -1620,7 +1628,7 @@ function vLanding(){
       <button class="btn" type="submit">Begin design</button>
     </form>
   </div></section>
-  <div class="lp-wrap"><footer class="lp-foot"><span>TerraSpace · An Iozera company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer></div>
+  <div class="lp-wrap"><footer class="lp-foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer></div>
   </div>`;
 }
 let lpIO = null;
@@ -2026,3 +2034,5 @@ window.addEventListener('hashchange', fromHash);
 if (!fromHash()) render();
 })();
 </script>
+</body>
+</html>
