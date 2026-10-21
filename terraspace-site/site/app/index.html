@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="TerraSpace: design your outdoor space from one photo. Designed by AI and real designers, grown in our own nursery.">
+<meta name="description" content="TerraSpace: design your outdoor space from one photo. Planted from Hoang Lam's nursery at TERA Park 2 and installed by Hoang Lam crews.">
 <style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>TerraSpace</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Photo paths are absolute (/app/...) so the app works at / and at /app. -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
 <style>
 /* Layout: white app shell. Phone: sticky top bar + bottom tab bar with a raised Create button. Desktop: left rail + content column (max 1120px). Single light look by design. */
@@ -16,7 +17,7 @@
   --forest:#1F4D36; --forest-2:#2C6A4B; --mint:#DCEBE0; --gold:#B8862E; --gold-t:#F6ECD6; --gold-ink:#7A5714;
   --warn:#A5502C; --warn-t:#F6E1D6;
   --font:'DM Sans','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
-  --r:18px; --ease:cubic-bezier(.25,.46,.45,.94); --ease-h:cubic-bezier(.215,.61,.355,1);
+  --r:18px; --ease:cubic-bezier(.25,.46,.45,.94);
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -259,8 +260,8 @@ body.landing .topbar:not(.solid) .open-app{background:#fff;color:var(--forest)}
 .lp-link.dark{color:var(--forest)}
 .scroll-cue{position:absolute;z-index:1;bottom:24px;left:50%;width:1px;height:48px;background:linear-gradient(rgba(255,255,255,.75),rgba(255,255,255,0));animation:cue 2.6s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translateX(-50%) translateY(0);opacity:.35}50%{transform:translateX(-50%) translateY(8px);opacity:.8}}
-.lp-in > *{animation:rise .6s var(--ease) both}
-.lp-in > :nth-child(1){animation-delay:.05s}.lp-in > :nth-child(2){animation-delay:.12s}.lp-in > :nth-child(3){animation-delay:.2s}.lp-in > :nth-child(4){animation-delay:.28s}
+.lp-in > *{animation:rise 1s var(--ease) both}
+.lp-in > :nth-child(1){animation-delay:.2s}.lp-in > :nth-child(2){animation-delay:.4s}.lp-in > :nth-child(3){animation-delay:.6s}.lp-in > :nth-child(4){animation-delay:.8s}
 @keyframes rise{from{opacity:.3;transform:translateY(24px)}to{opacity:1;transform:none}}
 .rv{transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
 .rv.pre{opacity:0;transform:translateY(36px)}
@@ -346,7 +347,6 @@ body.landing .topbar:not(.solid) .open-app{background:#fff;color:var(--forest)}
   --ease:cubic-bezier(.25,.46,.45,.94); --ease-h:cubic-bezier(.215,.61,.355,1);
   --font:'DM Sans','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
 }
-
 body{font-weight:300;line-height:1.7;letter-spacing:.005em}
 h1,h2{font-weight:300;letter-spacing:.005em;line-height:1.08}
 h1{font-size:clamp(34px,4.8vw,62px)}
@@ -566,10 +566,6 @@ body.landing .topbar.solid{background:rgba(255,255,255,.92);-webkit-backdrop-fil
 .lp-float b{font-weight:200;font-size:26px}
 .lp-foot{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.rv.pre{opacity:1;transform:none}.menu-item{opacity:1;transform:none}}
-/* Iozera logo in footers (kept from team edit) */
-.iozera{height:11px;width:auto;display:inline-block;vertical-align:-1px;opacity:.85}
-.foot-brand{display:inline-flex;align-items:center;gap:5px}
-
 
 /* ===================== White ground everywhere =====================
    Photos stay clean (no dark overlays); every line of text sits on white.
@@ -624,39 +620,104 @@ body.landing main{padding-top:72px}
 .shop-hero .eyebrow{color:var(--muted)}
 .shop-hero .btn{color:var(--ink);border-color:var(--ink)}
 .shop-hero .btn:hover{background:var(--ink);color:#fff}
-/* Review note (21 Oct): hero label was wrapping onto a second line and the copy
-   column felt narrow. Let the label run on one line on wider screens and give
-   the intro paragraph a little more width. Type and layout otherwise unchanged. */
-.lp-copy .lbl{max-width:none}
-@media (min-width:700px){.lp-copy .lbl{white-space:nowrap}}
-.lp-copy p{max-width:52ch}
 
-/* Review fixes (21 Oct): order sheet. Close is pinned to the viewport, the sheet is
-   solid white and clears the top bar, dates have a default and accessible names,
-   a plant list and a confirmation step were added. */
-.sheet-bg{z-index:60;opacity:1!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(27,30,28,0);transition:background-color .35s var(--ease),visibility .35s}
-.sheet-bg.open{background:rgba(27,30,28,.34)}
-.sheet{background:#fff!important;isolation:isolate;max-height:calc(100% - 72px - env(safe-area-inset-top,0px))}
-.sheet-x{display:none}
-.sheet-close{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:61;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:9px 14px;font:inherit;font-size:11px;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;display:none}
-.sheet-bg.open .sheet-close{display:block}
-.dates-8{grid-template-columns:repeat(8,minmax(0,1fr))}
-@media (max-width:520px){.dates-8{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.date:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
-.plist{list-style:none;margin:0;padding:0}
-.plist li{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:9px 0;border-top:1px solid var(--line);font-size:14px;align-items:baseline}
-.plist li:first-child{border-top:0;padding-top:0}
-.next{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:n}
-.next li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
-.next li::before{counter-increment:n;content:counter(n);width:28px;height:28px;border:1px solid var(--ink);display:grid;place-items:center;font-size:11px}
-.next b{display:block;font-weight:500;margin-bottom:2px}
-.next span{grid-column:2;color:var(--muted);font-size:14px;line-height:1.5}
-.iozera-word{display:inline-flex;align-items:center}
-.iozera-word i{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ===== Review fixes (Oct 2026) ===== */
+/* 1, 2, 12: modal is opaque, Close is pinned, header hidden while open */
+.sheet-bg{z-index:90}
+.sheet{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;opacity:1!important;max-height:calc(100dvh - env(safe-area-inset-top,0px) - 12px);overscroll-behavior:contain}
+@media (min-width:900px){.sheet{max-height:calc(100dvh - 64px)}}
+.sheet-bar{position:sticky;top:0;z-index:5;display:flex;justify-content:flex-end;background:#fff;border-bottom:1px solid var(--line);padding:6px max(10px,env(safe-area-inset-right,0px)) 6px 10px}
+.sheet-close{min-height:44px;padding:0 14px;border:1px solid var(--ink);background:#fff;color:var(--ink);font:inherit;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;gap:8px;align-items:center}
+.sheet-close span{font-size:18px;letter-spacing:0;line-height:1}
+.sheet-close:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.sheet-x{display:none!important}
+body.sheet-open{overflow:hidden}
+body.sheet-open .topbar,body.sheet-open .tabbar{visibility:hidden}
+/* 11: type you can read */
+:root{--muted:#5E635F}
+body{font-weight:400}
+p,li,dd,dt,td{font-weight:400}
+.eyebrow,.rr-label,label.field,.pill,.stock,.lines tr.grp td,.lp-foot,.lp-copy .lbl,.lp-form label,.stepper li,.lp-steps .n{font-size:12px!important;font-weight:500!important;letter-spacing:.12em!important}
+.btn,.rr-link,.nav-cta,.chip,.lp-link,.toast,.cur{font-size:12px;font-weight:500;letter-spacing:.14em}
+.stepper li{color:#7E837F}
+.xs{font-size:12.5px}.note{font-size:12.5px}
+.date{font-size:12px}
+.lp-in > *{animation:none!important}
+/* currencies: USD second */
+.usd{font-size:.62em;color:var(--muted);font-weight:400;letter-spacing:0;white-space:nowrap}
+.ex{margin-left:6px;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:1px 6px;white-space:nowrap}
+/* 9: date picker states */
+.dates.c8{grid-template-columns:repeat(8,minmax(0,1fr))}.dates.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:560px){.dates.c8,.dates.c7{grid-template-columns:repeat(4,minmax(0,1fr))}.dates.c5{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.date:disabled{opacity:1;color:#A9ADA9;background:repeating-linear-gradient(135deg,#F4F4F2 0 6px,#fff 6px 12px);cursor:not-allowed}
+.date:disabled b{color:#A9ADA9;text-decoration:line-through}
+.date[aria-pressed="true"]{color:#fff}
+/* 7: plant lists */
+.plist{display:grid;gap:0;border-top:1px solid var(--line);padding-top:10px}
+.plist .eyebrow{margin-bottom:6px}
+.plist > div{display:grid;grid-template-columns:minmax(0,1fr) auto 4.5em;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:baseline}
+.plist > div span:last-child{text-align:right}
+/* 8: measure from a photo */
+.hint{display:block;margin-top:6px;font-size:12px;letter-spacing:.02em;text-transform:none;font-weight:400;color:var(--muted)}
+.meas{position:relative;margin-inline:auto;touch-action:none;user-select:none;-webkit-user-select:none;background:var(--soft)}
+.meas img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.meas svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.meas polygon{fill:rgba(255,255,255,.22);stroke:#fff;stroke-width:3;vector-effect:non-scaling-stroke}
+.meas line{stroke:#fff;stroke-width:6;vector-effect:non-scaling-stroke}
+.mh{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 1px 6px rgba(0,0,0,.35);cursor:grab;touch-action:none}
+.mh::after{content:"";position:absolute;inset:-10px}
+.mh:focus-visible{outline:3px solid #fff;outline-offset:2px}
+/* 10: confirmation */
+.next{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.next li{display:grid;grid-template-columns:3em 1fr;gap:12px;padding:16px 0;border-top:1px solid var(--line)}
+.next .k{font-size:12px;font-weight:500;letter-spacing:.12em;color:var(--muted);padding-top:3px}
+.next b{font-weight:500}
 
+/* ===== Accounts, billing, buildings ===== */
+.acct{max-width:12ch;overflow:hidden;text-overflow:ellipsis}
+.st{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.st.paid{color:#2F6B47;border-color:#BFD8C7;background:#F1F7F3}
+.st.due{color:#7A5714;border-color:#E6D3A8;background:#FBF6EA}
+.st.overdue{color:#9B2C2C;border-color:#E8BDBD;background:#FBF0F0}
+.st.scheduled{color:var(--muted)}
+.payline{display:grid;gap:8px;justify-items:start}.payline .bar{width:100%}
+.kv{display:grid;gap:0;margin:0}.kv > div{display:grid;grid-template-columns:minmax(0,11em) minmax(0,1fr);gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.kv dt{color:var(--muted);font-size:13px}.kv dd{margin:0;font-size:14px}
+@media (max-width:560px){.kv > div{grid-template-columns:minmax(0,1fr)}}
+.inv-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.paybox{display:flex;gap:16px;align-items:center}
+.paybox .qr{flex:none;width:140px;height:140px}
+.inv-t td{vertical-align:middle}
+tr.click{cursor:pointer}tr.click:hover td{background:var(--soft)}
+.auth-social{display:grid;gap:10px}
+.auth-social .btn{justify-content:center;gap:12px;color:var(--ink);border-color:var(--line)}
+.auth-social .lg{width:22px;height:22px;display:inline-grid;place-items:center;border:1px solid var(--ink);font-size:11px;font-weight:600;letter-spacing:0}
+.or{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.phone{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:12px}
+.mbars{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:end;height:220px;margin-top:16px}
+.mbars > div{display:grid;grid-template-rows:auto 1fr auto;gap:6px;height:100%;text-align:center}
+.mbars i{align-self:end;display:block;background:var(--ink);min-height:2px}
+.mbars .xs{font-size:11px}
+.heat{display:grid;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.vgrid,.vpick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.vcard{display:grid;gap:8px;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.vcard .photo{aspect-ratio:4/3;display:block;overflow:hidden}.vcard img{width:100%;height:100%;object-fit:cover}
+.vpick .vcard{padding:6px;border:1px solid var(--line)}.vpick .vcard[aria-pressed="true"]{border:2px solid var(--ink);padding:5px}
+@media (max-width:560px){.vgrid{grid-template-columns:minmax(0,1fr)}.vpick{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.vpick .vcard b{font-size:12px}}
+.bsteps{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:860px){.bsteps{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media print{
+  body > *:not(.sheet-bg){display:none!important}
+  .sheet-bg{position:static!important;background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;display:block!important;opacity:1!important;visibility:visible!important}
+  .sheet{max-height:none!important;overflow:visible!important;transform:none!important;width:100%!important;box-shadow:none!important}
+  .sheet-bar,.no-print,.sheet-img{display:none!important}
+}
+.two > *,.heat,#bOut{min-width:0}.heat > div:first-child{gap:10px;flex-wrap:wrap}
+.total dl div{flex-wrap:wrap}.total dd{text-align:right;margin-left:auto}#bOut .grand dd{font-size:24px}
+.kpis .tile{min-width:0}.kpis .tile b{font-size:clamp(20px,2.3vw,30px)!important;overflow-wrap:anywhere}.acct{max-width:none!important;letter-spacing:.14em!important;flex:none;overflow:visible!important}
+.sheet{min-width:0}.sheet-c{grid-template-columns:minmax(0,1fr)}.sheet-c > *{min-width:0}.vcard{min-width:0}
 </style>
-</head>
-<body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M12 21V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M12 13c0-5 3.5-8 9-8 0 5.5-3.5 8.5-9 8z" fill="currentColor"/><path d="M12 16c0-4-3-6.5-8-6.5 0 4.5 3 7 8 6.5z" fill="currentColor" opacity=".7"/></symbol>
@@ -681,6 +742,7 @@ body.landing main{padding-top:72px}
     <nav class="topnav" id="topnav" aria-label="Main"></nav>
     <div class="top-right">
       <select id="curSel" class="cur" aria-label="Currency"></select>
+      <button class="rr-link acct" id="acctBtn" data-act="acct">Sign in</button>
       <button class="nav-cta" id="navCta" data-go="create">Start a design</button>
       <button class="burger" data-act="menu" aria-label="Open menu" aria-controls="menuOv"><span></span><span></span></button>
     </div>
@@ -700,7 +762,7 @@ body.landing main{padding-top:72px}
     <div class="menu-roles" id="menuRoles"></div>
   </div>
 </div>
-<div class="sheet-bg" id="sheetBg" aria-hidden="true"><button type="button" class="sheet-close" data-act="closeSheet" aria-label="Close">Close</button><div class="sheet" role="dialog" aria-modal="true" aria-label="Details" id="sheet"></div></div>
+<div class="sheet-bg" id="sheetBg" aria-hidden="true"><div class="sheet" role="dialog" aria-modal="true" aria-label="Details" id="sheet"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <input type="file" id="photoIn" accept="image/*" hidden>
 <input type="file" id="themePhotoIn" accept="image/*" hidden>
@@ -720,57 +782,92 @@ const store = {
 const icon = (id, cls) => `<svg${cls ? ` class="${cls}"` : ''}><use href="#i-${id}"/></svg>`;
 
 /* ===== Currency (base prices in USD; example rates, live rates in production) ===== */
-const CURRENCIES = [
-  ['PHP','Philippine peso',57],['USD','US dollar',1],['VND','Vietnamese dong',25400],['EUR','Euro',0.92],['GBP','British pound',0.78],['AED','UAE dirham',3.67],['SAR','Saudi riyal',3.75],['QAR','Qatari riyal',3.64],['KWD','Kuwaiti dinar',0.31],
-  ['EGP','Egyptian pound',48],['SGD','Singapore dollar',1.34],['THB','Thai baht',35],['MYR','Malaysian ringgit',4.5],['IDR','Indonesian rupiah',16000],['JPY','Japanese yen',150],['KRW','South Korean won',1380],['CNY','Chinese yuan',7.2],['HKD','Hong Kong dollar',7.8],
-  ['INR','Indian rupee',84],['AUD','Australian dollar',1.52],['NZD','New Zealand dollar',1.68],['CAD','Canadian dollar',1.37],['CHF','Swiss franc',0.88],['SEK','Swedish krona',10.6],['NOK','Norwegian krone',10.8],['DKK','Danish krone',6.9],['PLN','Polish zloty',3.95],
-  ['TRY','Turkish lira',34],['ILS','Israeli shekel',3.7],['JOD','Jordanian dinar',0.709],['MAD','Moroccan dirham',9.9],['NGN','Nigerian naira',1550],['KES','Kenyan shilling',129],['RWF','Rwandan franc',1380],['ZAR','South African rand',18],['MXN','Mexican peso',18],['BRL','Brazilian real',5.5]
-];
+const CURRENCIES = [['VND','Vietnamese dong',25400],['USD','US dollar',1],['PHP','Philippine peso',57]];
 const RATE = {}; CURRENCIES.forEach(c => RATE[c[0]] = c[2]);
+const LOCALE = { VND:'vi-VN', USD:'en-US', PHP:'en-PH' };
 
-/* ===== Nursery catalog (prices USD, stock in units) ===== */
-const P = (id, name, usd, stock, sun, water, unit) => ({ id, name, usd, stock, sun, water, unit: unit || 'plant' });
+/* ===== Hoang Lam nursery catalog, TERA Park 2 (prices USD per plant, stock = on the hill today) ===== */
+const P = (id, name, pot, usd, stock, sun, water, unit) => ({ id, name, pot, usd, stock, sun, water, unit: unit || 'plant' });
 const PLANTS = [
-  P('olive','Olive tree, 2 m',310,212,'Full sun','Low'), P('cypress','Italian cypress',140,640,'Full sun','Low'), P('lavender','Lavender',32,3400,'Full sun','Low'),
-  P('rosemary','Rosemary',14,2200,'Full sun','Low'), P('grasses','Ornamental grass',10,5100,'Full sun','Low'), P('agave','Blue agave',40,520,'Full sun','Low'),
-  P('barrel','Golden barrel cactus',55,300,'Full sun','Low'), P('column','Column cactus',120,90,'Full sun','Low'), P('palm','Fan palm',380,60,'Full sun','Medium'),
-  P('monstera','Monstera',45,410,'Shade','Medium'), P('bird','Bird of paradise',65,240,'Part sun','Medium'), P('fern','Boston fern',18,900,'Shade','High'),
-  P('bamboo','Clumping bamboo',70,380,'Part sun','Medium'), P('maple','Japanese maple',260,45,'Part sun','Medium'), P('bougain','Bougainvillea',30,600,'Full sun','Low'),
-  P('boxwood','Boxwood ball',35,700,'Part sun','Medium'), P('hydrangea','Hydrangea',32,260,'Shade','High'), P('fig','Creeping fig vine',12,1500,'Part sun','Medium'), P('mondo','Mondo grass',6,4000,'Shade','Medium')
+  P('frangipani','Frangipani (Hoa sứ), 2.5 m','100 L bag',180,140,'Full sun','Low'),
+  P('bougain','Bougainvillea (Hoa giấy)','30 L pot',18,900,'Full sun','Low'),
+  P('areca','Areca palm (Cau vàng)','45 L pot',38,520,'Part sun','Medium'),
+  P('fanpalm','Fan palm (Cọ), 2 m','100 L bag',150,90,'Full sun','Medium'),
+  P('coconut','Coconut palm, 4 m trunk','Root-balled',320,48,'Full sun','Medium'),
+  P('heliconia','Heliconia (Chuối mỏ két)','20 L pot',14,760,'Part sun','High'),
+  P('ginger','Red ginger (Alpinia)','15 L pot',9,880,'Part sun','High'),
+  P('bird','Bird of paradise','30 L pot',32,260,'Full sun','Medium'),
+  P('monstera','Monstera','30 L pot',26,410,'Shade','Medium'),
+  P('birdsnest',"Bird's nest fern",'15 L pot',12,640,'Shade','High'),
+  P('fern','Boston fern','5 L pot',5,1400,'Shade','High'),
+  P('bamboo','Hedge bamboo (Tre cảnh)','45 L pot',28,620,'Part sun','Medium'),
+  P('mango','Mango tree (Xoài), 2.5 m','100 L bag',120,110,'Full sun','Medium'),
+  P('flame','Flame tree (Phượng vĩ), 3 m','150 L bag',210,36,'Full sun','Low'),
+  P('goldshower','Golden shower tree (Muồng hoàng yến), 3 m','150 L bag',190,42,'Full sun','Low'),
+  P('seaalmond','Sea almond (Bàng), 3 m','150 L bag',170,50,'Full sun','Low'),
+  P('pandanus','Pandanus (Dứa dại)','45 L pot',34,180,'Full sun','Low'),
+  P('ipomoea','Beach morning glory (Muống biển)','3 L pot',2.5,2400,'Full sun','Low'),
+  P('ixora','Ixora (Mẫu đơn)','10 L pot',6,1500,'Full sun','Medium'),
+  P('zoysia','Zoysia turf','Per m² roll',4,6000,'Full sun','Medium','m²'),
+  P('spiderlily','Spider lily (Náng)','5 L pot',4,1800,'Part sun','Medium'),
+  P('figvine','Creeping fig vine','3 L pot',3,2200,'Part sun','Medium'),
+  P('philo','Philodendron Xanadu','10 L pot',8,900,'Shade','Medium'),
+  /* Dry-climate collection: not grown in Khánh Hòa, sourced to order */
+  P('olive','Olive tree, 2 m','100 L bag',310,0,'Full sun','Low'), P('cypress','Italian cypress','45 L pot',140,0,'Full sun','Low'),
+  P('lavender','Lavender','3 L pot',8,0,'Full sun','Low'), P('rosemary','Rosemary','3 L pot',6,0,'Full sun','Low'),
+  P('grasses','Ornamental grass','5 L pot',7,0,'Full sun','Low'), P('agave','Blue agave','20 L pot',40,0,'Full sun','Low'),
+  P('barrel','Golden barrel cactus','10 L pot',55,0,'Full sun','Low'), P('boxwood','Boxwood ball','20 L pot',35,0,'Part sun','Medium')
 ];
 const PLANT = {}; PLANTS.forEach(p => PLANT[p.id] = p);
-const MATERIALS = { gravel:['White gravel',9], dg:['Decomposed granite',11], pavers:['Stone pavers',38], deck:['Timber deck',85], bark:['Bark mulch',6] };
+const MATERIALS = { gravel:['Crushed granite gravel',9], sand:['Coral sand and shell grit',7], pavers:['Granite pavers',38], deck:['Hardwood deck',85], bark:['Coconut-husk mulch',6] };
 
 /* ===== Designers and themes ===== */
+/* Designers other than TerraSpace AI are example profiles until the marketplace opens. */
 const DESIGNERS = {
   ai:  { name:'TerraSpace AI', city:'', color:'', initials:'AI' },
-  d1:  { name:'Linh Nguyen', city:'Ho Chi Minh City', color:'#B5734A', initials:'LN' },
-  d2:  { name:'Marco Reyes', city:'Manila', color:'#3E6B8A', initials:'MR' },
-  d3:  { name:'Aiko Tan', city:'Singapore', color:'#7A5C9A', initials:'AT' }
+  d1:  { name:'Linh Nguyen', city:'Nha Trang', color:'#B5734A', initials:'LN' },
+  d2:  { name:'Marco Reyes', city:'Ho Chi Minh City', color:'#3E6B8A', initials:'MR' },
+  d3:  { name:'Aiko Tan', city:'Da Nang', color:'#7A5C9A', initials:'AT' }
 };
 const ME_DESIGNER = 'd1';
-const T = (id, name, by, img, tags, blurb, plants, ground, builds, rating) => ({ id, name, by, img, tags, blurb, plants, ground, builds, rating });
+/* usdM2 = installed price per m², Essential project. PLACEHOLDER rates averaging USD 91/m²:
+   replace with the per-theme figures from the TERA pricing model. */
+const T = (id, name, by, img, tags, blurb, plants, ground, usdM2, before) => ({ id, name, by, img, tags, blurb, plants, ground, usdM2, before });
 const BASE_THEMES = [
-  T('coastal-olive','Coastal Olive Terraces','d1','/app/coastal-olive.jpg',['Dry climate','Resort'],'Olive trees, lavender drifts and dry-stone terraces.',[['olive',2],['cypress',3],['lavender',8],['rosemary',4],['grasses',5]],'gravel',412,4.9),
-  T('golden-hour','Golden Hour Garden','d3','/app/golden-hour.jpg',['Home garden'],'Soft grasses and silver shrubs along a stone path.',[['olive',1],['lavender',6],['grasses',8],['boxwood',4],['rosemary',3]],'pavers',157,4.8),
-  T('desert-modern','Desert Modern','ai','/app/desert-modern.jpg',['Dry climate'],'Agave, cactus and granite. Very little water.',[['agave',4],['barrel',5],['column',2],['grasses',6],['rosemary',3]],'dg',286,4.7),
-  T('tropical-atrium','Tropical Atrium','d2','/app/tropical-atrium.jpg',['Tropical','Courtyard'],'Fan palms and big leaves around a timber deck.',[['palm',2],['monstera',5],['bird',3],['fern',6],['mondo',10]],'deck',198,4.8),
-  T('courtyard-vines','Courtyard Vines','ai','/app/courtyard-vines.jpg',['Courtyard','Rooftop'],'Hanging vines, still water and filtered light.',[['fig',20],['bamboo',4],['grasses',6],['fern',4]],'pavers',121,4.6),
-  T('lavender-gravel','Lavender Gravel','d3','/app/lavender-gravel.jpg',['Dry climate','Home garden'],'Lavender and silver groundcover in warm gravel.',[['lavender',14],['rosemary',4],['olive',1],['grasses',4]],'gravel',96,4.8),
-  T('courtyard-olive','Courtyard Olive','d1','/app/courtyard-olive.jpg',['Rooftop','Courtyard'],'One sculptural olive in a stone planter.',[['olive',1],['agave',3],['grasses',6],['boxwood',3]],'pavers',41,4.7),
-  T('forest-shade','Forest Shade','d1','/app/forest-shade.jpg',['Native','Shade'],'Layered shade planting under a canopy.',[['maple',2],['fern',10],['hydrangea',4],['mondo',12],['bamboo',2]],'bark',9,4.5)
+  T('frangipani-courtyard','Frangipani Courtyard','d1','/app/frangipani-courtyard.jpg',['Tropical','Courtyard','Home garden'],'Frangipani over granite pavers, ixora and spider lily beneath.',[['frangipani',3],['ixora',20],['spiderlily',30],['birdsnest',10],['philo',15],['zoysia',30]],'pavers',96, '/app/site-before.jpg'),
+  T('resort-poolside','Resort Poolside','d2','/app/th-resort-poolside.jpg',['Tropical','Resort'],'Coconut palms, heliconia and bird of paradise around the water.',[['coconut',3],['areca',8],['bird',6],['heliconia',12],['spiderlily',20],['zoysia',40]],'deck',124),
+  T('rooftop-pergola','Rooftop with Pergola','ai','/app/rooftop-pergola.jpg',['Tropical','Rooftop'],'Bougainvillea over a timber pergola, palms in stone planters and a sea view.',[['bougain',10],['figvine',20],['areca',6],['philo',20],['monstera',4],['spiderlily',15]],'deck',126),
+  T('bamboo-screen','Bamboo Screen','d3','/app/bamboo-screen.jpg',['Tropical','Home garden','Courtyard'],'A living hedge of bamboo for privacy, with ferns and ginger.',[['bamboo',25],['birdsnest',8],['philo',10],['monstera',4],['ginger',14],['zoysia',30]],'gravel',78),
+  T('fern-garden','Shaded Fern Garden','d1','/app/fern-garden.jpg',['Tropical','Shade','Courtyard'],'Layered ferns, monstera and ginger under a fan palm.',[['fern',40],['birdsnest',15],['monstera',8],['ginger',12],['philo',15],['fanpalm',1]],'bark',84),
+  T('native-coastal','Native Coastal','ai','/app/native-coastal.jpg',['Native','Resort'],'Frangipani, pandanus and beach morning glory on coral sand. Made for salt wind.',[['frangipani',2],['pandanus',6],['ipomoea',60],['spiderlily',30]],'sand',62),
+  T('mango-walk','Mango Orchard Walk','d2','/app/mango-walk.jpg',['Native','Home garden'],'Mango trees along a turf walk, with ixora and heliconia.',[['mango',4],['zoysia',50],['ixora',15],['heliconia',8],['ginger',8]],'gravel',70),
+  T('street-avenue','Street-tree Avenue','d3','/app/street-avenue.jpg',['Native','Public space'],'Flame trees and golden shower trees over a paved avenue.',[['flame',2],['goldshower',2],['seaalmond',1],['ixora',30],['zoysia',30],['spiderlily',20]],'pavers',88)
 ];
-const TAGS = ['Dry climate','Tropical','Courtyard','Rooftop','Resort','Home garden','Native'];
+BASE_THEMES.push(
+  T('tropical-atrium','Tropical Atrium','d2','/app/tropical-atrium.jpg',['Tropical','Courtyard'],'Fan palms and big leaves around a timber deck.',[['fanpalm',2],['monstera',6],['bird',4],['fern',20],['philo',12]],'deck',100),
+  T('courtyard-vines','Courtyard Vines','ai','/app/courtyard-vines.jpg',['Tropical','Courtyard','Rooftop'],'Hanging vines over still water and a stone walk.',[['figvine',30],['bamboo',6],['spiderlily',20],['fern',12]],'pavers',92),
+  T('forest-shade','Forest Shade','d1','/app/forest-shade.jpg',['Tropical','Shade'],'Layered shade planting under a high canopy.',[['fanpalm',1],['fern',30],['birdsnest',10],['ginger',10],['philo',10]],'bark',82)
+);
+/* Earlier themes for dry climates: kept in the catalog, never in the TERA Park 2 aisles. */
+const DRY = id => ({ ...T.apply(null, id), dry:true });
+BASE_THEMES.push(
+  DRY(['coastal-olive','Coastal Olive Terraces','d1','/app/coastal-olive.jpg',['Dry climate','Resort'],'Olive trees, lavender drifts and dry-stone terraces.',[['olive',2],['cypress',3],['lavender',8],['rosemary',4],['grasses',5]],'gravel',110]),
+  DRY(['golden-hour','Golden Hour Garden','d3','/app/golden-hour.jpg',['Dry climate','Home garden'],'Soft grasses and silver shrubs along a stone path.',[['olive',1],['lavender',6],['grasses',8],['boxwood',4],['rosemary',3]],'pavers',95]),
+  DRY(['desert-modern','Desert Modern','ai','/app/desert-modern.jpg',['Dry climate'],'Agave, cactus and granite. Very little water.',[['agave',4],['barrel',5],['grasses',6],['rosemary',3]],'gravel',72]),
+  DRY(['lavender-gravel','Lavender Gravel','d3','/app/lavender-gravel.jpg',['Dry climate','Home garden'],'Lavender and silver groundcover in warm gravel.',[['lavender',14],['rosemary',4],['olive',1],['grasses',4]],'gravel',80]),
+  DRY(['courtyard-olive','Courtyard Olive','d1','/app/courtyard-olive.jpg',['Dry climate','Rooftop','Courtyard'],'One sculptural olive in a stone planter.',[['olive',1],['agave',3],['grasses',6],['boxwood',3]],'pavers',105])
+);
+const TAGS = ['Tropical','Courtyard','Rooftop','Resort','Home garden','Shade','Native','Public space','Dry climate'];
 const PROPERTY = ['Home garden','Rooftop or balcony','Vacant lot','Resort','Commercial','Public space'];
 const CREWS = [
-  { id:'c1', name:'Verde Landscape Co.', rating:4.9, jobs:132, km:6 },
-  { id:'c2', name:'Bloom & Stone Builders', rating:4.8, jobs:87, km:11 },
-  { id:'c3', name:'Kalikasan Gardens', rating:4.7, jobs:54, km:14 },
-  { id:'c4', name:'Hoang Lam crew · TERA Park 2', rating:4.9, jobs:61, km:0 }
+  { id:'c1', name:'Hoang Lam crew · Cam Lâm', base:'Based at TERA Park 2', km:0 },
+  { id:'c2', name:'Hoang Lam crew · Nha Trang', base:'Nha Trang team', km:28 },
+  { id:'c3', name:'Hoang Lam crew · Ninh Hòa', base:'Ninh Hòa team', km:62 }
 ];
-const AISLES = [['coastal-olive',1],['golden-hour',2],['desert-modern',3],['tropical-atrium',4],['courtyard-vines',5],['lavender-gravel',6],['courtyard-olive',7],['forest-shade',8]];
+const crewOf = id => CREWS.find(c => c.id === id) || CREWS[0];
+const AISLES = [['frangipani-courtyard',1],['resort-poolside',2],['rooftop-pergola',3],['bamboo-screen',4],['fern-garden',5],['native-coastal',6],['mango-walk',7],['street-avenue',8]];
 const aisleOf = id => (AISLES.find(a => a[0] === id) || [])[1];
-const perM2 = id => quote(id, 100, 'essential').total / 100;
+const perM2 = id => theme(id).usdM2 || 91;
 const PKGS = {
   essential: { name:'Essential', desc:'One theme, planting plan and installation for a single space.' },
   signature: { name:'Signature', desc:'Full property design with hardscape, lighting and a maintenance plan.' },
@@ -778,62 +875,112 @@ const PKGS = {
 };
 
 /* ===== State ===== */
+if (store.get('ver', 0) < 3){ store.clear(); store.set('ver', 3); }
 const S = {
-  screen:'home', role: store.get('role','customer'), cur: store.get('cur','PHP'),
-  photo:null, scanURL:null,
-  flow: store.get('flow', { step:1, type:'Home garden', area:240, sun:'Full sun', themeId:'coastal-olive', pkg:'essential', crew:'c1', date:null, slot:null, cmp:50 }),
+  screen:'home', role: store.get('role','customer'), cur: store.get('cur','VND'),
+  photo:null, photoAR:0.75, scanURL:null,
+  flow: store.get('flow', { step:1, type:'Home garden', area:120, measured:false, sun:'Full sun', themeId:'frangipani-courtyard', pkg:'essential', crew:'c1', date:null, slot:null, cmp:50 }),
   myThemes: store.get('myThemes', []),
   orders: store.get('orders', []),
   requests: store.get('requests', []),
   saved: store.get('saved', []),
-  lpTheme:'golden-hour', lpCmp:50,
-  filter:'All', q:'', reqForm:{ brief:'', min:300000, max:450000 }, studioForm:null
+  user: store.get('user', null), invoices: store.get('invoices', []), buildings: store.get('buildings', []), auth:null, bForm:null, villaPick:'frangipani-courtyard', payFilter:'All',
+  lpTheme:'frangipani-courtyard', lpCmp:50,
+  filter:'All', q:'', reqForm:{ brief:'', maxUSD:12000 }, studioForm:null
 };
-const save = () => { store.set('flow', S.flow); store.set('orders', S.orders); store.set('requests', S.requests); store.set('saved', S.saved); store.set('role', S.role); store.set('cur', S.cur); if (!store.set('myThemes', S.myThemes)) toast('Theme saved for this visit only. The photo is too large to keep.'); };
+if (!RATE[S.cur]) S.cur = 'VND';
+if (!CREWS.some(c => c.id === S.flow.crew)) S.flow.crew = 'c1';
+const save = () => { store.set('flow', S.flow); store.set('orders', S.orders); store.set('requests', S.requests); store.set('saved', S.saved); store.set('role', S.role); store.set('cur', S.cur); store.set('user', S.user); store.set('invoices', S.invoices); store.set('buildings', S.buildings); if (!store.set('myThemes', S.myThemes)) toast('Theme saved for this visit only. The photo is too large to keep.'); };
 const themes = () => S.myThemes.concat(BASE_THEMES);
 const theme = id => themes().find(t => t.id === id) || BASE_THEMES[0];
 const imgOf = t => t.img;
-const money = usd => { const v = usd * (RATE[S.cur] || 1); try { return new Intl.NumberFormat('en-US', { style:'currency', currency:S.cur, maximumFractionDigits:0 }).format(Math.round(v)); } catch(e){ return S.cur + ' ' + Math.round(v).toLocaleString('en-US'); } };
+const fmt = (usd, cur) => { const v = usd * (RATE[cur] || 1), r = cur === 'VND' ? Math.round(v / 1000) * 1000 : Math.round(v); try { return new Intl.NumberFormat(LOCALE[cur] || 'en-US', { style:'currency', currency:cur, maximumFractionDigits:0 }).format(r); } catch(e){ return cur + ' ' + r.toLocaleString('en-US'); } };
+const money = usd => fmt(usd, S.cur);
+/* Local currency first, US dollars second (matches the deck). */
+const money2 = usd => S.cur === 'USD' ? money(usd) : money(usd) + '<span class="usd"> · US$' + Math.round(usd).toLocaleString('en-US') + '</span>';
 const toUSD = local => local / (RATE[S.cur] || 1);
 
-/* ===== Quote engine (rules, not AI) ===== */
+/* ===== Quote engine (rules, not AI): total = theme rate per m² × area ===== */
 function quote(themeId, area, pkg){
-  const t = theme(themeId), k = area / 100, lines = [];
-  t.plants.forEach(([id, q]) => { const p = PLANT[id]; if (!p) return; const qty = Math.max(1, Math.round(q * k)); lines.push({ g:'plants', id, name:p.name, qty, unit:p.usd, total:qty * p.usd, stock:p.stock }); });
-  const m = MATERIALS[t.ground] || MATERIALS.gravel, groundM2 = Math.round(area * 0.45);
-  lines.push({ g:'materials', name:m[0], qty:groundM2, u:'m²', unit:m[1], total:groundM2 * m[1] });
-  const pathM2 = Math.round(area * 0.18); lines.push({ g:'materials', name:'Stone path', qty:pathM2, u:'m²', unit:38, total:pathM2 * 38 });
-  if (pkg === 'signature'){
-    lines.push({ g:'materials', name:'Dry-stone wall', qty:Math.round(area * 0.12), u:'m', unit:120, total:Math.round(area * 0.12) * 120 });
-    lines.push({ g:'extras', name:'Garden lighting set', qty:1, unit:650, total:650 });
-    lines.push({ g:'extras', name:'Drip irrigation with smart timer', qty:1, unit:380 + area * 2, total:380 + area * 2 });
-    lines.push({ g:'extras', name:'Maintenance plan, 3 months', qty:1, unit:270, total:270 });
-  }
-  const plantsN = lines.filter(l => l.g === 'plants').reduce((s, l) => s + l.qty, 0);
-  const labour = area * (pkg === 'signature' ? 13 : 9), delivery = 90 + plantsN * 0.6;
-  const goods = lines.reduce((s, l) => s + l.total, 0), total = goods + labour + delivery;
-  return { t, lines, plantsN, labour, delivery, goods, total, perM2: total / area, deposit: total * 0.3, materialsN: lines.filter(l => l.g === 'materials').length };
+  const t = theme(themeId), k = area / 100, lines = [], sig = pkg === 'signature';
+  t.plants.forEach(([id, q]) => { const p = PLANT[id]; if (!p) return; const qty = Math.max(1, Math.round(q * k)); lines.push({ g:'plants', id, name:p.name, pot:p.pot, qty, unit:p.usd, total:qty * p.usd, stock:p.stock }); });
+  const plantsN = lines.reduce((s, l) => s + l.qty, 0), plantCost = lines.reduce((s, l) => s + l.total, 0);
+  const extras = sig ? [['Garden lighting set', 650], ['Drip irrigation with smart timer', 380 + area * 2], ['Maintenance plan, 3 months', 270]] : [];
+  const extrasCost = extras.reduce((s, x) => s + x[1], 0);
+  const delivery = Math.round(40 + plantsN * 0.5);
+  let total = Math.round((t.usdM2 || 91) * area * (sig ? 1.45 : 1));
+  let labour = Math.round(total * (sig ? 0.24 : 0.22));
+  const floor = plantCost + delivery + labour + extrasCost + area * 8;
+  if (total < floor){ total = Math.round(floor); labour = Math.round(total * 0.22); }
+  const rest = Math.max(0, total - plantCost - delivery - labour - extrasCost);
+  const m = MATERIALS[t.ground] || MATERIALS.gravel, groundM2 = Math.max(1, Math.round(area * 0.45)), pathM2 = Math.max(1, Math.round(area * 0.18));
+  lines.push({ g:'materials', name:m[0], qty:groundM2, u:'m²', unit:rest * 0.6 / groundM2, total:rest * 0.6 });
+  lines.push({ g:'materials', name:'Paths, edging and soil', qty:pathM2, u:'m²', unit:rest * 0.4 / pathM2, total:rest * 0.4 });
+  extras.forEach(([name, v]) => lines.push({ g:'extras', name, qty:1, unit:v, total:v }));
+  const goods = total - labour - delivery;
+  return { t, lines, plantsN, labour, delivery, goods, total, perM2: total / area, deposit: total * 0.3, materialsN: 2 };
 }
 const reservedOf = id => S.orders.concat(seedOrders()).filter(o => o.status !== 'Handed over').reduce((s, o) => s + (o.plants[id] || 0), 0);
+const buildsOf = id => allOrders().filter(o => o.themeId === id).length;
 
 /* ===== Demo data the dashboards build on (labelled as examples) ===== */
 let _seed = null;
 function seedOrders(){
   if (_seed) return _seed;
-  const plan = [['coastal-olive',240],['coastal-olive',180],['tropical-atrium',320],['desert-modern',150],['golden-hour',210],['coastal-olive',300],['lavender-gravel',120],['courtyard-vines',90],['coastal-olive',260],['desert-modern',400],['tropical-atrium',200],['golden-hour',160],['forest-shade',140],['courtyard-olive',60],['coastal-olive',220],['lavender-gravel',180]];
-  const st = ['Installing','Plants reserved','Scheduled','Handed over'];
-  _seed = plan.map(([tid, area], i) => { const q = quote(tid, area, i % 3 === 0 ? 'signature' : 'essential'), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty); return { id:'EX-' + (2401 + i), demo:true, themeId:tid, area, total:q.total, plants, status:st[i % 4], crew:CREWS[i % 3].id, date:null, by:theme(tid).by, place:['Makati','Quezon City','Taguig','Alabang','Antipolo','Pasig'][i % 6] }; });
+  const plan = [['frangipani-courtyard',140],['resort-poolside',620],['rooftop-pergola',90],['bamboo-screen',160],['fern-garden',110],['native-coastal',900],['mango-walk',380],['street-avenue',1200],['frangipani-courtyard',180],['resort-poolside',450],['bamboo-screen',120],['fern-garden',80],['native-coastal',520],['rooftop-pergola',70],['frangipani-courtyard',220],['mango-walk',260]];
+  const st = ['Installing','Plants reserved','Booked','Handed over'];
+  const who = ['Nguyễn Thu Hà','Mountain resort villas (example)','Trần Minh Quân','Lê Bảo Anh','Phạm Gia Huy','Cam Ranh hotel group (example)','Võ Thanh Tâm','Nha Trang city works (example)','Nguyễn Thu Hà','Hoàng Đức Long','Bùi Ngọc Trâm','Ngô Quốc Bảo','Bãi Dài coastal villas (example)','Phan Hải Yến','Đỗ Khánh Vy','Trương Văn Phúc'];
+  _seed = plan.map(([tid, area], i) => { const q = quote(tid, area, i % 3 === 0 ? 'signature' : 'essential'), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty); return { id:'EX-' + (2401 + i), demo:true, themeId:tid, area, total:q.total, plants, status:st[i % 4], crew:CREWS[i % 3].id, date:null, by:theme(tid).by, place:['Cam Ranh','Nha Trang','Cam Lâm','Ninh Hòa','Diên Khánh','Vạn Ninh'][i % 6], customer:who[i], created: st[i % 4] === 'Booked' ? dayISO(-(2 + i % 6)) : dayISO(-(30 + i * 10)) }; });
   return _seed;
 }
 const allOrders = () => S.orders.concat(seedOrders());
 
+/* ===== Accounts, invoices and payments =====
+   Every order is billed in three milestones. Payments are recorded against the customer's account,
+   which gives Hoang Lam a verifiable payment history (prototype: payments are simulated). */
+const dayISO = n => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+const todayISO = () => dayISO(0);
+const addDays = (s, n) => { const [y, m, d] = s.split('-').map(Number); return iso(new Date(y, m - 1, d + n)); };
+const daysBetween = (a, b) => { const p = x => { const [y, m, d] = x.split('-').map(Number); return new Date(y, m - 1, d).getTime(); }; return Math.round((p(b) - p(a)) / 864e5); };
+const MILESTONES = [['Deposit', 0.3, 'At order'], ['Progress payment', 0.4, 'When installation starts'], ['Balance', 0.3, 'At handover']];
+function makeInvoices(o){
+  const n = o.id.replace(/^[A-Z]+-/, '');
+  return MILESTONES.map(([lab, pct, when], i) => ({ id:'INV-' + n + '-' + (i + 1), orderId:o.id, label:lab + ' · ' + Math.round(pct * 100) + '%', when, amount:Math.round(o.total * pct), issued: i === 0 ? o.created : null, due: i === 0 ? addDays(o.created, 3) : null, paidAt:null, method:null, receipt:null, customer:o.customer }));
+}
+let _sinv = null;
+function seedInvoices(){
+  if (_sinv) return _sinv;
+  const methods = ['Bank transfer · VietQR','MoMo','VNPay card','ZaloPay'];
+  _sinv = [];
+  seedOrders().forEach((o, i) => {
+    const inv = makeInvoices(o), c = o.created, st = o.status;
+    const set = (x, dI, dP, k) => { x.issued = addDays(c, dI); x.due = addDays(c, dI + 7); if (dP != null){ x.paidAt = addDays(c, dP); x.method = methods[(i + k) % 4]; x.receipt = 'RC-' + x.id.slice(4); } };
+    set(inv[0], 0, i === 2 ? null : 1 + (i % 4), 0);
+    if (st === 'Installing' || st === 'Handed over') set(inv[1], 14, i % 5 === 0 ? null : 17 + (i % 6), 1);
+    if (st === 'Handed over') set(inv[2], 35, 37 + (i % 5), 2);
+    inv.forEach(x => x.demo = true);
+    _sinv.push(...inv);
+  });
+  return _sinv;
+}
+const allInvoices = () => S.invoices.concat(seedInvoices());
+const invStatus = x => x.paidAt ? 'Paid' : !x.issued ? 'Scheduled' : x.due < todayISO() ? 'Overdue' : 'Due';
+const invOf = id => allInvoices().find(x => x.id === id);
+const orderOf = id => allOrders().find(o => o.id === id);
+function addOrder(o){
+  o.customer = S.user ? (S.user.org || S.user.name) : 'Guest'; o.userId = S.user ? S.user.id : null;
+  S.orders.push(o); S.invoices.push(...makeInvoices(o)); save();
+}
+const PAY_METHODS = () => (S.cur === 'PHP' || (S.user && S.user.country === 'Philippines')) ? ['Bank transfer · InstaPay','GCash','Maya','Card'] : ['Bank transfer · VietQR','MoMo','ZaloPay','VNPay card'];
+
+
 /* ===== Chrome ===== */
 const NAVS = {
-  customer: [['home','Home','home'],['themes','Themes','themes'],['create','Create','plus'],['shop','Shop the Themes','box'],['requests','Requests','req'],['projects','Projects','proj']],
+  customer: [['home','Home','home'],['themes','Themes','themes'],['create','Create','plus'],['shop','Shop the Themes','box'],['buildings','Buildings','home'],['projects','Projects','proj'],['billing','Billing','req']],
   designer: [['studio','Studio','pen'],['themes','Themes','themes'],['upload','Upload','plus'],['requests','Requests','req'],['account','Account','user']],
-  nursery:  [['nursery','Nursery','leaf'],['orders','Orders','box'],['catalog','Catalog','themes'],['themes','Themes','themes'],['account','Account','user']]
+  nursery:  [['nursery','Nursery','leaf'],['orders','Orders','box'],['payments','Payments','req'],['catalog','Catalog','themes'],['account','Account','user']]
 };
-const ROLE_NAME = { customer:'Customer', designer:'Designer', nursery:'Nursery owner' };
+const ROLE_NAME = { customer:'Customer', designer:'Designer', nursery:'Hoang Lam' };
 function chrome(){
   const nav = NAVS[S.role], key = { flow:'create', theme:'themes' }[S.screen] || S.screen;
   $('#tabbar').innerHTML = nav.map(([k, l, ic]) => k === 'create' || k === 'upload' ? `<button class="plus" data-go="${k}" ${k === key ? 'aria-current="page"' : ''}><span>${icon(ic)}</span>${l}</button>` : `<button data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${icon(ic)}${l}</button>`).join('');
@@ -844,30 +991,32 @@ function chrome(){
   const links = nav.filter(n => n[0] !== 'create' && n[0] !== 'upload' && n[0] !== 'account');
   $('#topnav').innerHTML = links.map(([k, l]) => `<button class="rr-link" data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${l}</button>`).join('');
   const cta = $('#navCta'); cta.dataset.go = S.role === 'designer' ? 'upload' : S.role === 'nursery' ? 'catalog' : 'create'; cta.textContent = S.role === 'designer' ? 'Upload a theme' : S.role === 'nursery' ? 'Catalog' : 'Start a design';
-  const all = links.concat(S.role === 'customer' ? [['create','Start a design'],['account','Account']] : S.role === 'designer' ? [['upload','Upload a theme'],['account','Account']] : [['account','Account']]);
+  const acc = ['account', S.user ? 'Account' : 'Sign in'];
+  const all = links.concat(S.role === 'customer' ? [['create','Start a design'],['requests','Request a designer'],acc] : S.role === 'designer' ? [['upload','Upload a theme'],acc] : [acc]);
+  const ab = $('#acctBtn'); if (ab){ ab.textContent = S.user ? S.user.name.split(' ').slice(-1)[0] : 'Sign in'; ab.setAttribute('aria-label', S.user ? 'Account: ' + S.user.name : 'Sign in or create an account'); }
   $('#menuList').innerHTML = all.map(([k, l], i) => `<button class="menu-item" style="--i:${i}" data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${l}</button>`).join('');
   $('#menuRoles').innerHTML = '<p class="rr-label">View as</p>' + Object.keys(ROLE_NAME).map(r => `<button class="rr-link ${r === S.role ? 'on' : ''}" data-act="role" data-role="${r}">${ROLE_NAME[r]}</button>`).join('');
   const cs = $('#curSel'); if (!cs.options.length) cs.innerHTML = CURRENCIES.map(c => `<option value="${c[0]}">${c[0]}</option>`).join(''); cs.value = S.cur;
 }
 
 /* ===== Views ===== */
-function byline(t, size){ const d = DESIGNERS[t.by] || DESIGNERS.ai; const s = size || 22; return `<span class="by"><span class="av ${t.by === 'ai' ? 'ai' : ''}" style="width:${s}px;height:${s}px;font-size:${s < 24 ? 9.5 : 11}px;${t.by === 'ai' ? '' : 'background:' + d.color}">${d.initials}</span>${esc(d.name)}</span>`; }
+function byline(t, size){ const d = DESIGNERS[t.by] || DESIGNERS.ai; const s = size || 22; return `<span class="by"><span class="av ${t.by === 'ai' ? 'ai' : ''}" style="width:${s}px;height:${s}px;font-size:${s < 24 ? 9.5 : 11}px;${t.by === 'ai' ? '' : 'background:' + d.color}">${d.initials}</span>${esc(d.name)}${t.by !== 'ai' ? '<span class="ex">Example designer</span>' : ''}</span>`; }
 function themeCard(t){
   return `<button class="tcard" data-act="openTheme" data-id="${t.id}">
-    <span class="photo"><img src="${imgOf(t)}" alt="${esc(t.name)}" loading="lazy"><span class="tags">${t.by === 'ai' ? '<span class="pill white">AI</span>' : ''}${t.mine ? '<span class="pill gold">Yours</span>' : ''}</span></span>
-    <span style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><b style="font-size:15px">${esc(t.name)}</b><span class="xs muted num">★ ${t.rating.toFixed(1)}</span></span>
-    <span style="display:flex;justify-content:space-between;gap:8px;align-items:center">${byline(t)}<span class="xs muted num">${t.builds} builds</span></span>
+    <span class="photo"><img src="${imgOf(t)}" alt="${esc(t.name)}" loading="lazy"><span class="tags">${t.by === 'ai' ? '<span class="pill white">AI</span>' : ''}${t.dry ? '<span class="pill white">Grown to order</span>' : ''}${t.mine ? '<span class="pill gold">Yours</span>' : ''}</span></span>
+    <span style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><b style="font-size:15px">${esc(t.name)}</b><span class="xs muted num">${money(perM2(t.id))}/m²</span></span>
+    <span style="display:flex;justify-content:space-between;gap:8px;align-items:center">${byline(t)}</span>
   </button>`;
 }
 
 function vHome(){
-  const top = themes().slice().sort((a, b) => b.builds - a.builds).slice(0, 4);
+  const top = themes().slice().slice(0, 4);
   return `
-  <section class="hero"><img src="/app/golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path">
+  <section class="hero"><img src="/app/hero.jpg" alt="A frangipani terrace with palms and the sea">
     <div class="hero-c">
       <p class="eyebrow" style="color:#A9DDB9">AI outdoor design · ready-made projects</p>
       <h1>Design your outdoor space from one photo.</h1>
-      <p>Designed by AI and real designers. Grown in our own nursery. Installed by local partner crews.</p>
+      <p>Designed by AI and designers. Grown in Hoang Lam's nursery at TERA Park 2. Installed by Hoang Lam crews.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><button class="btn light" data-go="create">${icon('cam')}Start with a photo</button><button class="btn ghost" data-go="themes">Browse themes</button></div>
     </div>
   </section>
@@ -876,8 +1025,8 @@ function vHome(){
     <ol class="steps">
       <li><h3>Upload</h3><p class="sm muted">One photo of your yard, rooftop, courtyard or lot.</p></li>
       <li><h3>Generate</h3><p class="sm muted">AI places plants, paths and materials in your space.</p></li>
-      <li><h3>Swap themes</h3><p class="sm muted">Try themes by our designers and AI. Same space, new look.</p></li>
-      <li><h3>Real quote</h3><p class="sm muted">Every plant is in our nursery, with a real price.</p></li>
+      <li><h3>Swap themes</h3><p class="sm muted">Try themes by designers and AI. Same space, new look.</p></li>
+      <li><h3>Real quote</h3><p class="sm muted">Every plant is on the hill at TERA Park 2, with a real price.</p></li>
       <li><h3>Book installation</h3><p class="sm muted">Pick a ready-made project, a crew and a date.</p></li>
     </ol>
   </section>
@@ -889,14 +1038,13 @@ function vHome(){
     <div class="promo gold"><p class="eyebrow" style="color:var(--gold-ink)">Request a design</p><h2>Want a human designer?</h2><p class="sm" style="color:var(--gold-ink)">Share a photo, a short brief and your budget. Get an AI concept now and designer proposals in a few days.</p><div><button class="btn gold sm" data-go="requests">Request a design</button></div></div>
     <div class="promo green"><p class="eyebrow" style="color:#A9DDB9">For designers</p><h2 style="color:#fff">Earn 10% on every build.</h2><p class="sm muted">Upload your themes. When a customer builds one, you earn 10% of the project.</p><div><button class="btn sm" style="background:#fff;color:var(--forest)" data-act="role" data-role="designer">Open designer studio</button></div></div>
   </section>
-  <footer class="foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer>`;
+  <footer class="foot"><span>TerraSpace · An Iozera company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer>`;
 }
 
 function filteredThemes(){
   const q = S.q.trim().toLowerCase();
   return themes().filter(t => S.filter === 'All' || (S.filter === 'By designers' ? t.by !== 'ai' : S.filter === 'By AI' ? t.by === 'ai' : S.filter === 'Saved' ? S.saved.includes(t.id) : t.tags.includes(S.filter)))
-    .filter(t => !q || (t.name + ' ' + (DESIGNERS[t.by] || {}).name + ' ' + t.tags.join(' ')).toLowerCase().includes(q))
-    .sort((a, b) => b.builds - a.builds);
+    .filter(t => !q || (t.name + ' ' + (DESIGNERS[t.by] || {}).name + ' ' + t.tags.join(' ')).toLowerCase().includes(q));
 }
 function vThemes(){
   return `
@@ -909,18 +1057,18 @@ function themeGrid(){ const l = filteredThemes(); return l.length ? l.map(themeC
 
 function themeSheet(id){
   const t = theme(id), q = quote(id, S.flow.area, 'essential'), d = DESIGNERS[t.by] || DESIGNERS.ai, saved = S.saved.includes(t.id);
-  return `<div class="sheet-img"><img src="${imgOf(t)}" alt="${esc(t.name)}"><button class="sheet-x" data-act="closeSheet" aria-label="Close">×</button></div>
+  return `<div class="sheet-img"><img src="${imgOf(t)}" alt="${esc(t.name)}"></div>
   <div class="sheet-c">
-    <div class="head"><div><h2>${esc(t.name)}</h2><p class="sm muted" style="margin-top:4px">${esc(t.blurb)}</p></div><button class="btn ghost sm" data-act="save" data-id="${t.id}">${saved ? 'Saved' : 'Save'}</button></div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">${byline(t, 28)}${d.city ? `<span class="xs muted">${esc(d.city)}</span>` : ''}<span class="pill">★ ${t.rating.toFixed(1)}</span><span class="pill">${t.builds} builds</span>${t.tags.map(g => `<span class="pill mint">${esc(g)}</span>`).join('')}</div>
-    <div class="card pad"><div class="head" style="margin-bottom:6px"><h3>Plant list for ${S.flow.area} m²</h3><span class="xs muted">From TERA nursery</span></div>
-      ${q.lines.filter(l => l.g === 'plants').map(l => `<div class="rowi" style="padding:9px 0"><div style="flex:1"><p class="sm" style="font-weight:400">${esc(l.name)} × ${l.qty}</p>${stockTag(l.id, l.qty)}</div><p class="sm num" style="font-weight:400">${money(l.total)}</p></div>`).join('')}
+    <div class="head"><div><h2>${esc(t.name)}</h2><p class="sm muted" style="margin-top:4px">${esc(t.blurb)}</p>${t.dry ? '<p class="note" style="margin-top:6px">Dry-climate collection. These plants do not grow in Khánh Hòa, so they are sourced to order for projects in drier regions.</p>' : ''}</div><button class="btn ghost sm" data-act="save" data-id="${t.id}">${saved ? 'Saved' : 'Save'}</button></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">${byline(t, 28)}${d.city ? `<span class="xs muted">${esc(d.city)}</span>` : ''}${t.tags.map(g => `<span class="pill mint">${esc(g)}</span>`).join('')}</div>
+    <div class="card pad"><div class="head" style="margin-bottom:6px"><h3>Plant list for ${S.flow.area} m²</h3><span class="xs muted">${t.dry ? 'Sourced to order' : 'Hoang Lam nursery · TERA Park 2'}</span></div>
+      ${q.lines.filter(l => l.g === 'plants').map(l => `<div class="rowi" style="padding:9px 0"><div style="flex:1"><p class="sm" style="font-weight:500">${esc(l.name)} × ${l.qty}</p><p class="xs muted">${esc(l.pot)}</p>${stockTag(l.id, l.qty)}</div><p class="sm num" style="font-weight:400">${money(l.total)}</p></div>`).join('')}
     </div>
-    <div class="head"><div><p class="xs muted">Essential, installed, ${S.flow.area} m²</p><p class="num" style="font-size:24px;font-weight:300">${money(q.total)}</p></div><button class="btn" data-act="useTheme" data-id="${t.id}">Use on my space</button></div>
+    <div class="head"><div><p class="xs muted">Essential, installed, ${S.flow.area} m²</p><p class="num" style="font-size:24px;font-weight:300">${money2(q.total)}</p></div><button class="btn" data-act="useTheme" data-id="${t.id}">Use on my space</button></div>
     ${t.by !== 'ai' ? `<p class="note">${esc(d.name)} earns 10% if you build this theme.</p>` : ''}
   </div>`;
 }
-function stockTag(id, need){ const p = PLANT[id]; if (!p) return ''; const free = p.stock - reservedOf(id); return free >= need ? `<span class="stock">In stock · ${free.toLocaleString('en-US')} available</span>` : `<span class="stock low">Grown to order · about 6 weeks</span>`; }
+function stockTag(id, need){ const p = PLANT[id]; if (!p) return ''; const free = p.stock - reservedOf(id); return free >= need ? `<span class="stock">${free.toLocaleString('en-US')} on the hill today</span>` : `<span class="stock low">${Math.max(0, free).toLocaleString('en-US')} on the hill · rest grown to order, about 6 weeks</span>`; }
 
 /* --- Create flow --- */
 const STEPS = ['Space','Generate','Design','Quote','Book'];
@@ -937,12 +1085,13 @@ function vCreate(){
       <div class="drop ${S.photo ? 'has' : ''}" data-act="upload" role="button" tabindex="0" aria-label="Upload a photo of your space">
         ${S.photo ? `<img src="${S.photo}" alt="Your space"><span class="badge tl pill dark">Your photo</span><span class="badge bl"><button class="btn sm ghost" data-act="upload">Change photo</button></span>` : `<div style="display:grid;gap:10px;justify-items:center"><span class="mark" style="width:54px;height:54px;border-radius:0">${icon('cam')}</span><h3>Upload a photo of your space</h3><p class="sm muted" style="max-width:34ch">Shoot from the spot people see it most. JPG or PNG, any size.</p><span class="btn sm">Choose photo</span></div>`}
       </div>
-      <p class="note">In the mobile app this step uses the camera and an AR scan to measure the area.</p>
+      ${S.photo ? `<button class="btn ghost block" data-act="measure">${icon('spark')}Measure the area from this photo</button>` : ''}
+      <p class="note">Measuring from one photo is approximate. The mobile app uses an AR scan, and the crew confirms on site.</p>
     </div>
     <div class="card pad stack">
       <div><p class="sm" style="font-weight:400;margin-bottom:8px">Property type</p><div class="chips">${PROPERTY.map(p => `<button class="chip" data-act="ptype" data-v="${p}" aria-pressed="${f.type === p}">${p}</button>`).join('')}</div></div>
       <div class="form2">
-        <label class="field">Approximate area (m²)<input type="number" id="areaIn" min="10" max="1000000" value="${f.area}"></label>
+        <label class="field">Area (m²)<input type="number" id="areaIn" min="10" max="1000000" value="${f.area}"><span class="hint">${f.measured ? 'Measured from your photo · approximate' : S.photo ? 'Typed · or measure it from your photo' : 'Typed · add a photo to measure it'}</span></label>
         <label class="field">Sun<select id="sunIn">${['Full sun','Part sun','Shade'].map(s => `<option ${f.sun === s ? 'selected' : ''}>${s}</option>`).join('')}</select></label>
       </div>
       <button class="btn block" data-act="generate" ${S.photo ? '' : 'disabled'}>${icon('spark')}Generate with AI</button>
@@ -957,7 +1106,7 @@ function vGenerate(){
     <div class="scanwrap" id="scanwrap"><img src="${S.photo}" alt="Your space"><canvas id="scanCv" style="clip-path:inset(0 0 0 0%)"></canvas><div class="scanline" id="scanLine" style="left:0%"></div><span class="badge tl pill dark">Site scan</span></div>
     <div class="card pad stack">
       <div style="display:grid;gap:13px" id="genSteps">
-        ${['Reading terrain, slope and sun','Matching plants in stock at TERA nursery','Placing paths and materials','Rendering your theme'].map((s, i) => `<div style="display:flex;gap:12px;align-items:center" data-gs="${i}"><span class="ring"></span><span>${s}</span></div>`).join('')}
+        ${['Reading terrain, slope and sun','Matching plants on the hill at TERA Park 2','Placing paths and materials','Rendering your theme'].map((s, i) => `<div style="display:flex;gap:12px;align-items:center" data-gs="${i}"><span class="ring"></span><span>${s}</span></div>`).join('')}
       </div>
       <div class="bar"><i id="genBar" style="width:0%"></i></div>
       <div class="kpis"><div class="tile"><b>${S.flow.area}</b><span class="xs muted">m²</span></div><div class="tile"><b>${S.flow.sun.split(' ')[0]}</b><span class="xs muted">sun</span></div><div class="tile"><b>${esc(S.flow.type.split(' ')[0])}</b><span class="xs muted">space</span></div></div>
@@ -1006,8 +1155,8 @@ function vDesign(){
     <div class="stack">
       <div class="card pad stack">
         <div class="head"><div><p class="eyebrow">Swap themes</p><h2 style="margin-top:6px">Same space, new look.</h2></div><button class="btn ghost sm" data-go="themes">All themes</button></div>
-        <div class="swap">${themes().slice().sort((a, b) => b.builds - a.builds).map(x => `<button data-act="swapTheme" data-id="${x.id}" aria-pressed="${x.id === f.themeId}"><span class="photo"><img src="${imgOf(x)}" alt=""></span><b>${esc(x.name)}</b><span class="xs muted">${esc((DESIGNERS[x.by] || DESIGNERS.ai).name)}</span></button>`).join('')}</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">${byline(t, 26)}<span class="pill">★ ${t.rating.toFixed(1)}</span><span class="pill">${t.builds} builds</span></div>
+        <div class="swap">${themes().slice().map(x => `<button data-act="swapTheme" data-id="${x.id}" aria-pressed="${x.id === f.themeId}"><span class="photo"><img src="${imgOf(x)}" alt=""></span><b>${esc(x.name)}</b><span class="xs muted">${esc((DESIGNERS[x.by] || DESIGNERS.ai).name)}</span></button>`).join('')}</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">${byline(t, 26)}<span class="pill">${money(perM2(t.id))} per m²</span></div>
         <div class="kpis"><div class="tile"><b>${f.area}</b><span class="xs muted">m²</span></div><div class="tile"><b>${q.plantsN}</b><span class="xs muted">plants</span></div><div class="tile"><b>${q.materialsN}</b><span class="xs muted">materials</span></div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><p class="xs muted">From, installed</p><p class="num" style="font-size:22px;font-weight:300">${money(q.total)}</p></div><button class="btn" data-act="toStep" data-s="4">See real quote</button></div>
       </div>
@@ -1017,17 +1166,17 @@ function vDesign(){
 }
 function vQuote(){
   const f = S.flow, isEstate = f.pkg === 'estate', q = quote(f.themeId, f.area, isEstate ? 'signature' : f.pkg), t = q.t;
-  const grp = { plants:'Plants · from TERA nursery', materials:'Materials', extras:'Signature extras' };
+  const grp = { plants:"Plants · Hoang Lam's nursery, TERA Park 2", materials:'Materials', extras:'Signature extras' };
   let last = '', rows = '';
   q.lines.forEach(l => { if (l.g !== last){ rows += `<tr class="grp"><td colspan="2">${grp[l.g]}</td></tr>`; last = l.g; } rows += `<tr><td><span class="sm" style="font-weight:400">${esc(l.name)}${l.qty > 1 || l.u ? ` × ${l.qty}${l.u ? ' ' + l.u : ''}` : ''}</span>${l.g === 'plants' ? '<br>' + stockTag(l.id, l.qty) : ''}</td><td class="r num">${money(l.total)}</td></tr>`; });
-  rows += `<tr class="grp"><td colspan="2">Installation</td></tr><tr><td class="sm">Labour · partner crew</td><td class="r num">${money(q.labour)}</td></tr><tr><td class="sm">Delivery from nursery</td><td class="r num">${money(q.delivery)}</td></tr>`;
+  rows += `<tr class="grp"><td colspan="2">Installation</td></tr><tr><td class="sm">Labour · Hoang Lam crew</td><td class="r num">${money(q.labour)}</td></tr><tr><td class="sm">Delivery from TERA Park 2</td><td class="r num">${money(q.delivery)}</td></tr>`;
   return `<div class="two">
     <div class="stack">
       <div class="card pad" style="display:flex;gap:12px;align-items:center"><span class="photo" style="width:64px;height:64px;border-radius:0;flex:none"><img src="${imgOf(t)}" alt=""></span><div style="flex:1;min-width:0"><h3>${esc(t.name)}</h3>${byline(t)}</div><span class="pill">${f.area} m²</span></div>
       <div><p class="sm" style="font-weight:400;margin-bottom:8px">Ready-made project</p>
         <div class="pkgs">${Object.keys(PKGS).map(k => `<button class="pkg" data-act="pkg" data-k="${k}" aria-pressed="${f.pkg === k}"><span style="display:flex;justify-content:space-between;gap:6px;align-items:center"><b>${PKGS[k].name}</b>${k === 'essential' ? '<span class="pill gold">Most chosen</span>' : ''}</span><span class="xs muted" style="line-height:1.45">${PKGS[k].desc}</span><span class="sm num" style="font-weight:300;margin-top:4px">${k === 'estate' ? 'Custom quote' : money(quote(f.themeId, f.area, k).total)}</span></button>`).join('')}</div>
       </div>
-      ${isEstate ? `<div class="card pad stack"><h3>Estate projects are quoted per site</h3><p class="sm muted">Resort and commercial grounds are phased. Tell us about the site and our team prepares a phased plan, plant schedule grown to order, and care contract.</p><div class="form2"><label class="field">Site name<input type="text" id="esName" placeholder="e.g. Hillside resort"></label><label class="field">Total area (ha)<input type="number" id="esHa" min="1" placeholder="e.g. 12"></label></div><button class="btn" data-act="estate">Send to our estate team</button></div>`
+      ${isEstate ? `<div class="card pad stack"><h3>Estate projects are quoted per site</h3><p class="sm muted">Resort and commercial grounds are phased. Tell us about the site and Hoang Lam's estate team prepares a phased plan, plant schedule grown to order, and care contract.</p><div class="form2"><label class="field">Site name<input type="text" id="esName" placeholder="e.g. Hillside resort"></label><label class="field">Total area (ha)<input type="number" id="esHa" min="1" placeholder="e.g. 12"></label></div><button class="btn" data-act="estate">Send to the estate team</button></div>`
       : `<div class="card pad"><table class="lines">${rows}</table></div>`}
     </div>
     ${isEstate ? '' : `<aside class="card total">
@@ -1035,7 +1184,7 @@ function vQuote(){
       <dl>
         <div><dt>Plants and materials</dt><dd>${money(q.goods)}</dd></div>
         <div><dt>Installation and delivery</dt><dd>${money(q.labour + q.delivery)}</dd></div>
-        <div class="grand"><dt>Total</dt><dd>${money(q.total)}</dd></div>
+        <div class="grand"><dt>Total</dt><dd>${money2(q.total)}</dd></div>
       </dl>
       <p class="sm muted num">${money(q.perM2)} per m² · ${q.plantsN} plants · confirmed at the site visit</p>
       <div class="tile" style="display:flex;justify-content:space-between;align-items:center"><span class="sm" style="font-weight:400">Deposit · 30%</span><b class="num" style="font-size:18px">${money(q.deposit)}</b></div>
@@ -1044,29 +1193,40 @@ function vQuote(){
     </aside>`}
   </div>`;
 }
+/* Availability: Sundays closed; a fixed set of days shows as fully booked (prototype). */
+const isFull = d => { const v = iso(d); let h = 7; for (let i = 0; i < v.length; i++) h = (h * 31 + v.charCodeAt(i)) % 1009; return h % 5 === 0; };
+const dayOpen = d => d.getDay() !== 0 && !isFull(d);
+const firstOpen = list => list.find(dayOpen) || list[0];
+function datesHTML(list, act, sel, cols, what){
+  return `<div class="dates c${cols}" role="group" aria-label="Choose ${what} date">${list.map(d => { const v = iso(d), sun = d.getDay() === 0, full = !sun && isFull(d), off = sun || full;
+    const lab = d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' }) + (sun ? ', closed' : full ? ', fully booked' : sel === v ? ', selected' : ', available');
+    return `<button type="button" class="date ${full ? 'full' : ''}" data-act="${act}" data-d="${v}" aria-pressed="${sel === v}" aria-label="${lab}" title="${lab}" ${off ? 'disabled' : ''}><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${sun ? 'Closed' : full ? 'Full' : d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div>`;
+}
 function days(){ const out = [], n = new Date(); for (let i = 2; out.length < 14; i++){ out.push(new Date(n.getFullYear(), n.getMonth(), n.getDate() + i)); } return out; }
 const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const pretty = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' }); };
 function vBook(){
   const f = S.flow, q = quote(f.themeId, f.area, f.pkg);
+  if (!f.date || !days().some(d => iso(d) === f.date && dayOpen(d))){ f.date = iso(firstOpen(days())); }
+  if (!f.slot) f.slot = '8:00 AM';
   return `<div class="two">
     <div class="stack">
-      <div class="card pad stack"><h3>Partner crews near you</h3>
-        ${CREWS.map(c => `<button class="opt" data-act="crew" data-id="${c.id}" aria-pressed="${f.crew === c.id}"><span class="mark" style="background:var(--mint);color:var(--forest);width:44px;height:44px;border-radius:0">${icon('leaf')}</span><span style="flex:1"><b>${esc(c.name)}</b><br><span class="xs muted">★ ${c.rating} · ${c.jobs} gardens · ${c.km} km</span></span>${f.crew === c.id ? `<span class="check">${icon('ok')}</span>` : '<span class="ring"></span>'}</button>`).join('')}
+      <div class="card pad stack"><h3>Hoang Lam crews</h3>
+        ${CREWS.map(c => `<button class="opt" data-act="crew" data-id="${c.id}" aria-pressed="${f.crew === c.id}"><span class="mark" style="background:var(--mint);color:var(--forest);width:44px;height:44px;border-radius:0">${icon('leaf')}</span><span style="flex:1"><b>${esc(c.name)}</b><br><span class="xs muted">${esc(c.base)}${c.km ? ' · ' + c.km + ' km from TERA Park 2' : ''}</span></span>${f.crew === c.id ? `<span class="check">${icon('ok')}</span>` : '<span class="ring"></span>'}</button>`).join('')}
       </div>
-      <div class="card pad stack"><div class="head"><h3>Date and time</h3><span class="xs muted">Closed Sundays · plants reserved on booking</span></div>
-        <div class="dates">${days().map(d => { const s = iso(d), closed = d.getDay() === 0; return `<button type="button" class="date" data-act="date" data-d="${s}" aria-pressed="${f.date === s}" ${closed ? 'disabled' : ''}><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div>
+      <div class="card pad stack"><div class="head"><h3>Date and time</h3><span class="xs muted">Closed Sundays · crossed-out days are fully booked</span></div>
+        ${datesHTML(days(), 'date', f.date, 7, 'install')}
         <div class="chips">${['8:00 AM','10:00 AM','1:00 PM'].map(s => `<button class="chip" data-act="slot" data-s="${s}" aria-pressed="${f.slot === s}">${s}</button>`).join('')}</div>
         <p class="err" id="errDate" hidden>Choose a date and a time.</p>
       </div>
       <div class="card pad stack"><h3>Your details</h3>
-        <div class="form2"><label class="field">Full name<input type="text" id="bName" autocomplete="name"></label><label class="field">Mobile number<input type="tel" id="bPhone" autocomplete="tel"></label><label class="field full">Site address<input type="text" id="bAddr" autocomplete="street-address" placeholder="Street, barangay, city"></label></div>
+        <div class="form2"><label class="field">Full name<input type="text" id="bName" autocomplete="name" value="${esc(S.user ? S.user.name : '')}"></label><label class="field">Mobile number<input type="tel" id="bPhone" autocomplete="tel" value="${esc(S.user && S.user.phone || '')}"></label><label class="field full">Site address<input type="text" id="bAddr" autocomplete="street-address" placeholder="Street, ward, district, city"></label></div>
         <p class="err" id="errDet" hidden>Add your name, mobile number and site address.</p>
       </div>
     </div>
     <aside class="card total">
       <p class="eyebrow">${PKGS[f.pkg].name} · ${esc(theme(f.themeId).name)}</p>
-      <dl><div><dt>Total</dt><dd>${money(q.total)}</dd></div><div><dt>Balance at handover</dt><dd>${money(q.total - q.deposit)}</dd></div><div class="grand"><dt>Deposit today</dt><dd>${money(q.deposit)}</dd></div></dl>
+      <dl><div><dt>Total</dt><dd>${money2(q.total)}</dd></div><div><dt>Balance at handover</dt><dd>${money(q.total - q.deposit)}</dd></div><div class="grand"><dt>Deposit · 30%</dt><dd>${money2(q.deposit)}</dd></div></dl>
       <button class="btn block" data-act="placeOrder">Confirm booking</button>
       <p class="note">Prototype: no payment is taken and no crew is booked.</p>
     </aside>
@@ -1085,7 +1245,7 @@ function vRequests(){
       <div class="drop ${S.photo ? 'has' : ''}" data-act="upload" role="button" tabindex="0" style="aspect-ratio:16/9" aria-label="Add a photo">${S.photo ? `<img src="${S.photo}" alt="Your space"><span class="badge tl pill dark">Your photo</span>` : `<div style="display:grid;gap:6px;justify-items:center">${icon('cam')}<b class="sm">Add a photo of the space</b></div>`}</div>
       <div class="chips">${PROPERTY.map(p => `<button class="chip" data-act="ptype" data-v="${p}" aria-pressed="${S.flow.type === p}">${p}</button>`).join('')}</div>
       <label class="field">Your brief<textarea id="rBrief" placeholder="e.g. Shaded family garden with a play lawn and herb beds. Low water.">${esc(S.reqForm.brief)}</textarea></label>
-      <div class="form2"><label class="field">Area (m²)<input type="number" id="rArea" value="${S.flow.area}"></label><label class="field">Budget up to (${S.cur})<input type="number" id="rMax" value="${Math.round(S.reqForm.max * (RATE[S.cur] / 57))}"></label></div>
+      <div class="form2"><label class="field">Area (m²)<input type="number" id="rArea" value="${S.flow.area}"></label><label class="field">Budget up to (${S.cur})<input type="number" id="rMax" value="${Math.round(S.reqForm.maxUSD * RATE[S.cur])}"></label></div>
       <p class="err" id="errReq" hidden>Write a short brief so designers know what you want.</p>
       <button class="btn block" data-act="sendRequest">Send request</button>
     </div>
@@ -1112,30 +1272,35 @@ function vDesignerRequests(){
 
 /* --- Projects --- */
 const STAGES = ['Booked','Plants reserved','Installing','Handed over'];
+function payLine(o){
+  const inv = allInvoices().filter(x => x.orderId === o.id), paid = inv.filter(x => x.paidAt).reduce((s, x) => s + x.amount, 0), next = inv.find(x => !x.paidAt);
+  return `<div class="payline"><div class="bar"><i style="width:${Math.round(paid / o.total * 100)}%"></i></div><p class="sm num">Paid ${money(paid)} of ${money(o.total)}${next ? ` · next: ${esc(next.label)} <span class="st ${invStatus(next).toLowerCase()}">${invStatus(next)}</span>` : ' · paid in full'}</p>${next && next.issued ? `<button class="btn sm" data-act="openInv" data-id="${next.id}">Pay ${money(next.amount)}</button>` : ''}</div>`;
+}
 function vProjects(){
-  const mine = S.orders.slice().reverse();
+  const mine = S.orders.slice().reverse(), bl = S.buildings.slice().reverse();
   return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">My projects</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Projects</h1></div><button class="btn sm" data-go="create">${icon('plus')}New design</button></div>
-  ${mine.length ? `<div class="stack">${mine.map(o => { const t = theme(o.themeId), si = STAGES.indexOf(o.status); return `<div class="card pad" style="display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:18px"><span class="photo" style="aspect-ratio:4/3"><img src="${imgOf(t)}" alt=""></span><div class="stack" style="gap:12px"><div class="head"><div><h3 style="font-size:18px">${esc(t.name)} · ${PKGS[o.pkg].name}</h3><p class="xs muted">${o.area} m² · Order ${o.id} · ${esc((CREWS.find(c => c.id === o.crew) || {}).name)}</p></div><span class="pill gold">${o.status}</span></div><ol class="track">${STAGES.map((s, i) => `<li class="${i < si ? 'done' : i === si ? 'now' : ''}"><b>${s}</b><span class="muted">${i === 0 ? pretty(o.created) : i === 2 && o.date ? pretty(o.date) + ', ' + o.slot : ''}</span></li>`).join('')}</ol><p class="sm num">Total ${money(o.total)} · deposit ${money(o.total * 0.3)}</p><div><button class="btn ghost sm" data-act="advance" data-id="${o.id}">Demo: next stage</button></div></div></div>`; }).join('')}</div>`
+  ${bl.length ? `<section style="margin-bottom:28px"><p class="eyebrow" style="margin-bottom:10px">Buildings</p>${bl.map(b => `<div class="rowi"><div style="flex:1;min-width:0"><p class="sm" style="font-weight:500">${esc(b.name)} · ${esc(b.city)}</p><p class="xs muted">${esc(b.type)} · ${b.scope.join(', ')} · est. ${money(b.build)} + ${money(b.care)}/month care</p></div><span class="st due">${esc(b.status)}</span></div>`).join('')}</section>` : ''}
+  ${mine.length ? `<div class="stack">${mine.map(o => { const t = theme(o.themeId), si = STAGES.indexOf(o.status); return `<div class="card pad" style="display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:18px"><span class="photo" style="aspect-ratio:4/3"><img src="${imgOf(t)}" alt=""></span><div class="stack" style="gap:12px"><div class="head"><div><h3 style="font-size:18px">${esc(t.name)} · ${PKGS[o.pkg].name}</h3><p class="xs muted">${o.area} m² · Order ${o.id} · ${esc(crewOf(o.crew).name)}</p></div><span class="pill gold">${o.status}</span></div><ol class="track">${STAGES.map((s, i) => `<li class="${i < si ? 'done' : i === si ? 'now' : ''}"><b>${s}</b><span class="muted">${i === 0 ? pretty(o.created) : i === 2 && o.date ? pretty(o.date) + ', ' + o.slot : ''}</span></li>`).join('')}</ol>${payLine(o)}<div><button class="btn ghost sm" data-act="advance" data-id="${o.id}">Demo: next stage</button></div></div></div>`; }).join('')}</div>`
   : `<div class="tile empty"><h3>No projects yet</h3><p class="sm muted">Design your space and book an installation to track it here.</p><button class="btn" data-go="create">Start a design</button></div>`}`;
 }
 
 /* --- Designer studio --- */
 function designerEarnings(){ return allOrders().filter(o => theme(o.themeId).by === ME_DESIGNER).reduce((s, o) => s + o.total * 0.10, 0); }
 function vStudio(){
-  const d = DESIGNERS[ME_DESIGNER], mine = themes().filter(t => t.by === ME_DESIGNER), earn = designerEarnings(), builds = mine.reduce((s, t) => s + t.builds, 0), openReq = S.requests.filter(r => !r.accepted && !r.proposals.some(p => p.by === ME_DESIGNER)).length;
+  const d = DESIGNERS[ME_DESIGNER], mine = themes().filter(t => t.by === ME_DESIGNER), earn = designerEarnings(), builds = mine.reduce((s, t) => s + buildsOf(t.id), 0), openReq = S.requests.filter(r => !r.accepted && !r.proposals.some(p => p.by === ME_DESIGNER)).length;
   const perTheme = id => allOrders().filter(o => o.themeId === id).reduce((s, o) => s + o.total * 0.1, 0);
   return `<div class="head" style="margin-bottom:16px"><div style="display:flex;gap:12px;align-items:center"><span class="av" style="background:${d.color};width:52px;height:52px;font-size:17px">${d.initials}</span><div><p class="eyebrow">Designer studio</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:4px">${esc(d.name)}</h1></div></div><button class="btn" data-go="upload">${icon('plus')}Upload a theme</button></div>
   <div class="grid2 stack-sm">
     <div class="earn"><span>Earnings, last 30 days</span><b>${money(earn)}</b><span>10% of every project built from your themes</span></div>
-    <div class="kpis" style="align-content:stretch"><div class="tile"><b>${mine.length}</b><span class="xs muted">Themes live</span></div><div class="tile"><b>${builds}</b><span class="xs muted">Total builds</span></div><button class="tile" data-go="requests" style="border:0;text-align:left"><b>${openReq}</b><span class="xs muted">Open requests</span></button></div>
+    <div class="kpis" style="align-content:stretch"><div class="tile"><b>${mine.length}</b><span class="xs muted">Themes live</span></div><div class="tile"><b>${builds}</b><span class="xs muted">Builds, incl. examples</span></div><button class="tile" data-go="requests" style="border:0;text-align:left"><b>${openReq}</b><span class="xs muted">Open requests</span></button></div>
   </div>
   <section class="section"><div class="head"><h2>Your themes</h2></div>
-    <div class="card pad">${mine.map(t => `<div class="rowi"><span class="photo"><img src="${imgOf(t)}" alt=""></span><div style="flex:1;min-width:0"><p class="sm" style="font-weight:400">${esc(t.name)} ${t.mine ? '<span class="pill gold">New</span>' : ''}</p><p class="xs muted num">${t.builds} builds · ★ ${t.rating.toFixed(1)} · ${t.plants.length} plant types</p></div><p class="sm num" style="font-weight:400">${money(perTheme(t.id))}</p></div>`).join('')}</div>
+    <div class="card pad">${mine.map(t => `<div class="rowi"><span class="photo"><img src="${imgOf(t)}" alt=""></span><div style="flex:1;min-width:0"><p class="sm" style="font-weight:400">${esc(t.name)} ${t.mine ? '<span class="pill gold">New</span>' : ''}</p><p class="xs muted num">${buildsOf(t.id)} builds · ${money(perM2(t.id))} per m² · ${t.plants.length} plant types</p></div><p class="sm num" style="font-weight:400">${money(perTheme(t.id))}</p></div>`).join('')}</div>
   </section>
   <p class="note" style="margin-top:12px">Earnings include example orders so the dashboard has data.</p>`;
 }
 function vUpload(){
-  const f = S.studioForm || (S.studioForm = { name:'', blurb:'', tags:['Home garden'], plants:{ lavender:6, olive:1, grasses:6 }, img:null, ground:'gravel' });
+  const f = S.studioForm || (S.studioForm = { name:'', blurb:'', tags:['Home garden'], plants:{ frangipani:1, ixora:8, zoysia:20 }, img:null, ground:'gravel' });
   return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Designer studio</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Upload a theme</h1></div><button class="btn ghost sm" data-go="studio">${icon('back')}Back to studio</button></div>
   <div class="two">
     <div class="stack">
@@ -1145,8 +1310,8 @@ function vUpload(){
       </div>
     </div>
     <div class="card pad stack">
-      <div class="head"><h3>Plant list per 100 m²</h3><span class="xs muted">TERA nursery catalog</span></div>
-      <div style="display:grid;gap:2px;max-height:520px;overflow:auto">${PLANTS.map(p => `<div class="rowi" style="padding:8px 0"><div style="flex:1;min-width:0"><p class="sm" style="font-weight:400">${esc(p.name)}</p><p class="xs muted">${p.sun} · ${p.water} water · ${money(p.usd)}</p></div><input type="number" min="0" max="200" value="${f.plants[p.id] || 0}" data-uplant="${p.id}" aria-label="${esc(p.name)} per 100 m²" style="width:76px;text-align:center"></div>`).join('')}</div>
+      <div class="head"><h3>Plant list per 100 m²</h3><span class="xs muted">Hoang Lam nursery catalog</span></div>
+      <div style="display:grid;gap:2px;max-height:520px;overflow:auto">${PLANTS.map(p => `<div class="rowi" style="padding:8px 0"><div style="flex:1;min-width:0"><p class="sm" style="font-weight:400">${esc(p.name)}</p><p class="xs muted">${esc(p.pot)} · ${p.sun} · ${p.water} water · ${money(p.usd)}</p></div><input type="number" min="0" max="200" value="${f.plants[p.id] || 0}" data-uplant="${p.id}" aria-label="${esc(p.name)} per 100 m²" style="width:76px;text-align:center"></div>`).join('')}</div>
       <p class="err" id="errUp" hidden>Add a name, a cover photo and at least one plant.</p>
       <button class="btn block" data-act="publish">Publish to marketplace</button>
       <p class="note">You earn 10% of every project built from this theme.</p>
@@ -1156,24 +1321,24 @@ function vUpload(){
 
 /* --- Nursery owner --- */
 function demand(){ const m = {}; allOrders().filter(o => o.status !== 'Handed over').forEach(o => Object.keys(o.plants).forEach(id => m[id] = (m[id] || 0) + o.plants[id])); return m; }
-function forecast(){ const m = {}; themes().forEach(t => { const runs = t.builds / 4; t.plants.forEach(([id, q]) => m[id] = (m[id] || 0) + Math.round(runs * q)); }); return m; }
+function forecast(){ const m = {}; allOrders().forEach(o => Object.keys(o.plants).forEach(id => m[id] = (m[id] || 0) + Math.round(o.plants[id] * 0.75))); return m; }
 function vNursery(){
   const dm = demand(), fc = forecast(), open = allOrders().filter(o => o.status !== 'Handed over'), reserved = Object.values(dm).reduce((s, v) => s + v, 0);
   const rows = PLANTS.map(p => { const need = (fc[p.id] || 0) + (dm[p.id] || 0); return { p, need, r: need / p.stock }; }).filter(x => x.need > 0).sort((a, b) => b.r - a.r);
   const hot = rows.filter(x => x.r >= 0.8);
   const sales = allOrders().reduce((s, o) => s + o.total, 0);
-  return `<section class="shop-hero" style="min-height:46vh;margin-bottom:36px"><img src="/app/green-brain.jpg" alt="The Green Brain terrace with solar, the power hall and the terraced nursery" style="object-position:55% 45%"><div class="c"><p class="eyebrow">Nursery owner · Green Brain</p><h1>TERA Nursery</h1><p>Demand from every design and order in the app, against what is growing on the terraces.</p></div></section>
+  return `<section class="shop-hero" style="min-height:46vh;margin-bottom:36px"><img src="/app/green-brain.jpg" alt="The Green Brain terrace with solar, the power hall and the terraced nursery" style="object-position:55% 45%"><div class="c"><p class="eyebrow">Hoang Lam · TERA Park 2</p><h1>Hoang Lam's nursery</h1><p>Demand from every design and order in the app, against what is growing on the terraces.</p></div></section>
   <div class="head" style="margin-bottom:16px"><p class="eyebrow">Today</p><span class="pill">Includes example orders</span></div>
   <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div class="tile"><b>${open.length}</b><span class="xs muted">Open projects</span></div><div class="tile"><b>${reserved.toLocaleString('en-US')}</b><span class="xs muted">Plants reserved</span></div><div class="tile"><b>${new Set(open.map(o => o.crew)).size}</b><span class="xs muted">Crews working</span></div><div class="tile"><b>${money(sales)}</b><span class="xs muted">Project sales</span></div></div>
   <div class="two" style="margin-top:20px">
-    <div class="card pad stack"><div class="head"><h3>Demand vs stock · next 90 days</h3><span class="xs muted">Forecast from theme builds</span></div>
+    <div class="card pad stack"><div class="head"><h3>Demand vs stock · next 90 days</h3><span class="xs muted">Forecast from orders</span></div>
       ${rows.slice(0, 10).map(x => `<div><div style="display:flex;justify-content:space-between" class="sm"><span>${esc(x.p.name)}</span><span class="num"><b>${x.need.toLocaleString('en-US')}</b> <span class="muted">/ ${x.p.stock.toLocaleString('en-US')}</span></span></div><div class="bar" style="margin-top:6px"><i class="${x.r >= 0.8 ? 'hot' : ''}" style="width:${Math.min(100, Math.round(x.r * 100))}%"></i></div></div>`).join('')}
     </div>
     <div class="stack">
       <div class="promo gold"><p class="eyebrow" style="color:var(--gold-ink)">Grow plan</p>
         ${hot.length ? hot.slice(0, 3).map(x => `<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-top:1px solid rgba(122,87,20,.15)"><p class="sm"><b>${esc(x.p.name)}</b><br><span style="color:var(--gold-ink)">${x.r >= 1 ? 'Short by ' + (x.need - x.p.stock).toLocaleString('en-US') : Math.round(x.r * 100) + '% of stock needed'}</span></p><button class="btn gold sm" data-act="grow" data-id="${x.p.id}" data-n="${Math.max(10, Math.ceil((x.need * 1.2 - x.p.stock) / 10) * 10)}">Start ${Math.max(10, Math.ceil((x.need * 1.2 - x.p.stock) / 10) * 10).toLocaleString('en-US')}</button></div>`).join('') : '<p class="sm">Stock covers all open projects.</p>'}
       </div>
-      <div class="card pad"><h3 style="margin-bottom:6px">Most built themes</h3>${themes().slice().sort((a, b) => b.builds - a.builds).slice(0, 4).map(t => `<div class="rowi"><span class="photo" style="width:46px;height:46px;border-radius:0"><img src="${imgOf(t)}" alt=""></span><div style="flex:1"><p class="sm" style="font-weight:400">${esc(t.name)}</p><p class="xs muted">${t.builds} builds</p></div></div>`).join('')}</div>
+      <div class="card pad"><h3 style="margin-bottom:6px">Most built themes</h3>${themes().slice().sort((a, b) => buildsOf(b.id) - buildsOf(a.id)).slice(0, 4).map(t => `<div class="rowi"><span class="photo" style="width:46px;height:46px;border-radius:0"><img src="${imgOf(t)}" alt=""></span><div style="flex:1"><p class="sm" style="font-weight:400">${esc(t.name)}</p><p class="xs muted">${buildsOf(t.id)} orders, incl. examples</p></div></div>`).join('')}</div>
     </div>
   </div>`;
 }
@@ -1185,7 +1350,7 @@ function vShop(){
   <div class="facts">
     <div><span class="eyebrow">Aisles</span><b>${AISLES.length} gardens</b></div>
     <div><span class="eyebrow">Pricing</span><b>Per m², on QR</b></div>
-    <div><span class="eyebrow">Plants</span><b>Grown on site</b></div>
+    <div><span class="eyebrow">Plants</span><b>Hoang Lam's nursery</b></div>
     <div><span class="eyebrow">Installation</span><b>Hoang Lam crew</b></div>
   </div>
   <section class="section">
@@ -1193,78 +1358,116 @@ function vShop(){
     <div class="aisles">${list.map(({ t, n }) => `<article class="aisle">
       <span class="photo" style="position:relative"><img src="${t.img}" alt="${esc(t.name)}, built full size in aisle ${n}"><span class="no">Aisle ${String(n).padStart(2, '0')}</span></span>
       <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline"><h3 style="font-size:19px;font-weight:300">${esc(t.name)}</h3>${byline(t)}</div>
-      <div class="meta"><div><p class="eyebrow">Price per m², installed</p><p class="price">${money(perM2(t.id))}</p><p class="xs muted" style="margin-top:4px">${t.plants.length} plant types · grown at TERA Park 2</p></div><div class="qr" data-qr="${n}" role="img" aria-label="QR code for aisle ${n}">AISLE ${n}</div></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn sm" data-act="aisleOrder" data-id="${t.id}">Order this garden</button><button class="btn ghost sm" data-act="openTheme" data-id="${t.id}">Plant list</button></div>
+      <div class="meta"><div><p class="eyebrow">Price per m², installed</p><p class="price">${money2(perM2(t.id))}</p></div><div class="qr" data-qr="${n}" role="img" aria-label="QR code for aisle ${n}, opens this garden's order screen">AISLE ${n}</div></div>
+      <div class="plist"><p class="eyebrow">Plants · pot size · on the hill today</p>${t.plants.map(([pid]) => { const p = PLANT[pid]; if (!p) return ''; return `<div><span>${esc(p.name)}</span><span class="muted">${esc(p.pot)}</span><span class="num">${Math.max(0, p.stock - reservedOf(pid)).toLocaleString('en-US')}</span></div>`; }).join('')}</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn sm" data-act="aisleOrder" data-id="${t.id}">Order this garden</button><button class="btn ghost sm" data-act="openTheme" data-id="${t.id}">Plant quantities</button></div>
     </article>`).join('')}</div>
   </section>
-  <p class="note" style="margin-top:28px">Prices per m² include plants, materials, installation and delivery for the Essential project. Final price is confirmed when the crew measures your site.</p>`;
+  <p class="note" style="margin-top:28px">Prices per m² include plants, materials, installation by a Hoang Lam crew and delivery from TERA Park 2, for the Essential project. Placeholder rates until the TERA pricing model figures are loaded. Final price is confirmed when the crew measures your site.</p>`;
 }
 const qrURL = n => location.origin + location.pathname + '#aisle-' + n;
 function drawQRs(){
   $$('[data-qr]').forEach(el => { if (el.dataset.done) return; el.dataset.done = '1'; if (window.QRCode){ el.textContent = ''; try { new window.QRCode(el, { text: qrURL(el.dataset.qr), width: 160, height: 160, colorDark:'#1B1E1C', colorLight:'#ffffff', correctLevel: window.QRCode.CorrectLevel.M }); el.removeAttribute('title'); } catch(e){ el.textContent = 'AISLE ' + el.dataset.qr; } } });
 }
-function plantRows(id, area){ return quote(id, area, 'essential').lines.filter(l => l.g === 'plants').map(l => `<li><span>${esc(l.name)}</span><span class="num">× ${l.qty}</span><span class="muted">${l.stock.toLocaleString('en-US')} in stock</span></li>`).join(''); }
-function orderDoneSheet(oid, q, area, when){
-  return `<div class="sheet-c">
-    <div><p class="eyebrow">Order ${esc(oid)}</p><h2 style="margin-top:6px">Booked. Here is what happens next.</h2></div>
-    <ol class="next">
-      <li><b>Deposit request</b><span>We send a payment link for the 30% deposit, ${money(q.total * 0.3)}. Prototype: nothing is charged.</span></li>
-      <li><b>Crew confirms the date</b><span>A Hoang Lam crew confirms ${esc(when)} and measures the site. The final price is confirmed then.</span></li>
-      <li><b>Plants reserved</b><span>${q.plantsN} plants for ${esc(q.t.name)}, ${area} m², are reserved at TERA Park 2.</span></li>
-    </ol>
-    <button class="btn block" data-act="closeSheet">View my project</button>
-  </div>`;
-}
 function aisleSheet(id){
-  const t = theme(id), n = aisleOf(id), pm = perM2(id), area = S.shopArea || S.flow.area;
-  const ds = days().filter(d => d.getDay() !== 0).slice(0, 8), full = new Set([iso(ds[2])]);
-  if (!S.soDate || !ds.some(d => iso(d) === S.soDate) || full.has(S.soDate)) S.soDate = iso(ds.find(d => !full.has(iso(d))));
-  return `<div class="sheet-img"><img src="${t.img}" alt="${esc(t.name)}"><button class="sheet-x" data-act="closeSheet" aria-label="Close">Close</button><span class="no" style="position:absolute;left:0;top:0;background:#fff;padding:8px 12px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase">Aisle ${String(n || 0).padStart(2, '0')}</span></div>
+  const dr = S.soDraft && S.soDraft.id === id ? S.soDraft : {}, t = theme(id), n = aisleOf(id), pm = perM2(id), area = dr.area || S.shopArea || S.flow.area, q = quote(id, area, 'essential');
+  const ds = days().slice(0, 8);
+  if (!S.soDate) S.soDate = iso(firstOpen(ds));
+  return `<div class="sheet-img"><img src="${t.img}" alt="${esc(t.name)}"><span class="no" style="position:absolute;left:0;top:0;background:#fff;padding:8px 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase">Aisle ${String(n || 0).padStart(2, '0')}</span></div>
   <div class="sheet-c">
-    <div><p class="eyebrow">Order on the spot</p><h2 style="margin-top:6px">${esc(t.name)}</h2><div style="margin-top:8px">${byline(t)}</div></div>
+    <div><p class="eyebrow">Order on the spot · TERA Park 2</p><h2 style="margin-top:6px">${esc(t.name)}</h2><div style="margin-top:8px">${byline(t)}</div></div>
     <div class="form2">
-      <label class="field">Your area, m²<input type="number" id="soArea" min="5" value="${area}"></label>
-      <div><p class="eyebrow">Price per m²</p><p class="num" style="font-size:26px;font-weight:200;margin-top:6px">${money(pm)}</p></div>
+      <label class="field">Your area, m²<input type="number" id="soArea" min="5" value="${area}"><span class="hint">${S.flow.measured && area === S.flow.area ? 'Measured from your photo · approximate' : 'Typed'}</span></label>
+      <div><p class="eyebrow">Price per m²</p><p class="num" style="font-size:24px;font-weight:300;margin-top:6px">${money2(pm)}</p></div>
     </div>
-    <div class="total" style="position:static"><dl><div><dt>Garden, installed</dt><dd id="soTotal">${money(quote(id, area, 'essential').total)}</dd></div><div><dt>Deposit today · 30%</dt><dd id="soDep">${money(quote(id, area, 'essential').total * 0.3)}</dd></div></dl></div>
-    <div><p class="eyebrow" style="margin-bottom:10px">Plants in this garden · <span id="soPlantsArea">${area}</span> m²</p><ul class="plist" id="soPlants">${plantRows(id, area)}</ul></div>
-    <div><p class="eyebrow" style="margin-bottom:10px">Hoang Lam crew · install date</p><div class="dates dates-8">${ds.map(d => { const v = iso(d), isFull = full.has(v), lbl = d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long' }); return `<button type="button" class="date" data-act="soDate" data-d="${v}" aria-pressed="${S.soDate === v}" aria-label="${lbl}${isFull ? ', fully booked' : ''}"${isFull ? ' disabled' : ''}><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${isFull ? 'Full' : d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div></div>
-    <div class="form2"><label class="field">Full name<input type="text" id="soName" autocomplete="name"></label><label class="field">Mobile number<input type="tel" id="soPhone" autocomplete="tel"></label><label class="field full">Site address<input type="text" id="soAddr" autocomplete="street-address"></label></div>
-    <p class="err" id="soErr" hidden>Pick an install date and add your name, mobile number and site address.</p>
-    <button class="btn block" data-act="soPlace" data-id="${id}">Order and book the crew</button>
-    <p class="note">Plants are reserved from TERA Park 2 when you order. Prototype: no payment is taken.</p>
+    <button class="btn ghost sm" data-act="measure" data-ret="${id}" style="justify-self:start">${icon('cam')}Measure from a photo</button>
+    <div class="total" style="position:static"><dl><div><dt>Garden, installed</dt><dd id="soTotal">${money2(q.total)}</dd></div><div><dt>Deposit today · 30%</dt><dd id="soDep">${money2(q.deposit)}</dd></div></dl></div>
+    <div><p class="eyebrow" style="margin-bottom:10px">Hoang Lam crew · install date</p>${datesHTML(ds, 'soDate', S.soDate, 8, 'install')}</div>
+    <div class="plist"><p class="eyebrow">Plants · pot size · on the hill today</p>${q.lines.filter(l => l.g === 'plants').map(l => `<div><span>${esc(l.name)} × ${l.qty}</span><span class="muted">${esc(l.pot)}</span><span class="num">${Math.max(0, PLANT[l.id].stock - reservedOf(l.id)).toLocaleString('en-US')}</span></div>`).join('')}</div>
+    <div class="form2"><label class="field">Full name<input type="text" id="soName" autocomplete="name" value="${esc(dr.nm || (S.user ? S.user.name : ''))}"></label><label class="field">Mobile number<input type="tel" id="soPhone" autocomplete="tel" value="${esc(dr.ph || (S.user && S.user.phone) || '')}"></label><label class="field full">Site address<input type="text" id="soAddr" autocomplete="street-address" value="${esc(dr.ad || '')}"></label></div>
+    <p class="err" id="soErr" hidden>Add your name, mobile number and site address.</p>
+    <button class="btn block" data-act="soPlace" data-id="${id}">${S.user ? 'Order and book the crew' : 'Sign in to order'}</button>
+    <p class="note">Plants are reserved in Hoang Lam's nursery at TERA Park 2 when you order. Prototype: no payment is taken.</p>
   </div>`;
 }
 function visitSheet(){
   const ds = days().slice(0, 10);
-  return `<div class="sheet-img"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles"><button class="sheet-x" data-act="closeSheet" aria-label="Close">Close</button></div>
+  if (!S.visitDate) S.visitDate = iso(firstOpen(ds));
+  if (!S.visitSlot) S.visitSlot = '9:00 AM';
+  return `<div class="sheet-img"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles"></div>
   <div class="sheet-c"><div><p class="eyebrow">Plan a visit</p><h2 style="margin-top:6px">Walk the showcase aisles</h2><p class="sm muted" style="margin-top:6px">TERA Park 2, Hoang Lam. A guide walks you through the gardens and helps you order.</p></div>
-    <div class="dates" style="grid-template-columns:repeat(5,minmax(0,1fr))">${ds.map(d => { const v = iso(d); return `<button type="button" class="date" data-act="visitDate" data-d="${v}" aria-pressed="${S.visitDate === v}"><span>${d.toLocaleDateString('en-GB', { weekday:'short' })}</span><b>${d.getDate()}</b><span>${d.toLocaleDateString('en-GB', { month:'short' })}</span></button>`; }).join('')}</div>
+    ${datesHTML(ds, 'visitDate', S.visitDate, 5, 'visit')}
     <div class="chips">${['9:00 AM','11:00 AM','2:00 PM','4:00 PM'].map(x => `<button class="chip" data-act="visitSlot" data-s="${x}" aria-pressed="${S.visitSlot === x}">${x}</button>`).join('')}</div>
     <div class="form2"><label class="field">Full name<input type="text" id="vName"></label><label class="field">Party size<input type="number" id="vSize" min="1" value="2"></label></div>
     <p class="err" id="vErr" hidden>Pick a date, a time and add your name.</p>
     <button class="btn block" data-act="visitBook">Book the visit</button>
   </div>`;
 }
+/* --- Measure from a photo (approximate; AR in the mobile app) --- */
+function measArea(){
+  const m = S.meas, A = S.photoAR || 0.75, p = m.pts.map(([x, y]) => [x, y * A]);
+  let sh = 0; for (let i = 0; i < 4; i++){ const [x1, y1] = p[i], [x2, y2] = p[(i + 1) % 4]; sh += x1 * y2 - x2 * y1; }
+  const front = Math.hypot(p[1][0] - p[0][0], p[1][1] - p[0][1]), back = Math.hypot(p[2][0] - p[3][0], p[2][1] - p[3][1]) || front;
+  if (front < 0.02 || !(m.edge > 0)) return 0;
+  const persp = Math.min(3, Math.max(1, (1 + front / back) / 2));
+  return Math.max(1, Math.round(Math.abs(sh) / 2 * Math.pow(m.edge / front, 2) * persp));
+}
+function measureSheet(){
+  const m = S.meas || (S.meas = { pts:[[0.08,0.92],[0.92,0.92],[0.74,0.46],[0.26,0.46]], edge:12 });
+  if (!S.photo) return `<div class="sheet-c"><div><p class="eyebrow">Measure from a photo</p><h2 style="margin-top:6px">Start with a photo of the space.</h2><p class="sm muted" style="margin-top:6px">Stand where you see the whole area, with the front edge nearest you.</p></div><button class="btn block" data-act="measPhoto">${icon('cam')}Choose a photo</button></div>`;
+  const A = S.photoAR || 0.75;
+  return `<div class="sheet-c">
+    <div><p class="eyebrow">Measure from a photo</p><h2 style="margin-top:6px">Outline the area to plant.</h2><p class="sm muted" style="margin-top:6px">Drag the four corners onto the edges of the space. Then enter the real length of the front edge, the white line nearest you.</p></div>
+    <div class="meas" id="meas" style="aspect-ratio:1000/${Math.round(A * 1000)};width:min(100%, calc(58vh / ${A.toFixed(3)}))"><img src="${S.photo}" alt="Your space"><svg viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><polygon id="measPoly"/><line id="measEdge"/></svg>${m.pts.map((p, i) => `<span class="mh" data-mh="${i}" role="slider" tabindex="0" aria-label="Corner ${i + 1}${i < 2 ? ', front edge' : ''}. Use arrow keys to move." aria-valuetext="${Math.round(p[0] * 100)}% across, ${Math.round(p[1] * 100)}% down" style="left:${p[0] * 100}%;top:${p[1] * 100}%"></span>`).join('')}</div>
+    <div class="form2"><label class="field">Front edge length, m<input type="number" id="measEdgeIn" min="1" step="0.5" value="${m.edge}"></label><div><p class="eyebrow">Measured area</p><p class="num" id="measOut" style="font-size:28px;font-weight:300;margin-top:6px">${measArea()} m²</p></div></div>
+    <p class="note">Approximate. One photo flattens depth, so the far side is corrected roughly. The Hoang Lam crew measures exactly at the site visit; the mobile app uses an AR scan.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-act="measUse">Use this area</button><button class="btn ghost" data-act="measPhoto">Change photo</button></div>
+  </div>`;
+}
+function measDraw(){
+  const m = S.meas; if (!m || !$('#meas')) return;
+  $$('#meas .mh').forEach(h => { const p = m.pts[+h.dataset.mh]; h.style.left = p[0] * 100 + '%'; h.style.top = p[1] * 100 + '%'; h.setAttribute('aria-valuetext', Math.round(p[0] * 100) + '% across, ' + Math.round(p[1] * 100) + '% down'); });
+  $('#measPoly').setAttribute('points', m.pts.map(p => (p[0] * 1000).toFixed(1) + ',' + (p[1] * 1000).toFixed(1)).join(' '));
+  const e = $('#measEdge'); e.setAttribute('x1', m.pts[0][0] * 1000); e.setAttribute('y1', m.pts[0][1] * 1000); e.setAttribute('x2', m.pts[1][0] * 1000); e.setAttribute('y2', m.pts[1][1] * 1000);
+  $('#measOut').textContent = measArea() + ' m²';
+}
+function confirmSheet(o){
+  const t = theme(o.themeId), c = crewOf(o.crew), n = Object.values(o.plants).reduce((s, v) => s + v, 0);
+  return `<div class="sheet-c">
+    <div><p class="eyebrow">Order ${o.id} · received</p><h2 style="margin-top:6px">What happens next</h2><p class="sm muted" style="margin-top:6px">${esc(t.name)} · ${o.area} m² · ${money2(o.total)}</p></div>
+    <ol class="next">
+      <li><span class="k">01</span><div><b>Deposit invoice issued</b><p class="sm muted">${money2(o.total * 0.3)}, 30% of the total. It is in Billing, and the payment request goes to your mobile number. Nothing is charged until you pay it.</p></div></li>
+      <li><span class="k">02</span><div><b>${esc(c.name)} confirms the date</b><p class="sm muted">Within 24 hours, for ${pretty(o.date)}, ${esc(o.slot)}. If the day no longer works, they call you with the next free day.</p></div></li>
+      <li><span class="k">03</span><div><b>Plants reserved at TERA Park 2</b><p class="sm muted">${n.toLocaleString('en-US')} plants are held for you in Hoang Lam's nursery from today until installation.</p></div></li>
+    </ol>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-act="openInv" data-id="${(S.invoices.find(x => x.orderId === o.id) || {}).id}">Pay the deposit</button><button class="btn ghost" data-go="projects">View my project</button><button class="btn ghost" data-go="${o.src === 'showroom' ? 'shop' : 'themes'}">${o.src === 'showroom' ? 'Back to the aisles' : 'Back to themes'}</button></div>
+    <p class="note">Prototype: payments are simulated and no crew is booked.</p>
+  </div>`;
+}
 function vOrders(){
   const list = allOrders();
-  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Nursery owner</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Orders from the app</h1></div></div>
-  <div class="card pad" style="overflow-x:auto"><table class="lines" style="min-width:620px"><tr class="grp"><td>Order</td><td>Theme</td><td>Area</td><td>Crew</td><td>Status</td><td class="r">Total</td></tr>
-  ${list.map(o => `<tr><td class="sm num">${o.id}${o.demo ? ' <span class="pill">Example</span>' : ''}${o.src === 'showroom' ? ' <span class="pill">Showroom</span>' : ''}</td><td class="sm">${esc(theme(o.themeId).name)}</td><td class="sm num">${o.area} m²</td><td class="sm">${esc((CREWS.find(c => c.id === o.crew) || {}).name)}</td><td><span class="pill ${o.status === 'Handed over' ? 'mint' : 'gold'}">${o.status}</span></td><td class="r num">${money(o.total)}</td></tr>`).join('')}</table></div>`;
+  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Nursery owner</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Orders from the app</h1></div><button class="btn ghost sm" data-go="payments">Payments</button></div>
+  <div class="card pad" style="overflow-x:auto"><table class="lines" style="min-width:620px"><tr class="grp"><td>Order</td><td>Customer</td><td>Theme</td><td>Area</td><td>Status</td><td class="r">Paid</td><td class="r">Total</td></tr>
+  ${list.map(o => `<tr><td class="sm num">${o.id}${o.demo ? ' <span class="pill">Example</span>' : ''}${o.src === 'showroom' ? ' <span class="pill">Showroom</span>' : ''}</td><td class="sm">${esc(o.customer || 'Guest')}</td><td class="sm">${esc(theme(o.themeId).name)}</td><td class="sm num">${o.area} m²</td><td><span class="pill ${o.status === 'Handed over' ? 'mint' : 'gold'}">${o.status}</span></td><td class="r num">${Math.round(allInvoices().filter(x => x.orderId === o.id && x.paidAt).reduce((s, x) => s + x.amount, 0) / o.total * 100)}%</td><td class="r num">${money(o.total)}</td></tr>`).join('')}</table></div>`;
 }
 function vCatalog(){
   const dm = demand();
   return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Nursery owner</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Catalog and stock</h1></div><span class="pill mint">Designers build themes from this list</span></div>
-  <div class="card pad" style="overflow-x:auto"><table class="lines" style="min-width:600px"><tr class="grp"><td>Plant</td><td>Sun</td><td>Water</td><td class="r">Price</td><td class="r">In stock</td><td class="r">Reserved</td></tr>
-  ${PLANTS.map(p => `<tr><td class="sm" style="font-weight:400">${esc(p.name)}</td><td class="sm">${p.sun}</td><td class="sm">${p.water}</td><td class="r num">${money(p.usd)}</td><td class="r num">${p.stock.toLocaleString('en-US')}</td><td class="r num">${(dm[p.id] || 0).toLocaleString('en-US')}</td></tr>`).join('')}</table></div>`;
+  <div class="card pad" style="overflow-x:auto"><table class="lines" style="min-width:600px"><tr class="grp"><td>Plant</td><td>Pot</td><td>Sun</td><td>Water</td><td class="r">Price</td><td class="r">In stock</td><td class="r">Reserved</td></tr>
+  ${PLANTS.map(p => `<tr><td class="sm" style="font-weight:500">${esc(p.name)}</td><td class="sm">${esc(p.pot)}</td><td class="sm">${p.sun}</td><td class="sm">${p.water}</td><td class="r num">${money(p.usd)}</td><td class="r num">${p.stock.toLocaleString('en-US')}</td><td class="r num">${(dm[p.id] || 0).toLocaleString('en-US')}</td></tr>`).join('')}</table></div>`;
 }
 
 /* --- Account --- */
 function vAccount(){
-  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Account</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Settings</h1></div></div>
+  const u = S.user;
+  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Account</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">${u ? esc(u.name) : 'Settings'}</h1></div></div>
   <div class="stack" style="max-width:640px">
+    ${u ? `<div class="card pad stack"><h3>Your account</h3>
+      <dl class="kv"><div><dt>Account type</dt><dd>${esc(u.type)}</dd></div>${u.org ? `<div><dt>Company or property</dt><dd>${esc(u.org)}</dd></div>` : ''}<div><dt>Signed in with</dt><dd>${esc(u.method)}${u.contact ? ' · ' + esc(u.contact) : ''}</dd></div><div><dt>Country</dt><dd>${esc(u.country)}</dd></div><div><dt>Member since</dt><dd>${pretty(u.since)}</dd></div></dl>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn sm" data-go="billing">Invoices and receipts</button><button class="btn ghost sm" data-act="signout">Sign out</button></div></div>`
+    : `<div class="card pad stack"><h3>Sign in</h3><p class="sm muted">Create an account with Zalo, Google, Apple, your phone or email. You need one to order, pay and keep receipts.</p><div><button class="btn sm" data-act="signin">Sign in or create an account</button></div></div>`}
     <div class="card pad stack"><h3>View the app as</h3><p class="sm muted">TerraSpace has three sides. Switch to see each one.</p>
-      ${[['customer','Customer','Design a space, get a quote, book installation'],['designer','Designer','Upload themes, answer requests, earn 10% per build'],['nursery','Nursery owner','See demand from designs, stock and orders']].map(([k, n, d]) => `<button class="opt" data-act="role" data-role="${k}" aria-pressed="${S.role === k}"><span style="flex:1"><b>${n}</b><br><span class="xs muted">${d}</span></span>${S.role === k ? `<span class="check">${icon('ok')}</span>` : '<span class="ring"></span>'}</button>`).join('')}
+      ${[['customer','Customer','Design a space, get a quote, book installation, pay invoices'],['designer','Designer','Upload themes, answer requests, earn 10% per build'],['nursery','Hoang Lam','Demand, stock, orders, payments and the investor summary']].map(([k, n, d]) => `<button class="opt" data-act="role" data-role="${k}" aria-pressed="${S.role === k}"><span style="flex:1"><b>${n}</b><br><span class="xs muted">${d}</span></span>${S.role === k ? `<span class="check">${icon('ok')}</span>` : '<span class="ring"></span>'}</button>`).join('')}
     </div>
     <div class="card pad stack"><h3>Currency</h3><p class="sm muted">Prices are shown in your currency at example exchange rates.</p><select id="curSel2" style="max-width:320px">${CURRENCIES.map(c => `<option value="${c[0]}" ${c[0] === S.cur ? 'selected' : ''}>${c[0]} · ${esc(c[1])}</option>`).join('')}</select></div>
     <div class="card pad stack"><h3>Reset demo data</h3><p class="sm muted">Clears your designs, projects, requests and uploaded themes in this browser.</p><div id="resetBox"><button class="btn ghost sm" data-act="resetAsk">Reset demo data</button></div></div>
@@ -1298,26 +1501,27 @@ function lpCmp(){
   const t = theme(S.lpTheme), q = quote(t.id, 240, 'essential');
   return `<div class="cmp" id="lpCmp" style="--p:${S.lpCmp}%;aspect-ratio:4/3">
     <img id="lpAfter" src="${t.img}" alt="Design: ${esc(t.name)}">
-    <img id="lpBefore" class="before" src="${EDGE[t.img] || t.img}" alt="Terrain scan of the same space" style="${EDGE[t.img] ? '' : 'filter:grayscale(1) brightness(.55)'}">
+    <img id="lpBefore" class="before" src="${t.before || EDGE[t.img] || t.img}" alt="${t.before ? 'The same space before, bare ground' : 'Terrain scan of the same space'}" style="${t.before || EDGE[t.img] ? '' : 'filter:grayscale(1) brightness(.55)'}">
     <div class="handle"></div>
     <input type="range" id="lpCmpIn" min="0" max="100" value="${S.lpCmp}" aria-label="Drag to compare terrain and design">
-    <span class="badge tl pill dark">Terrain</span><span class="badge tr pill dark">Design</span>
+    <span class="badge tl pill dark" id="lpBl">${t.before ? 'Before' : 'Terrain'}</span><span class="badge tr pill dark">Design</span>
     <div class="lp-float"><div><p class="xs muted" id="lpName">${esc(t.name)} · 240 m²</p><b id="lpPrice">${money(q.total)}</b><p class="xs muted" id="lpPlants">${q.plantsN} plants in stock</p></div><button class="btn sm" data-act="useTheme" data-id="${t.id}" id="lpUse">Try on my space</button></div>
   </div>`;
 }
 function lpLoadScan(){
   const t = theme(S.lpTheme);
+  if (t.before) return;
   edgeURL(t.img, u => { const b = $('#lpBefore'); if (b && u && S.lpTheme === t.id){ b.src = u; b.style.filter = ''; } });
 }
 function vLanding(){
-  const top = themes().slice().sort((a, b) => b.builds - a.builds).slice(0, 4);
-  const pr = k => money(quote('coastal-olive', 240, k).total);
+  const top = themes().slice().slice(0, 4);
+  const pr = k => money(quote('frangipani-courtyard', 240, k).total);
   return `<div class="lp">
-  <section class="lp-scene"><div class="media"><img src="/app/golden-hour.jpg" alt="A garden at golden hour with olive trees, grasses and a stone path" style="object-position:62% 58%"></div><div class="shade"></div>
-    <div class="lp-wrap" style="width:100%"><div class="lp-copy lp-in">
+  <section class="lp-scene"><div class="media"><img src="/app/golden-hour.jpg" alt="A garden at golden hour with trees, grasses and a stone path" style="object-position:62% 58%" fetchpriority="high"></div><div class="shade"></div>
+    <div class="lp-wrap" style="width:100%"><div class="lp-copy">
       <p class="lbl">AI outdoor design · Ready-made projects</p>
       <h1>Your garden, before it grows.</h1>
-      <p>Upload one photo. See it designed by AI and real designers, priced from our own nursery, and installed by local crews.</p>
+      <p>Upload one photo. See it designed by AI and designers, priced from Hoang Lam's nursery at TERA Park 2, and installed by Hoang Lam crews.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px"><button class="btn light" data-go="create">${icon('cam')}Start with a photo</button><button class="btn line" data-go="themes">Browse themes</button></div>
     </div></div><span class="scroll-cue" aria-hidden="true"></span></section>
 
@@ -1326,8 +1530,8 @@ function vLanding(){
     <p class="lp-statement rv" style="--d:.15s;margin-top:14px">One photo becomes a <em>designed, priced and planted</em> outdoor space.</p>
     <div class="lp-3">
       <div class="rv" style="--d:.1s"><h3>Designed by AI and designers</h3><p class="muted">Instant AI concepts, plus a marketplace of themes by real landscape designers.</p></div>
-      <div class="rv" style="--d:.25s"><h3>Grown in our own nursery</h3><p class="muted">Every plant in a design is grown on our land, so the quote is real and in stock.</p></div>
-      <div class="rv" style="--d:.4s"><h3>Installed by partner crews</h3><p class="muted">Book a vetted local crew and a date from the same screen as your design.</p></div>
+      <div class="rv" style="--d:.25s"><h3>Grown at TERA Park 2</h3><p class="muted">Every plant in a design is grown in Hoang Lam's nursery, so the quote is real and in stock.</p></div>
+      <div class="rv" style="--d:.4s"><h3>Installed by Hoang Lam crews</h3><p class="muted">Book a Hoang Lam crew and a date from the same screen as your design.</p></div>
     </div>
   </div></section>
 
@@ -1336,12 +1540,12 @@ function vLanding(){
     <div style="display:grid;gap:16px;justify-items:start">
       <p class="eyebrow rv">Terrain to design</p>
       <h2 class="rv" style="--d:.15s;font-size:clamp(30px,4vw,52px);font-weight:200;letter-spacing:.005em">Drag from your terrain to your design.</h2>
-      <p class="muted rv" style="--d:.3s;max-width:40ch">We scan the terrain from your photo, then design it plant by plant. Every plant you see is priced and grown in our nursery.</p>
-      <div class="chips rv" style="--d:.45s" role="group" aria-label="Preview a theme">${themes().slice(0, 6).map(t => `<button class="chip" data-act="lpTheme" data-id="${t.id}" aria-pressed="${t.id === S.lpTheme}">${esc(t.name)}</button>`).join('')}</div>
+      <p class="muted rv" style="--d:.3s;max-width:40ch">We scan the terrain from your photo, then design it plant by plant. Every plant you see is priced and grown in Hoang Lam's nursery at TERA Park 2.</p>
+      <div class="chips rv" style="--d:.45s" role="group" aria-label="Preview a theme">${themes().filter(t => !t.dry).slice(0, 6).map(t => `<button class="chip" data-act="lpTheme" data-id="${t.id}" aria-pressed="${t.id === S.lpTheme}">${esc(t.name)}</button>`).join('')}</div>
     </div>
     <div class="rv" style="--d:.2s">${lpCmp()}</div>
   </div></section>
-  ${scene('/app/coastal-olive.jpg', '68% 55%', 'Coastal Olive Terraces · by Linh Nguyen', 'Olive, lavender and sun-warmed stone.', 'coastal-olive')}
+  ${scene('/app/coastal-olive.jpg', '68% 55%', 'Coastal Olive Terraces · example designer', 'Olive, lavender and sun-warmed stone.', 'coastal-olive')}
 
   <section class="lp-block"><div class="lp-wrap">
     <div class="lp-head"><div><p class="eyebrow rv">How it works</p><h2 class="rv" style="--d:.15s;margin-top:10px">From photo to planted in five steps.</h2></div><button class="btn rv" style="--d:.3s" data-go="create">Start a design</button></div>
@@ -1349,18 +1553,26 @@ function vLanding(){
       <li class="rv" style="--d:.05s"><span class="ph"><img src="/app/courtyard-olive.jpg" alt=""></span><span class="n">01</span><h3>Upload</h3><p class="sm muted">One photo of your yard, rooftop, courtyard or lot.</p></li>
       <li class="rv" style="--d:.15s"><span class="ph"><img src="/app/desert-modern.jpg" alt="" style="object-position:62% 50%"></span><span class="n">02</span><h3>Generate</h3><p class="sm muted">AI places plants, paths and materials in your space.</p></li>
       <li class="rv" style="--d:.25s"><span class="ph"><img src="/app/tropical-atrium.jpg" alt=""></span><span class="n">03</span><h3>Swap themes</h3><p class="sm muted">Same space, new look. Themes by designers and AI.</p></li>
-      <li class="rv" style="--d:.35s"><span class="ph"><img src="/app/lavender-gravel.jpg" alt=""></span><span class="n">04</span><h3>Real quote</h3><p class="sm muted">Every plant priced and in stock at our nursery.</p></li>
+      <li class="rv" style="--d:.35s"><span class="ph"><img src="/app/lavender-gravel.jpg" alt=""></span><span class="n">04</span><h3>Real quote</h3><p class="sm muted">Every plant priced and on the hill at TERA Park 2.</p></li>
       <li class="rv" style="--d:.45s"><span class="ph"><img src="/app/golden-hour.jpg" alt="" style="object-position:30% 60%"></span><span class="n">05</span><h3>Book installation</h3><p class="sm muted">Pick a ready-made project, a crew and a date.</p></li>
     </ol>
   </div></section>
 
   <section class="lp-block" style="padding-top:0"><div class="lp-wrap">
-    <div class="lp-head"><div><p class="eyebrow rv">Theme marketplace</p><h2 class="rv" style="--d:.15s;margin-top:10px">Themes by real designers.</h2></div><button class="lp-link dark rv" style="--d:.3s" data-go="themes">See all themes</button></div>
+    <div class="lp-head"><div><p class="eyebrow rv">Theme marketplace · example designers</p><h2 class="rv" style="--d:.15s;margin-top:10px">Themes by designers and AI.</h2></div><button class="lp-link dark rv" style="--d:.3s" data-go="themes">See all themes</button></div>
   </div>
-    <div class="lp-edit">${top.map((t, i) => `<button class="ecard rv" style="--d:${(i * .12).toFixed(2)}s" data-act="openTheme" data-id="${t.id}"><img src="${t.img}" alt="${esc(t.name)}"><span class="c"><h3>${esc(t.name)}</h3>${byline(t)}<span class="xs" style="color:rgba(255,255,255,.7)">${t.builds} builds · ★ ${t.rating.toFixed(1)}</span></span></button>`).join('')}</div>
+    <div class="lp-edit">${top.map((t, i) => `<button class="ecard rv" style="--d:${(i * .12).toFixed(2)}s" data-act="openTheme" data-id="${t.id}"><img src="${t.img}" alt="${esc(t.name)}"><span class="c"><h3>${esc(t.name)}</h3>${byline(t)}<span class="xs" style="color:rgba(255,255,255,.7)">From ${money(perM2(t.id))} per m²</span></span></button>`).join('')}</div>
   </section>
 
   ${scene('/app/desert-modern.jpg', '60% 55%', 'Desert Modern · by TerraSpace AI', 'Shaped by sun. Made for little water.', 'desert-modern')}
+
+  <section class="lp-scene" id="lpBuildings"><div class="media"><img src="/app/building-green.jpg" alt="A seafront tower with roof gardens, green walls and flame trees along the street" style="object-position:55% 40%"></div><div class="shade"></div>
+    <div class="lp-wrap" style="width:100%"><div class="lp-copy">
+      <p class="lbl rv">TerraSpace for buildings · terraforming service</p>
+      <h2 class="rv" style="--d:.15s">Green the whole building.</h2>
+      <p class="rv" style="--d:.3s">Rooftop gardens, green walls, podiums and grounds for offices, hotels, malls and apartments. Green Brain finds the hottest roofs in the city, Hoang Lam builds and cares for them, and every contract, invoice and care visit sits in one account.</p>
+      <div class="rv" style="--d:.45s;display:flex;gap:28px;flex-wrap:wrap;align-items:center"><button class="btn light" data-go="buildings">Green your building</button><button class="lp-link" data-act="villa">Resort villa programs</button></div>
+    </div></div></section>
 
   <section class="lp-scene"><div class="media"><img src="/app/showcase-aisles.jpg" alt="Visitors walking the showcase aisles of full-size gardens at the foot of the hill, with greenhouses above" style="object-position:50% 60%"></div><div class="shade"></div>
     <div class="lp-wrap" style="width:100%"><div class="lp-copy">
@@ -1374,21 +1586,22 @@ function vLanding(){
     <div class="lp-wrap" style="width:100%"><div class="lp-copy">
       <p class="lbl rv">The Green Brain · TERA Park</p>
       <h2 class="rv" style="--d:.15s">The park's brain and its power, on one terrace.</h2>
-      <p class="rv" style="--d:.3s">A research pavilion under a planted roof, the power hall, a bamboo drying shed and 1.5 MWp of solar with battery storage. The terraced nursery steps away below. The Green Brain decides what to grow from the designs people order here.</p>
+      <p class="rv" style="--d:.3s">A research pavilion under a planted roof, the power hall, a bamboo drying shed and 1.5 MWp of solar with battery storage. The terraced nursery steps away below. The Green Brain decides what to grow from the designs people order here, and maps a city's heat islands so building owners see where green roofs and walls help most.</p>
+      <div class="rv" style="--d:.45s"><button class="lp-link" data-go="buildings">Green your building</button></div>
     </div></div></section>
 
   <section class="lp-block"><div class="lp-wrap">
-    <div class="lp-head"><div><p class="eyebrow rv">We own the value chain</p><h2 class="rv" style="--d:.15s;margin-top:10px">From our land to your garden.</h2></div></div>
+    <div class="lp-head"><div><p class="eyebrow rv">One value chain</p><h2 class="rv" style="--d:.15s;margin-top:10px">From TERA Park 2 to your garden.</h2></div></div>
     <div class="chain">
-      <div class="rv" style="--d:.05s"><span class="k">01</span><h3>Land</h3><p class="sm muted">Nursery parks on our own surveyed terrain.</p></div>
-      <div class="rv" style="--d:.15s"><span class="k">02</span><h3>Nursery</h3><p class="sm muted">We grow what designs ask for, ahead of demand.</p></div>
-      <div class="rv" style="--d:.25s"><span class="k">03</span><h3>App</h3><p class="sm muted">Designs, quotes and bookings in one place.</p></div>
-      <div class="rv" style="--d:.35s"><span class="k">04</span><h3>Installation</h3><p class="sm muted">Partner crews plant and hand over.</p></div>
+      <div class="rv" style="--d:.05s"><span class="k">01</span><h3>Land</h3><p class="sm muted">TERA Park 2, Cam Lâm, Khánh Hòa.</p></div>
+      <div class="rv" style="--d:.15s"><span class="k">02</span><h3>Nursery</h3><p class="sm muted">Hoang Lam grows what designs ask for, ahead of demand.</p></div>
+      <div class="rv" style="--d:.25s"><span class="k">03</span><h3>App</h3><p class="sm muted">Designs, quotes, bookings, invoices and payments in one account.</p></div>
+      <div class="rv" style="--d:.35s"><span class="k">04</span><h3>Installation</h3><p class="sm muted">Hoang Lam crews plant and hand over.</p></div>
     </div>
     <div class="pk3">
-      <div class="pk on rv" style="--d:.05s"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:20px">Essential</h3><span class="pill gold">Most chosen</span></div><p class="sm muted">One theme, planting plan and installation for a single space.</p><p class="price">${pr('essential')}</p><p class="xs muted">Example: 240 m², Coastal Olive Terraces</p></div>
-      <div class="pk rv" style="--d:.15s"><h3 style="font-size:20px">Signature</h3><p class="sm muted">Full property design with hardscape, lighting and a maintenance plan.</p><p class="price">${pr('signature')}</p><p class="xs muted">Example: 240 m², Coastal Olive Terraces</p></div>
-      <div class="pk rv" style="--d:.25s"><h3 style="font-size:20px">Estate</h3><p class="sm muted">Resort and commercial grounds. Phased build with ongoing care.</p><p class="price" style="font-size:22px">Custom quote</p><p class="xs muted">Grown to order on our land</p></div>
+      <div class="pk on rv" style="--d:.05s"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:20px">Essential</h3><span class="pill gold">Most chosen</span></div><p class="sm muted">One theme, planting plan and installation for a single space.</p><p class="price">${pr('essential')}</p><p class="xs muted">Example: 240 m², Frangipani Courtyard</p></div>
+      <div class="pk rv" style="--d:.15s"><h3 style="font-size:20px">Signature</h3><p class="sm muted">Full property design with hardscape, lighting and a maintenance plan.</p><p class="price">${pr('signature')}</p><p class="xs muted">Example: 240 m², Frangipani Courtyard</p></div>
+      <div class="pk rv" style="--d:.25s"><h3 style="font-size:20px">Estate</h3><p class="sm muted">Resort and commercial grounds. Phased build with ongoing care.</p><p class="price" style="font-size:22px">Custom quote</p><p class="xs muted">Grown to order at TERA Park 2</p></div>
     </div>
   </div></section>
 
@@ -1407,7 +1620,7 @@ function vLanding(){
       <button class="btn" type="submit">Begin design</button>
     </form>
   </div></section>
-  <div class="lp-wrap"><footer class="lp-foot"><span class="foot-brand">TerraSpace · An <span class="iozera-word"><img class="iozera" src="/app/iozera.png" alt=""><i>Iozera</i></span> company</span><span>Prototype. Renders, prices, stock and partners are examples.</span></footer></div>
+  <div class="lp-wrap"><footer class="lp-foot"><span>TerraSpace · An Iozera company · Operated in Vietnam by Hoang Lam</span><span>Prototype. Concept images, placeholder prices and example designers.</span></footer></div>
   </div>`;
 }
 let lpIO = null;
@@ -1443,10 +1656,190 @@ function onScroll(){
 let scTick = false;
 window.addEventListener('scroll', () => { if (scTick) return; scTick = true; requestAnimationFrame(() => { scTick = false; onScroll(); }); }, { passive:true });
 
-const VIEWS = { shop:vShop, home:vLanding, themes:vThemes, create:vCreate, requests:vRequests, projects:vProjects, studio:vStudio, upload:vUpload, nursery:vNursery, orders:vOrders, catalog:vCatalog, account:vAccount };
+
+/* --- Accounts and sign-in (prototype: no real messages are sent) --- */
+const ACCOUNT_TYPES = ['Homeowner','Building owner or manager','Developer or resort','Business','Designer'];
+function openAuth(next, why){ S.auth = { step:'choose', mode:'phone', next: next || null, why: why || '', type:'Homeowner', country: S.cur === 'PHP' ? 'Philippines' : 'Vietnam' }; openSheet(authSheet()); }
+function authSheet(){
+  const a = S.auth;
+  if (a.step === 'code') return `<div class="sheet-c auth"><div><p class="eyebrow">Sign in</p><h2 style="margin-top:6px">Enter your code</h2><p class="sm muted" style="margin-top:6px">We sent a 6-digit code to ${esc(a.contact)}.</p></div>
+    <label class="field">6-digit code<input type="text" id="auCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000"></label>
+    <p class="err" id="auErr" hidden>Enter the 6 digits from the message.</p>
+    <button class="btn block" data-act="auVerify">Verify and continue</button>
+    <button class="lp-link dark" data-act="auBack" style="justify-self:start">Use a different ${a.mode === 'email' ? 'email' : 'number'}</button>
+    <p class="note">Prototype: any 6 digits work and no message is sent.</p></div>`;
+  if (a.step === 'profile') return `<div class="sheet-c auth"><div><p class="eyebrow">New account</p><h2 style="margin-top:6px">Create your account</h2><p class="sm muted" style="margin-top:6px">Signed in with ${esc(a.method)}${a.contact ? ' · ' + esc(a.contact) : ''}.</p></div>
+    <label class="field">Full name<input type="text" id="auName" autocomplete="name" value="${esc(a.name || '')}"></label>
+    <div><p class="eyebrow" style="margin-bottom:10px">I am a</p><div class="chips">${ACCOUNT_TYPES.map(t => `<button class="chip" data-act="auType" data-v="${t}" aria-pressed="${a.type === t}">${t}</button>`).join('')}</div></div>
+    <label class="field">Company, building or resort <span class="hint" style="display:inline;margin:0">(optional)</span><input type="text" id="auOrg" value="${esc(a.org || '')}" placeholder="e.g. Sunrise Tower, Nha Trang"></label>
+    <label class="field">Country<select id="auCountry">${['Vietnam','Philippines'].map(c => `<option ${a.country === c ? 'selected' : ''}>${c}</option>`).join('')}</select></label>
+    <p class="err" id="auErr" hidden>Add your name.</p>
+    <button class="btn block" data-act="auCreate">Create account</button>
+    <p class="note">Your designs, orders, invoices and receipts are kept in this account. Prototype: stored in this browser only.</p></div>`;
+  return `<div class="sheet-c auth"><div><p class="eyebrow">Account</p><h2 style="margin-top:6px">Sign in or create an account</h2><p class="sm muted" style="margin-top:6px">${esc(a.why || 'Your designs, orders, invoices and receipts stay in one place.')}</p></div>
+    <div class="auth-social">${[['Zalo','Z'],['Google','G'],['Apple','']].map(([m, l]) => `<button class="btn ghost block" data-act="auSocial" data-m="${m}"><span class="lg" aria-hidden="true">${l}</span>Continue with ${m}</button>`).join('')}</div>
+    <div class="or"><span>or</span></div>
+    ${a.mode === 'email' ? `<label class="field">Email<input type="email" id="auContact" autocomplete="email" placeholder="you@example.com"></label>`
+      : `<div class="phone"><label class="field">Code<select id="auCc"><option ${a.country === 'Vietnam' ? 'selected' : ''}>+84</option><option ${a.country === 'Philippines' ? 'selected' : ''}>+63</option></select></label><label class="field">Mobile number<input type="tel" id="auContact" autocomplete="tel-national" placeholder="901 234 567"></label></div>`}
+    <p class="err" id="auErr" hidden>${a.mode === 'email' ? 'Enter a valid email.' : 'Enter your mobile number.'}</p>
+    <button class="btn block" data-act="auSend">Send code</button>
+    <button class="lp-link dark" data-act="auMode" style="justify-self:start">${a.mode === 'email' ? 'Use a phone number instead' : 'Use email instead'}</button>
+  </div>`;
+}
+function finishAuth(user){
+  S.user = user; if (user.type === 'Designer') S.role = 'designer'; else if (S.role === 'nursery') S.role = 'customer';
+  try { localStorage.setItem('ts_lastUser', JSON.stringify(user)); } catch(e){}
+  const n = S.auth && S.auth.next; S.auth = null; save(); chrome();
+  toast('Signed in as ' + user.name);
+  if (!n){ closeSheet(); render(); return; }
+  if (n.act === 'aisle'){ openSheet(aisleSheet(n.id)); return; }
+  if (n.act === 'step5'){ closeSheet(); S.flow.step = 5; save(); go('create'); window.scrollTo(0, 0); return; }
+  if (n.act === 'survey'){ submitSurvey(); return; }
+  if (n.act === 'villa'){ openSheet(villaSheet()); return; }
+  if (n.act === 'go'){ closeSheet(); go(n.to); return; }
+  closeSheet(); render();
+}
+
+/* --- Invoices --- */
+function invoiceSheet(id){
+  const x = invOf(id); if (!x) return '<div class="sheet-c"><h2>Invoice not found</h2></div>';
+  const o = orderOf(x.orderId) || {}, t = theme(o.themeId), st = invStatus(x), u = S.user, pm = PAY_METHODS();
+  if (!S.payMethod || !pm.includes(S.payMethod)) S.payMethod = pm[0];
+  return `<div class="sheet-c invoice">
+    <div class="inv-head"><div><p class="eyebrow">${st === 'Paid' ? 'Receipt ' + esc(x.receipt) : 'Invoice'}</p><h2 style="margin-top:6px">${esc(x.id)}</h2></div><span class="st ${st.toLowerCase()}">${st}</span></div>
+    <dl class="kv"><div><dt>From</dt><dd>Hoang Lam · TERA Park 2, Cam Lâm, Khánh Hòa<br><span class="muted">Billed through TerraSpace</span></dd></div><div><dt>Billed to</dt><dd>${esc(x.customer || (u ? u.org || u.name : 'Guest'))}</dd></div><div><dt>Project</dt><dd>${esc(t.name)} · ${o.area} m² · order ${esc(x.orderId)}</dd></div><div><dt>Issued</dt><dd>${x.issued ? pretty(x.issued) : 'Not yet · ' + esc(x.when.toLowerCase())}</dd></div>${x.issued && !x.paidAt ? `<div><dt>Due</dt><dd>${pretty(x.due)}</dd></div>` : ''}${x.paidAt ? `<div><dt>Paid</dt><dd>${pretty(x.paidAt)} · ${esc(x.method)}</dd></div>` : ''}</dl>
+    <table class="lines"><tr class="grp"><td>Item</td><td class="r">Amount</td></tr><tr><td class="sm">${esc(x.label)} of ${money(o.total || 0)}<br><span class="xs muted">${esc(x.when)}</span></td><td class="r num">${money(x.amount)}</td></tr><tr><td class="sm" style="font-weight:500">Total</td><td class="r num" style="font-size:20px">${money2(x.amount)}</td></tr></table>
+    ${st === 'Due' || st === 'Overdue' ? `<div class="no-print stack" style="gap:14px"><p class="eyebrow">Pay with</p><div class="chips">${pm.map(m => `<button class="chip" data-act="payMethod" data-m="${m}" aria-pressed="${S.payMethod === m}">${m}</button>`).join('')}</div>
+      <div class="paybox"><div class="qr" data-qrtext="TERRASPACE DEMO|${esc(x.id)}|${Math.round(x.amount)} USD" role="img" aria-label="Payment QR code for ${esc(x.id)}">PAY QR</div><p class="sm muted">Scan with your banking or wallet app, or tap pay. Reference <b class="num">${esc(x.id)}</b>.</p></div>
+      <button class="btn block" data-act="payInv" data-id="${x.id}">Pay ${money(x.amount)}</button><p class="note">Prototype: no money moves. The payment is recorded so the history works.</p></div>` : ''}
+    <div class="no-print" style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn ghost sm" data-act="printSheet">Print or save as PDF</button>${S.role === 'customer' ? '<button class="btn ghost sm" data-go="billing">All invoices</button>' : ''}</div>
+  </div>`;
+}
+function vBilling(){
+  const head = `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Payments and invoices</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Billing</h1></div></div>`;
+  if (!S.user) return head + `<div class="tile empty"><h3>Sign in to see your invoices</h3><p class="sm muted">Invoices, payments and receipts are kept in your account.</p><button class="btn" data-act="signin">Sign in or create an account</button></div>`;
+  const inv = S.invoices.slice(), paid = inv.filter(x => x.paidAt).reduce((s, x) => s + x.amount, 0), due = inv.filter(x => x.issued && !x.paidAt).reduce((s, x) => s + x.amount, 0), sched = inv.filter(x => !x.issued).reduce((s, x) => s + x.amount, 0);
+  const orders = S.orders.slice().reverse();
+  return head + `<div class="kpis"><div class="tile"><b>${money(paid)}</b><span class="xs muted">Paid</span></div><div class="tile"><b>${money(due)}</b><span class="xs muted">Due now</span></div><div class="tile"><b>${money(sched)}</b><span class="xs muted">Upcoming milestones</span></div></div>
+  ${orders.length ? orders.map(o => { const t = theme(o.themeId); return `<section class="section"><div class="head"><div><p class="eyebrow">Order ${esc(o.id)}</p><h3 style="margin-top:6px">${esc(t.name)} · ${o.area} m²</h3></div><span class="sm num">${money2(o.total)}</span></div>
+    <div class="card pad" style="overflow-x:auto"><table class="lines inv-t"><tr class="grp"><td>Invoice</td><td>Milestone</td><td>Date</td><td>Status</td><td class="r">Amount</td><td></td></tr>
+    ${S.invoices.filter(x => x.orderId === o.id).map(x => { const st = invStatus(x); return `<tr><td class="sm num">${esc(x.id)}</td><td class="sm">${esc(x.label)}</td><td class="sm">${x.paidAt ? 'Paid ' + pretty(x.paidAt) : x.issued ? 'Due ' + pretty(x.due) : esc(x.when)}</td><td><span class="st ${st.toLowerCase()}">${st}</span></td><td class="r num">${money(x.amount)}</td><td class="r">${st === 'Scheduled' ? '' : `<button class="btn sm ${st === 'Paid' ? 'ghost' : ''}" data-act="openInv" data-id="${x.id}">${st === 'Paid' ? 'Receipt' : 'Pay'}</button>`}</td></tr>`; }).join('')}</table></div></section>`; }).join('')
+  : `<div class="tile empty" style="margin-top:24px"><h3>No invoices yet</h3><p class="sm muted">When you order a garden, its deposit, progress and balance invoices appear here.</p><button class="btn" data-go="shop">Shop the Themes</button></div>`}
+  <p class="note" style="margin-top:24px">Every payment is recorded against your account, so you and Hoang Lam see the same history. Prototype: payments are simulated.</p>`;
+}
+
+/* --- Hoang Lam: payments and investor summary --- */
+function payStats(){
+  const inv = allInvoices(), today = todayISO(), paid = inv.filter(x => x.paidAt), open = inv.filter(x => x.issued && !x.paidAt);
+  const months = []; for (let i = 5; i >= 0; i--){ const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() - i); months.push({ k: d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'), l: d.toLocaleDateString('en-GB', { month:'short' }), v:0 }); }
+  paid.forEach(x => { const m = months.find(m => x.paidAt.startsWith(m.k)); if (m) m.v += x.amount; });
+  const collected = paid.reduce((s, x) => s + x.amount, 0), c90 = paid.filter(x => daysBetween(x.paidAt, today) <= 90).reduce((s, x) => s + x.amount, 0);
+  const outstanding = open.reduce((s, x) => s + x.amount, 0), overdue = open.filter(x => x.due < today).reduce((s, x) => s + x.amount, 0);
+  const issued = inv.filter(x => x.issued), rate = issued.length ? paid.length / issued.length : 0;
+  const dtp = paid.length ? paid.reduce((s, x) => s + daysBetween(x.issued, x.paidAt), 0) / paid.length : 0;
+  const custs = {}; allOrders().forEach(o => { const c = o.customer || 'Guest'; custs[c] = (custs[c] || 0) + 1; });
+  const payers = new Set(paid.map(x => x.customer)).size, repeat = Object.values(custs).filter(n => n > 1).length;
+  const byTheme = {}; paid.forEach(x => { const o = orderOf(x.orderId); if (o) byTheme[o.themeId] = (byTheme[o.themeId] || 0) + x.amount; });
+  const avg = allOrders().reduce((s, o) => s + o.total, 0) / Math.max(1, allOrders().length);
+  return { inv, paid, open, months, collected, c90, outstanding, overdue, rate, dtp, payers, repeat, byTheme, avg, customers:Object.keys(custs).length };
+}
+function vPayments(){
+  const p = payStats(), max = Math.max(1, ...p.months.map(m => m.v)), f = S.payFilter;
+  const rows = p.inv.filter(x => x.issued).filter(x => f === 'All' || invStatus(x) === f).sort((a, b) => (b.paidAt || b.issued).localeCompare(a.paidAt || a.issued)).slice(0, 40);
+  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Hoang Lam · payments</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">Payments and invoices</h1></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn sm" data-act="investor">Investor summary</button><button class="btn ghost sm" data-act="exportCSV">Export CSV</button></div></div>
+  <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div class="tile"><b>${money(p.c90)}</b><span class="xs muted">Collected, last 90 days</span></div><div class="tile"><b>${money(p.outstanding)}</b><span class="xs muted">Outstanding</span></div><div class="tile"><b>${money(p.overdue)}</b><span class="xs muted">Overdue</span></div><div class="tile"><b>${p.payers}</b><span class="xs muted">Paying customers</span></div></div>
+  <div class="two" style="margin-top:24px">
+    <div class="card pad"><div class="head"><h3>Collected by month</h3><span class="xs muted">From payments in the app</span></div>
+      <div class="mbars">${p.months.map(m => `<div><span class="num xs">${m.v ? money(m.v) : ''}</span><i style="height:${Math.round(m.v / max * 100)}%"></i><span class="xs muted">${m.l}</span></div>`).join('')}</div></div>
+    <div class="card pad stack" style="gap:10px"><h3>Health</h3>
+      <dl class="kv"><div><dt>Collected, all time</dt><dd class="num">${money2(p.collected)}</dd></div><div><dt>Invoices paid</dt><dd class="num">${Math.round(p.rate * 100)}%</dd></div><div><dt>Average days to pay</dt><dd class="num">${p.dtp.toFixed(1)}</dd></div><div><dt>Average project</dt><dd class="num">${money(p.avg)}</dd></div><div><dt>Repeat customers</dt><dd class="num">${p.repeat} of ${p.customers}</dd></div></dl></div>
+  </div>
+  <section class="section"><div class="head"><h2>Ledger</h2><div class="chips">${['All','Paid','Due','Overdue'].map(x => `<button class="chip" data-act="payFilter" data-f="${x}" aria-pressed="${f === x}">${x}</button>`).join('')}</div></div>
+    <div class="card pad" style="overflow-x:auto"><table class="lines inv-t" style="min-width:720px"><tr class="grp"><td>Date</td><td>Invoice</td><td>Customer</td><td>Milestone</td><td>Method</td><td>Status</td><td class="r">Amount</td></tr>
+    ${rows.map(x => { const st = invStatus(x); return `<tr data-act="openInv" data-id="${x.id}" class="click"><td class="sm num">${pretty(x.paidAt || x.issued)}</td><td class="sm num">${esc(x.id)}${x.demo ? ' <span class="pill">Example</span>' : ''}</td><td class="sm">${esc(x.customer || 'Guest')}</td><td class="sm">${esc(x.label)}</td><td class="sm">${esc(x.method || '—')}</td><td><span class="st ${st.toLowerCase()}">${st}</span></td><td class="r num">${money(x.amount)}</td></tr>`; }).join('')}</table></div></section>
+  <p class="note" style="margin-top:20px">Every order is billed in three milestones, 30% deposit, 40% at installation and 30% at handover, and paid in the app. That payment history is what an investor checks. Includes example data.</p>`;
+}
+function investorSheet(){
+  const p = payStats(), top = Object.entries(p.byTheme).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  return `<div class="sheet-c invoice"><div><p class="eyebrow">Investor summary · ${pretty(todayISO())}</p><h2 style="margin-top:6px">Hoang Lam on TerraSpace</h2><p class="sm muted" style="margin-top:6px">Landscaping, nursery and maintenance, TERA Park 2, Cam Lâm, Khánh Hòa. Every figure below is computed from orders and payments recorded in TerraSpace.</p></div>
+    <dl class="kv"><div><dt>Collected, all time</dt><dd class="num">${money2(p.collected)}</dd></div><div><dt>Collected, last 90 days</dt><dd class="num">${money2(p.c90)}</dd></div><div><dt>Outstanding</dt><dd class="num">${money2(p.outstanding)}</dd></div><div><dt>Of which overdue</dt><dd class="num">${money(p.overdue)}</dd></div><div><dt>Orders</dt><dd class="num">${allOrders().length}</dd></div><div><dt>Customers · repeat</dt><dd class="num">${p.customers} · ${p.repeat}</dd></div><div><dt>Invoices paid</dt><dd class="num">${Math.round(p.rate * 100)}%</dd></div><div><dt>Average days to pay</dt><dd class="num">${p.dtp.toFixed(1)}</dd></div></dl>
+    <table class="lines"><tr class="grp"><td>Month</td><td class="r">Collected</td></tr>${p.months.map(m => `<tr><td class="sm">${m.l}</td><td class="r num">${money(m.v)}</td></tr>`).join('')}</table>
+    <table class="lines"><tr class="grp"><td>Top themes by revenue</td><td class="r">Collected</td></tr>${top.map(([id, v]) => `<tr><td class="sm">${esc(theme(id).name)}</td><td class="r num">${money(v)}</td></tr>`).join('')}</table>
+    <p class="note">Prototype: includes example orders and simulated payments. In production these figures come from live, bank-confirmed payments.</p>
+    <div class="no-print"><button class="btn ghost sm" data-act="printSheet">Print or save as PDF</button></div></div>`;
+}
+function exportCSV(){
+  const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  const rows = [['invoice','order','customer','milestone','issued','due','paid','method','status','amount_usd']].concat(allInvoices().map(x => [x.id, x.orderId, x.customer, x.label, x.issued, x.due, x.paidAt, x.method, invStatus(x), x.amount]));
+  const blob = new Blob([rows.map(r => r.map(q).join(',')).join('\n')], { type:'text/csv' }), a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'terraspace-payments-' + todayISO() + '.csv'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  toast('Payments exported');
+}
+
+/* --- Buildings: terraforming service (placeholder rates) --- */
+const B_RATES = { roof:['Rooftop garden',120], facade:['Green wall',190], ground:['Podium and grounds',91], atrium:['Indoor atrium',140] };
+const B_CITIES = { 'Nha Trang':62, 'Cam Ranh':58, 'Đà Nẵng':66, 'Ho Chi Minh City':79, 'Hà Nội':74, 'Manila':82, 'Makati':81, 'Quezon City':80 };
+const B_TYPES = ['Office tower','Hotel or resort','Mall or retail','Apartment block','Factory or warehouse','School or hospital','Government building'];
+function bEstimate(b){
+  const lines = Object.keys(B_RATES).filter(k => b.scope[k] && b[k] > 0).map(k => ({ k, name:B_RATES[k][0], m2:b[k], rate:B_RATES[k][1], total:b[k] * B_RATES[k][1] }));
+  const build = lines.reduce((s, l) => s + l.total, 0), planted = lines.reduce((s, l) => s + l.m2, 0);
+  const heat = Math.min(99, Math.round((B_CITIES[b.city] || 70) + Math.min(8, b.floors * 0.15)));
+  return { lines, build, planted, care: b.care ? Math.round(planted * 0.85) : 0, heat };
+}
+function bOut(){
+  const b = S.bForm, e = bEstimate(b), lvl = e.heat >= 75 ? 'High' : e.heat >= 60 ? 'Elevated' : 'Moderate';
+  return `<p class="eyebrow">Estimate</p>
+    <div class="heat"><div style="display:flex;justify-content:space-between;align-items:baseline"><span class="sm">Heat island index · ${esc(b.city)}</span><b class="num">${e.heat} · ${lvl}</b></div><div class="bar"><i class="hot" style="width:${e.heat}%"></i></div><p class="xs muted">From Green Brain's heat map. Example value in this prototype.</p></div>
+    <dl>${e.lines.map(l => `<div><dt>${l.name} · ${l.m2.toLocaleString('en-US')} m²</dt><dd>${money(l.total)}</dd></div>`).join('') || '<div><dt>Pick at least one area</dt><dd>—</dd></div>'}
+    <div class="grand"><dt>Build, installed</dt><dd>${money2(e.build)}</dd></div>${b.care ? `<div><dt>Care contract</dt><dd>${money2(e.care)}<span class="xs muted"> /month</span></dd></div>` : ''}<div><dt>Deposit · 30%</dt><dd>${money(e.build * 0.3)}</dd></div></dl>
+    <button class="btn block" data-act="survey" ${e.build ? '' : 'disabled'}>Request a site survey</button>
+    <p class="note">Placeholder rates per m². Roof gardens need a structural check, which the survey covers. The fixed quote follows the survey.</p>`;
+}
+function vBuildings(){
+  const b = S.bForm || (S.bForm = { name:'', city:'Nha Trang', type:'Office tower', floors:12, roof:600, facade:300, ground:800, atrium:0, scope:{ roof:true, facade:true, ground:true, atrium:false }, care:true });
+  const num = (k, l) => `<label class="field">${l}<input type="number" min="0" data-bf="${k}" value="${b[k]}"></label>`;
+  const prog = ['frangipani-courtyard','bamboo-screen','fern-garden'].map(theme);
+  return `<section class="shop-hero"><img src="/app/building-green.jpg" alt="A seafront tower in Nha Trang with roof gardens, green walls and flame trees along the street" style="object-position:55% 40%">
+    <div class="c"><p class="eyebrow">TerraSpace for buildings · terraforming service</p><h1>Turn your building green.</h1><p>Rooftop gardens, green walls, podiums and grounds for offices, hotels, malls and apartments. Designed in TerraSpace, grown at TERA Park 2, built and cared for by Hoang Lam crews.</p></div></section>
+  <div class="facts"><div><span class="eyebrow">Scope</span><b>Roofs, walls, grounds</b></div><div><span class="eyebrow">Plants</span><b>Grown at TERA Park 2</b></div><div><span class="eyebrow">Build</span><b>Hoang Lam crews</b></div><div><span class="eyebrow">Care</span><b>Monthly contract</b></div></div>
+  <section class="section" id="bForm"><div class="head"><div><p class="eyebrow">Your building</p><h2 style="margin-top:8px">Scope it in a minute.</h2></div></div>
+    <div class="two"><div class="card pad stack">
+      <div class="form2"><label class="field full">Building name<input type="text" data-bf="name" value="${esc(b.name)}" placeholder="e.g. Sunrise Tower"></label>
+        <label class="field">City<select data-bf="city">${Object.keys(B_CITIES).map(c => `<option ${b.city === c ? 'selected' : ''}>${c}</option>`).join('')}</select></label>
+        <label class="field">Building type<select data-bf="type">${B_TYPES.map(t => `<option ${b.type === t ? 'selected' : ''}>${t}</option>`).join('')}</select></label>
+        ${num('floors','Floors')}${num('roof','Roof area, m²')}${num('facade','Wall for greening, m²')}${num('ground','Podium and grounds, m²')}${num('atrium','Indoor atrium, m²')}</div>
+      <div><p class="eyebrow" style="margin-bottom:10px">What to green</p><div class="chips">${Object.keys(B_RATES).map(k => `<button class="chip" data-act="bScope" data-k="${k}" aria-pressed="${!!b.scope[k]}">${B_RATES[k][0]}</button>`).join('')}<button class="chip" data-act="bCare" aria-pressed="${b.care}">Care contract</button></div></div>
+    </div><aside class="card total" id="bOut">${bOut()}</aside></div></section>
+  <section class="section"><div class="head"><div><p class="eyebrow">How it works for buildings</p><h2 style="margin-top:8px">From heat map to handover.</h2></div></div>
+    <ol class="lp-steps bsteps">${[['Map','Green Brain ranks the hottest roofs and streets in the city.'],['Survey','A Hoang Lam team checks roof load, water and access.'],['Design','You approve the renders and a fixed quote in TerraSpace.'],['Build','Crews install. Invoices follow the milestones.'],['Care','Monthly care, with reports and invoices in your account.']].map(([h, p], i) => `<li><span class="n">0${i + 1}</span><h3>${h}</h3><p class="sm muted">${p}</p></li>`).join('')}</ol></section>
+  <section class="section"><div class="head"><div><p class="eyebrow">Resorts and villa programs</p><h2 style="margin-top:8px">The developer approves. Each owner chooses.</h2></div><button class="btn sm" data-act="villa">Configure a villa</button></div>
+    <p class="sm muted" style="max-width:62ch">The resort approves a short list of themes for its villas. Each villa owner picks one in the app, sees it rendered, and pays per villa. Hoang Lam builds and maintains every garden to the same standard.</p>
+    <div class="vgrid">${prog.map(t => `<button class="vcard" data-act="villa" data-id="${t.id}"><span class="photo"><img src="${t.img}" alt="${esc(t.name)}"></span><b>${esc(t.name)}</b><span class="xs muted">Approved theme · example program</span></button>`).join('')}</div></section>
+  <section class="section split"><div class="promo"><p class="eyebrow">Property managers and brokers</p><h2 style="margin-top:8px">One account for a whole portfolio.</h2><p class="sm muted">Add every building you manage, compare quotes, and track each contract, invoice and care visit in one place. Brokers can bring landscaping to the buildings they already lease.</p><div><button class="btn sm" data-act="bAdd">Add a building</button></div></div></section>
+  ${S.buildings.length ? `<section class="section"><div class="head"><h2>Your buildings</h2></div>${S.buildings.slice().reverse().map(x => `<div class="rowi"><div style="flex:1;min-width:0"><p class="sm" style="font-weight:500">${esc(x.name)} · ${esc(x.city)}</p><p class="xs muted">${esc(x.type)} · ${x.scope.join(', ')} · est. ${money(x.build)}${x.care ? ' + ' + money(x.care) + '/month care' : ''}</p></div><span class="st due">${esc(x.status)}</span></div>`).join('')}</section>` : ''}`;
+}
+function submitSurvey(){
+  const b = S.bForm, e = bEstimate(b), name = b.name.trim() || ('Building in ' + b.city);
+  const r = { id:'B' + Date.now(), name, city:b.city, type:b.type, scope:e.lines.map(l => l.name), build:e.build, care:e.care, status:'Survey requested', created:todayISO() };
+  S.buildings.push(r); save();
+  openSheet(`<div class="sheet-c"><div><p class="eyebrow">Survey request · ${esc(name)}</p><h2 style="margin-top:6px">What happens next</h2><p class="sm muted" style="margin-top:6px">${esc(b.type)} · ${esc(b.city)} · estimate ${money2(e.build)}</p></div>
+    <ol class="next"><li><span class="k">01</span><div><b>A Hoang Lam team calls you</b><p class="sm muted">Within 2 working days, to set a survey date.</p></div></li><li><span class="k">02</span><div><b>Survey and fixed quote</b><p class="sm muted">They check roof load, water and access. The design and fixed quote arrive in your account.</p></div></li><li><span class="k">03</span><div><b>Build and care</b><p class="sm muted">Milestone invoices for the build${e.care ? ', then the care contract billed monthly' : ''}, all in Billing.</p></div></li></ol>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-go="projects">View in projects</button><button class="btn ghost" data-act="closeSheet">Done</button></div><p class="note">Prototype: no request is sent.</p></div>`);
+  if (S.screen === 'buildings') render();
+}
+function villaSheet(){
+  const prog = ['frangipani-courtyard','bamboo-screen','fern-garden'].map(theme), pick = S.villaPick, area = 180, q = quote(pick, area, 'essential');
+  return `<div class="sheet-c"><div><p class="eyebrow">Mountain resort villas · example program</p><h2 style="margin-top:6px">Choose your villa garden</h2><p class="sm muted" style="margin-top:6px">The resort approved three themes. The garden area comes from the site plan.</p></div>
+    <div class="form2"><label class="field">Villa<select id="vVilla">${Array.from({ length:24 }, (_, i) => `<option>Villa ${String(i + 1).padStart(2, '0')}</option>`).join('')}</select></label><div><p class="eyebrow">Garden area</p><p class="num" style="font-size:22px;margin-top:6px">${area} m²</p></div></div>
+    <div class="vpick">${prog.map(t => `<button class="vcard" data-act="villaPick" data-id="${t.id}" aria-pressed="${t.id === pick}"><span class="photo"><img src="${t.img}" alt=""></span><b>${esc(t.name)}</b><span class="xs muted num">${money(quote(t.id, area, 'essential').total)}</span></button>`).join('')}</div>
+    <div class="total" style="position:static"><dl><div><dt>Villa garden, installed</dt><dd>${money2(q.total)}</dd></div><div><dt>Deposit · 30%</dt><dd>${money2(q.deposit)}</dd></div></dl></div>
+    <button class="btn block" data-act="villaOrder">${S.user ? 'Order this garden' : 'Sign in to order'}</button><p class="note">Includes care for the first 3 months under the resort's standard. Prototype: example program.</p></div>`;
+}
+
+const VIEWS = { buildings:vBuildings, billing:vBilling, payments:vPayments, shop:vShop, home:vLanding, themes:vThemes, create:vCreate, requests:vRequests, projects:vProjects, studio:vStudio, upload:vUpload, nursery:vNursery, orders:vOrders, catalog:vCatalog, account:vAccount };
 const HOME_OF = { customer:'home', designer:'studio', nursery:'nursery' };
 function render(){
-  if (!VIEWS[S.screen] || !NAVS[S.role].some(n => n[0] === S.screen) && !['account','themes','requests'].includes(S.screen) && !(S.role === 'customer' && ['create','projects','shop'].includes(S.screen)) && S.screen !== 'shop') S.screen = HOME_OF[S.role];
+  if (!VIEWS[S.screen] || !NAVS[S.role].some(n => n[0] === S.screen) && !['account','themes','requests'].includes(S.screen) && !(S.role === 'customer' && ['create','projects','shop','buildings','billing'].includes(S.screen)) && S.screen !== 'shop') S.screen = HOME_OF[S.role];
   document.body.classList.toggle('landing', S.screen === 'home');
   $('#view').innerHTML = VIEWS[S.screen]();
   chrome();
@@ -1459,21 +1852,34 @@ function go(s){ const ch = s !== S.screen; S.screen = s; if (s === 'create' && S
 
 /* ===== Sheet + toast ===== */
 function menuOpen(o){ const m = $('#menuOv'); m.classList.toggle('open', o); m.setAttribute('aria-hidden', o ? 'false' : 'true'); document.body.classList.toggle('menu-open', o); }
-function openSheet(html){ $('#sheet').innerHTML = html; const b = $('#sheetBg'); b.classList.add('open'); b.setAttribute('aria-hidden', 'false'); }
-function closeSheet(){ const b = $('#sheetBg'); if (b.contains(document.activeElement)) document.activeElement.blur(); b.classList.remove('open'); b.setAttribute('aria-hidden', 'true'); }
+let sheetReturn = null;
+function openSheet(html){
+  const sh = $('#sheet'), b = $('#sheetBg'), was = b.classList.contains('open');
+  if (!was) sheetReturn = document.activeElement;
+  sh.innerHTML = `<div class="sheet-bar"><button type="button" class="sheet-close" data-act="closeSheet" aria-label="Close">Close <span aria-hidden="true">×</span></button></div>` + html;
+  sh.scrollTop = 0; if (sh.querySelector('#meas')) requestAnimationFrame(measDraw);
+  sh.querySelectorAll('[data-qrtext]').forEach(el => { if (window.QRCode){ el.textContent = ''; try { new window.QRCode(el, { text: el.dataset.qrtext, width: 128, height: 128, colorDark:'#1B1E1C', colorLight:'#ffffff', correctLevel: window.QRCode.CorrectLevel.M }); } catch(e){ el.textContent = 'PAY QR'; } } }); b.classList.add('open'); b.setAttribute('aria-hidden', 'false'); document.body.classList.add('sheet-open');
+  const h = sh.querySelector('h2'); sh.setAttribute('aria-label', h ? h.textContent : 'Details');
+  setTimeout(() => { const c = sh.querySelector('.sheet-close'); if (c) c.focus({ preventScroll:true }); }, 30);
+}
+function closeSheet(){
+  const b = $('#sheetBg'); if (!b.classList.contains('open')) return;
+  b.classList.remove('open'); b.setAttribute('aria-hidden', 'true'); document.body.classList.remove('sheet-open');
+  if (sheetReturn && sheetReturn.focus && document.contains(sheetReturn)) sheetReturn.focus({ preventScroll:true }); sheetReturn = null;
+}
 let tt; function toast(m){ const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2800); }
 
 /* ===== Images ===== */
 function readImage(file, max, cb){
   const r = new FileReader();
-  r.onload = () => { const img = new Image(); img.onload = () => { const s = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); let u = r.result; try { u = c.toDataURL('image/jpeg', 0.82); } catch(e){} cb(u); }; img.onerror = () => toast('That file could not be opened. Try a JPG or PNG photo.'); img.src = r.result; };
+  r.onload = () => { const img = new Image(); img.onload = () => { const s = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); let u = r.result; try { u = c.toDataURL('image/jpeg', 0.82); } catch(e){} cb(u, img.height / img.width); }; img.onerror = () => toast('That file could not be opened. Try a JPG or PNG photo.'); img.src = r.result; };
   r.readAsDataURL(file);
 }
 
 /* ===== Actions ===== */
 function bestThemeFor(brief, maxUSD, area){
   const b = (brief || '').toLowerCase();
-  const score = t => { let s = 0; if (/shade|shady|cool/.test(b) && t.tags.includes('Shade')) s += 3; if (/water|dry|drought|low water/.test(b) && t.tags.includes('Dry climate')) s += 3; if (/tropical|palm|lush/.test(b) && t.tags.includes('Tropical')) s += 3; if (/roof|balcony|courtyard|small/.test(b) && (t.tags.includes('Rooftop') || t.tags.includes('Courtyard'))) s += 2; if (/resort|hotel/.test(b) && t.tags.includes('Resort')) s += 2; if (quote(t.id, area, 'essential').total <= maxUSD) s += 2; return s + t.rating / 10; };
+  const score = t => { let s = 0; if (/shade|shady|cool/.test(b) && t.tags.includes('Shade')) s += 3; if (/native|coast|salt|wind|low water/.test(b) && t.tags.includes('Native')) s += 3; if (/tropical|palm|lush/.test(b) && t.tags.includes('Tropical')) s += 3; if (/roof|balcony|courtyard|small/.test(b) && (t.tags.includes('Rooftop') || t.tags.includes('Courtyard'))) s += 2; if (/resort|hotel/.test(b) && t.tags.includes('Resort')) s += 2; if (quote(t.id, area, 'essential').total <= maxUSD) s += 2; return s; };
   return themes().filter(t => t.by === 'ai').concat(themes()).sort((a, b) => score(b) - score(a))[0];
 }
 document.addEventListener('click', e => {
@@ -1482,17 +1888,45 @@ document.addEventListener('click', e => {
   if (e.target.closest('#sheetBg') && e.target.id === 'sheetBg'){ closeSheet(); return; }
   const f = S.flow, act = a.dataset.act;
   switch (act){
-    case 'lpTheme': { S.lpTheme = a.dataset.id; const t = theme(S.lpTheme), q = quote(t.id, 240, 'essential'); $$('[data-act="lpTheme"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === S.lpTheme)); $('#lpAfter').src = t.img; const b = $('#lpBefore'); if (EDGE[t.img]){ b.src = EDGE[t.img]; b.style.filter = ''; } else { b.src = t.img; b.style.filter = 'grayscale(1) brightness(.55)'; } $('#lpName').textContent = t.name + ' · 240 m²'; $('#lpPrice').textContent = money(q.total); $('#lpPlants').textContent = q.plantsN + ' plants in stock'; $('#lpUse').dataset.id = t.id; lpLoadScan(); break; }
+    case 'lpTheme': { S.lpTheme = a.dataset.id; const t = theme(S.lpTheme), q = quote(t.id, 240, 'essential'); $$('[data-act="lpTheme"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === S.lpTheme)); $('#lpAfter').src = t.img; const b = $('#lpBefore'); $('#lpBl').textContent = t.before ? 'Before' : 'Terrain'; if (t.before){ b.src = t.before; b.style.filter = ''; } else if (EDGE[t.img]){ b.src = EDGE[t.img]; b.style.filter = ''; } else { b.src = t.img; b.style.filter = 'grayscale(1) brightness(.55)'; } $('#lpName').textContent = t.name + ' · 240 m²'; $('#lpPrice').textContent = money(q.total); $('#lpPlants').textContent = q.plantsN + ' plants in stock'; $('#lpUse').dataset.id = t.id; lpLoadScan(); break; }
     case 'menu': menuOpen(true); break;
+    case 'acct': if (S.user){ if (S.role === 'nursery') S.role = 'customer'; go('account'); } else openAuth(null); break;
+    case 'signin': menuOpen(false); openAuth(S.screen === 'billing' ? { act:'go', to:'billing' } : null); break;
+    case 'signout': S.user = null; save(); render(); toast('Signed out'); break;
+    case 'auMode': { const a2 = S.auth; a2.mode = a2.mode === 'email' ? 'phone' : 'email'; openSheet(authSheet()); break; }
+    case 'auBack': S.auth.step = 'choose'; openSheet(authSheet()); break;
+    case 'auSocial': { const a2 = S.auth, m = a2 && a2.mode; if (!a2) return; a2.method = a2.methodBase = a.dataset.m; a2.contact = ''; let last = null; try { last = JSON.parse(localStorage.getItem('ts_lastUser') || 'null'); } catch(e){} if (last && last.method === a.dataset.m){ finishAuth(last); break; } a2.step = 'profile'; openSheet(authSheet()); break; }
+    case 'auSend': { const a2 = S.auth, v = ($('#auContact').value || '').trim(); const ok = a2.mode === 'email' ? /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v) : v.replace(/\D/g, '').length >= 8; if (!ok){ $('#auErr').hidden = false; return; } a2.contact = a2.mode === 'email' ? v : ($('#auCc').value + ' ' + v); a2.method = a2.mode === 'email' ? 'Email code' : 'Phone code'; if (a2.mode !== 'email') a2.country = $('#auCc').value === '+63' ? 'Philippines' : 'Vietnam'; a2.step = 'code'; openSheet(authSheet()); setTimeout(() => { const c = $('#auCode'); if (c) c.focus(); }, 60); break; }
+    case 'auVerify': { const a2 = S.auth, c = ($('#auCode').value || '').replace(/\D/g, ''); if (c.length !== 6){ $('#auErr').hidden = false; return; } let last = null; try { last = JSON.parse(localStorage.getItem('ts_lastUser') || 'null'); } catch(e){} if (last && last.contact === a2.contact){ finishAuth(last); break; } a2.step = 'profile'; openSheet(authSheet()); break; }
+    case 'auType': S.auth.type = a.dataset.v; S.auth.name = $('#auName').value; S.auth.org = $('#auOrg').value; $$('[data-act="auType"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === S.auth.type)); break;
+    case 'auCreate': { const a2 = S.auth, nm = $('#auName').value.trim(); if (!nm){ $('#auErr').hidden = false; return; } finishAuth({ id:'U' + Date.now(), name:nm, type:a2.type, org:$('#auOrg').value.trim(), country:$('#auCountry').value, method:a2.method, contact:a2.contact, phone: a2.mode !== 'email' ? a2.contact : '', email: a2.mode === 'email' ? a2.contact : '', since:todayISO() }); break; }
+    case 'openInv': if (a.dataset.id) openSheet(invoiceSheet(a.dataset.id)); break;
+    case 'payMethod': S.payMethod = a.dataset.m; $$('[data-act="payMethod"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.m === S.payMethod)); break;
+    case 'payInv': { const x = S.invoices.find(y => y.id === a.dataset.id); if (!x){ toast('Example invoices are read-only'); return; } x.paidAt = todayISO(); x.method = S.payMethod; x.receipt = 'RC-' + x.id.slice(4); save(); openSheet(invoiceSheet(x.id)); toast('Paid. Receipt ' + x.receipt); if (['billing','projects'].includes(S.screen)) render(); break; }
+    case 'printSheet': window.print(); break;
+    case 'investor': openSheet(investorSheet()); break;
+    case 'exportCSV': exportCSV(); break;
+    case 'payFilter': S.payFilter = a.dataset.f; render(); break;
+    case 'bScope': S.bForm.scope[a.dataset.k] = !S.bForm.scope[a.dataset.k]; a.setAttribute('aria-pressed', S.bForm.scope[a.dataset.k]); $('#bOut').innerHTML = bOut(); break;
+    case 'bCare': S.bForm.care = !S.bForm.care; a.setAttribute('aria-pressed', S.bForm.care); $('#bOut').innerHTML = bOut(); break;
+    case 'bAdd': S.bForm = null; render(); $('#bForm').scrollIntoView({ behavior:'smooth' }); setTimeout(() => { const i = $('[data-bf="name"]'); if (i) i.focus({ preventScroll:true }); }, 500); break;
+    case 'survey': if (!S.user){ openAuth({ act:'survey' }, 'Sign in to request a survey. Quotes, contracts and invoices for your buildings are kept in your account.'); break; } submitSurvey(); break;
+    case 'villa': if (a.dataset.id) S.villaPick = a.dataset.id; openSheet(villaSheet()); break;
+    case 'villaPick': S.villaPick = a.dataset.id; openSheet(villaSheet()); break;
+    case 'villaOrder': { if (!S.user){ openAuth({ act:'villa' }, 'Sign in to order your villa garden.'); break; } const id = S.villaPick, q = quote(id, 180, 'essential'), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty); const o = { id:'TS-' + String(Date.now()).slice(-5), themeId:id, area:180, pkg:'essential', total:q.total, plants, crew:'c1', date:iso(firstOpen(days())), slot:'8:00 AM', status:'Booked', created:todayISO(), by:q.t.by, src:'villa', villa:$('#vVilla').value }; addOrder(o); openSheet(confirmSheet(o)); break; }
     case 'aisleOrder': S.soDate = null; openSheet(aisleSheet(a.dataset.id)); break;
+    case 'measure': { if (a.dataset.ret){ const v = Math.round(+(($('#soArea') || {}).value) || 0); S.returnAisle = a.dataset.ret; } else S.returnAisle = null; if (S.photo) openSheet(measureSheet()); else { S.measurePending = true; $('#photoIn').click(); } break; }
+    case 'measPhoto': S.measurePending = true; $('#photoIn').click(); break;
+    case 'measUse': { const ar = measArea(); if (!ar){ toast('Enter the front edge length in metres.'); return; } f.area = ar; f.measured = true; S.shopArea = ar; save(); if (S.returnAisle){ const r = S.returnAisle; S.returnAisle = null; openSheet(aisleSheet(r)); } else { closeSheet(); render(); } toast('Area set to ' + ar + ' m², measured from your photo'); break; }
     case 'soDate': S.soDate = a.dataset.d; $$('[data-act="soDate"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === S.soDate)); break;
     case 'soPlace': {
       const id = a.dataset.id, area = Math.max(5, Math.round(+$('#soArea').value || 0)), nm = $('#soName').value.trim(), ph = $('#soPhone').value.replace(/\D/g, ''), ad = $('#soAddr').value.trim();
-      if (!S.soDate || !nm || ph.length < 7 || !ad || !area){ $('#soErr').hidden = false; return; }
+      if (!S.user){ S.soDraft = { id, area, nm, ph:$('#soPhone').value, ad }; openAuth({ act:'aisle', id }, 'Sign in to order. Your order, invoices and receipts are kept in your account.'); return; }
+      if (!S.soDate || !nm || ph.length < 7 || !ad || !area){ $('#soErr').hidden = false; $('#soErr').scrollIntoView({ behavior:'smooth', block:'center' }); return; }
       const q = quote(id, area, 'essential'), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty);
       const oid = 'TS-' + String(Date.now()).slice(-5);
-      S.orders.push({ id:oid, themeId:id, area, pkg:'essential', total:q.total, plants, crew:'c4', date:S.soDate, slot:'8:00 AM', status:'Booked', created:iso(new Date()), by:q.t.by, src:'showroom' });
-      S.shopArea = area; save(); S.role = 'customer'; go('projects'); openSheet(orderDoneSheet(oid, q, area, pretty(S.soDate))); break; }
+      const o = { id:oid, themeId:id, area, pkg:'essential', total:q.total, plants, crew:'c1', date:S.soDate, slot:'8:00 AM', status:'Booked', created:iso(new Date()), by:q.t.by, src:'showroom' };
+      addOrder(o); S.soDraft = null; S.shopArea = area; S.role = 'customer'; save(); openSheet(confirmSheet(o)); break; }
     case 'planVisit': S.visitDate = null; S.visitSlot = null; openSheet(visitSheet()); break;
     case 'visitDate': S.visitDate = a.dataset.d; $$('[data-act="visitDate"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === S.visitDate)); break;
     case 'visitSlot': S.visitSlot = a.dataset.s; $$('[data-act="visitSlot"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === S.visitSlot)); break;
@@ -1508,9 +1942,9 @@ document.addEventListener('click', e => {
     case 'ptype': f.type = a.dataset.v; save(); $$('[data-act="ptype"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === f.type)); break;
     case 'generate': if (!S.photo) return; f.step = 2; save(); render(); window.scrollTo(0, 0); break;
     case 'swapTheme': f.themeId = a.dataset.id; save(); render(); toast(theme(f.themeId).name); break;
-    case 'toStep': f.step = +a.dataset.s; save(); render(); window.scrollTo(0, 0); break;
+    case 'toStep': if (+a.dataset.s === 5 && !S.user){ openAuth({ act:'step5' }, 'Sign in to book. Your booking, invoices and receipts are kept in your account.'); break; } f.step = +a.dataset.s; save(); render(); window.scrollTo(0, 0); break;
     case 'pkg': f.pkg = a.dataset.k; save(); render(); break;
-    case 'estate': { const n = $('#esName').value.trim(), ha = +$('#esHa').value; if (!n || !ha){ toast('Add the site name and area in hectares.'); return; } toast('Sent. Our estate team will prepare a phased plan for ' + n + '.'); f.pkg = 'essential'; save(); render(); break; }
+    case 'estate': { const n = $('#esName').value.trim(), ha = +$('#esHa').value; if (!n || !ha){ toast('Add the site name and area in hectares.'); return; } toast('Sent. Hoang Lam\'s estate team will prepare a phased plan for ' + n + '.'); f.pkg = 'essential'; save(); render(); break; }
     case 'crew': f.crew = a.dataset.id; save(); render(); break;
     case 'date': f.date = a.dataset.d; save(); $$('.date').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === f.date)); break;
     case 'slot': f.slot = a.dataset.s; save(); $$('[data-act="slot"]').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === f.slot)); $('#errDate').hidden = true; break;
@@ -1521,18 +1955,18 @@ document.addEventListener('click', e => {
       if (!okD || !okP){ (!okD ? $('#errDate') : $('#errDet')).scrollIntoView({ behavior:'smooth', block:'center' }); return; }
       const q = quote(f.themeId, f.area, f.pkg), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty);
       const id = 'TS-' + String(Date.now()).slice(-5);
-      S.orders.push({ id, themeId:f.themeId, area:f.area, pkg:f.pkg, total:q.total, plants, crew:f.crew, date:f.date, slot:f.slot, status:'Booked', created:iso(new Date()), by:q.t.by });
-      const t = themes().find(x => x.id === f.themeId); if (t) t.builds++;
-      f.step = 1; f.date = null; f.slot = null; save(); go('projects'); toast('Booked. ' + q.plantsN + ' plants reserved at TERA nursery.');
+      const o = { id, themeId:f.themeId, area:f.area, pkg:f.pkg, total:q.total, plants, crew:crewOf(f.crew).id, date:f.date, slot:f.slot, status:'Booked', created:iso(new Date()), by:q.t.by };
+      addOrder(o);
+      f.step = 1; f.date = null; f.slot = null; save(); go('projects'); openSheet(confirmSheet(o));
       break; }
-    case 'advance': { const o = S.orders.find(x => x.id === a.dataset.id); if (o){ o.status = STAGES[Math.min(STAGES.length - 1, STAGES.indexOf(o.status) + 1)]; save(); render(); } break; }
+    case 'advance': { const o = S.orders.find(x => x.id === a.dataset.id); if (o){ o.status = STAGES[Math.min(STAGES.length - 1, STAGES.indexOf(o.status) + 1)]; const inv = S.invoices.filter(x => x.orderId === o.id), k = o.status === 'Installing' ? 1 : o.status === 'Handed over' ? 2 : -1; if (k > 0 && inv[k] && !inv[k].issued){ inv[k].issued = todayISO(); inv[k].due = addDays(inv[k].issued, 7); toast(inv[k].label + ' invoice issued'); } save(); render(); } break; }
     case 'sendRequest': {
       const brief = $('#rBrief').value.trim(), area = Math.max(10, +$('#rArea').value || S.flow.area), maxUSD = toUSD(+$('#rMax').value || 0) || 8000;
       if (!brief){ $('#errReq').hidden = false; return; }
       const t = bestThemeFor(brief, maxUSD, area), id = 'R' + Date.now();
       const r = { id, type:S.flow.type, area, brief, maxUSD, photo:S.photo && S.photo.length < 400000 ? S.photo : null, created:iso(new Date()), pending:2, proposals:[{ id:id + 'a', by:'ai', themeId:t.id, priceUSD:quote(t.id, area, 'essential').total, note:'Instant concept matched to your brief' }] };
       S.requests.push(r); S.reqForm.brief = ''; save(); render(); toast('Request sent. Your AI concept is ready.');
-      setTimeout(() => { const rr = S.requests.find(x => x.id === id); if (!rr || rr.accepted) return; const t2 = theme('tropical-atrium'); rr.proposals.push({ id:id + 'b', by:'d2', themeId:t2.id, priceUSD:Math.round(quote(t2.id, area, 'essential').total * 0.97), note:'Example proposal from a demo designer' }); rr.pending = 1; save(); if (S.screen === 'requests') render(); toast('Marco Reyes sent a proposal'); }, 5000);
+      setTimeout(() => { const rr = S.requests.find(x => x.id === id); if (!rr || rr.accepted) return; const t2 = theme('resort-poolside'); rr.proposals.push({ id:id + 'b', by:'d2', themeId:t2.id, priceUSD:Math.round(quote(t2.id, area, 'essential').total * 0.97), note:'Example proposal from a demo designer' }); rr.pending = 1; save(); if (S.screen === 'requests') render(); toast('Marco Reyes (example designer) sent a proposal'); }, 5000);
       break; }
     case 'accept': { const r = S.requests.find(x => x.id === a.dataset.r), p = r && r.proposals.find(x => x.id === a.dataset.p); if (!p) return; r.accepted = p.id; f.themeId = p.themeId; f.area = r.area; f.step = S.photo ? 4 : 1; save(); go('create'); toast('Proposal chosen. ' + (S.photo ? 'Here is your quote.' : 'Add a photo to continue.')); break; }
     case 'propose': { const r = S.requests.find(x => x.id === a.dataset.r); if (!r) return; const tid = $('#pt-' + r.id).value, note = $('#pn-' + r.id).value.trim() || 'Designed for your brief'; r.proposals.push({ id:r.id + 'm' + Date.now(), by:ME_DESIGNER, themeId:tid, priceUSD:quote(tid, r.area, 'essential').total, note }); r.pending = Math.max(0, (r.pending || 0) - 1); save(); render(); toast('Proposal sent to the customer'); break; }
@@ -1542,7 +1976,7 @@ document.addEventListener('click', e => {
       $$('[data-uplant]').forEach(i => { const v = Math.max(0, Math.round(+i.value || 0)); if (v) sf.plants[i.dataset.uplant] = v; else delete sf.plants[i.dataset.uplant]; });
       const pl = Object.entries(sf.plants);
       if (!sf.name || !sf.img || !pl.length){ $('#errUp').hidden = false; return; }
-      const t = { id:'u' + Date.now(), name:sf.name, by:ME_DESIGNER, img:sf.img, tags:sf.tags.length ? sf.tags : ['Home garden'], blurb:sf.blurb || 'New theme', plants:pl, ground:sf.ground, builds:0, rating:5, mine:true };
+      const t = { id:'u' + Date.now(), name:sf.name, by:ME_DESIGNER, img:sf.img, tags:sf.tags.length ? sf.tags : ['Home garden'], blurb:sf.blurb || 'New theme', plants:pl, ground:sf.ground, usdM2:91, mine:true };
       S.myThemes.unshift(t); S.studioForm = null; save(); go('studio'); toast('Published. Customers can now find ' + t.name + ' in Themes.'); break; }
     case 'grow': { const p = PLANT[a.dataset.id]; if (p){ const n = +a.dataset.n || 10; toast('Added ' + n.toLocaleString('en-US') + ' ' + p.name.toLowerCase() + ' to the grow plan'); a.disabled = true; a.textContent = 'Added'; } break; }
     case 'role': menuOpen(false); S.role = a.dataset.role; save(); S.screen = HOME_OF[S.role]; render(); window.scrollTo(0, 0); toast('Viewing as ' + ROLE_NAME[S.role]); break;
@@ -1552,35 +1986,43 @@ document.addEventListener('click', e => {
   }
 });
 $('#sheetBg').addEventListener('click', e => { if (e.target.id === 'sheetBg') closeSheet(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeSheet(); menuOpen(false); } if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.drop[role="button"]')){ e.preventDefault(); e.target.click(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape'){ closeSheet(); menuOpen(false); return; }
+  const mh = e.target.closest && e.target.closest('.mh');
+  if (mh && S.meas && /^Arrow/.test(e.key)){ e.preventDefault(); const p = S.meas.pts[+mh.dataset.mh], st = e.shiftKey ? 0.05 : 0.01; if (e.key === 'ArrowLeft') p[0] = Math.max(0, p[0] - st); if (e.key === 'ArrowRight') p[0] = Math.min(1, p[0] + st); if (e.key === 'ArrowUp') p[1] = Math.max(0, p[1] - st); if (e.key === 'ArrowDown') p[1] = Math.min(1, p[1] + st); measDraw(); return; }
+  if (e.key === 'Tab' && document.body.classList.contains('sheet-open')){ const f = $$('#sheet button:not([disabled]), #sheet input, #sheet select, #sheet [tabindex="0"]'); if (f.length){ const i = f.indexOf(document.activeElement); if (e.shiftKey && i <= 0){ e.preventDefault(); f[f.length - 1].focus(); } else if (!e.shiftKey && i === f.length - 1){ e.preventDefault(); f[0].focus(); } } } if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.drop[role="button"]')){ e.preventDefault(); e.target.click(); } });
 document.addEventListener('input', e => {
   const el = e.target;
   if (el.id === 'tq'){ S.q = el.value; $('#tgrid').innerHTML = themeGrid(); }
   if (el.id === 'lpCmpIn'){ S.lpCmp = +el.value; $('#lpCmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'cmpIn'){ S.flow.cmp = +el.value; $('#cmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'rBrief'){ S.reqForm.brief = el.value; }
-  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').textContent = money(q.total); const pl = $('#soPlants'); if (pl){ pl.innerHTML = plantRows(id, a2); $('#soPlantsArea').textContent = a2; } $('#soDep').textContent = money(q.total * 0.3); } }
+  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').innerHTML = money2(q.total); $('#soDep').innerHTML = money2(q.deposit); const h = el.parentElement.querySelector('.hint'); if (h) h.textContent = 'Typed'; } }
+  if (el.dataset && el.dataset.bf && S.bForm){ const k = el.dataset.bf; S.bForm[k] = ['name','city','type'].includes(k) ? el.value : Math.max(0, Math.round(+el.value || 0)); if ($('#bOut')) $('#bOut').innerHTML = bOut(); }
+  if (el.id === 'measEdgeIn' && S.meas){ S.meas.edge = Math.max(0, +el.value || 0); measDraw(); }
 });
+let mDrag = -1;
+document.addEventListener('pointerdown', e => { const h = e.target.closest && e.target.closest('.mh'); if (!h || !S.meas) return; mDrag = +h.dataset.mh; try { h.setPointerCapture(e.pointerId); } catch(_){} e.preventDefault(); });
+document.addEventListener('pointermove', e => { if (mDrag < 0) return; const box = $('#meas'); if (!box) return; const r = box.getBoundingClientRect(); S.meas.pts[mDrag] = [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))]; measDraw(); });
+document.addEventListener('pointerup', () => { mDrag = -1; }); document.addEventListener('pointercancel', () => { mDrag = -1; });
 document.addEventListener('submit', e => {
   if (e.target.id !== 'lpForm') return;
   e.preventDefault();
-  const f = S.flow; f.type = $('#lpType').value; f.area = Math.max(10, Math.round(+$('#lpArea').value || 240)); f.sun = $('#lpSun').value; f.themeId = $('#lpTheme').value; f.step = S.photo ? 3 : 1; save();
+  const f = S.flow; f.type = $('#lpType').value; f.area = Math.max(10, Math.round(+$('#lpArea').value || 120)); f.measured = false; f.sun = $('#lpSun').value; f.themeId = $('#lpTheme').value; f.step = S.photo ? 3 : 1; save();
   go('create'); toast(S.photo ? 'Showing ' + theme(f.themeId).name + ' on your space' : 'Add a photo of your space to start');
 });
 document.addEventListener('change', e => {
   const el = e.target;
   if (el.id === 'curSel' || el.id === 'curSel2'){ S.cur = el.value; save(); render(); toast('Prices in ' + (CURRENCIES.find(c => c[0] === el.value) || [0, el.value])[1]); return; }
-  if (el.id === 'areaIn'){ S.flow.area = Math.max(10, Math.round(+el.value || 240)); save(); return; }
+  if (el.id === 'areaIn'){ S.flow.area = Math.max(10, Math.round(+el.value || 120)); S.flow.measured = false; save(); render(); return; }
   if (el.id === 'sunIn'){ S.flow.sun = el.value; save(); return; }
-  if (el.id === 'photoIn' && el.files && el.files[0]){ readImage(el.files[0], 1400, u => { S.photo = u; render(); toast('Photo added'); }); el.value = ''; return; }
+  if (el.id === 'photoIn' && el.files && el.files[0]){ readImage(el.files[0], 1400, (u, ar) => { S.photo = u; S.photoAR = ar || 0.75; S.meas = null; const inSheet = S.measurePending || document.body.classList.contains('sheet-open'); S.measurePending = false; if (inSheet || S.screen === 'create'){ if (S.screen === 'create') render(); openSheet(measureSheet()); toast('Photo added. Outline the area to measure it.'); } else { render(); toast('Photo added'); } }); el.value = ''; return; }
   if (el.id === 'themePhotoIn' && el.files && el.files[0]){ readImage(el.files[0], 1000, u => { S.studioForm.img = u; S.studioForm.name = ($('#uName') || {}).value || S.studioForm.name; S.studioForm.blurb = ($('#uBlurb') || {}).value || S.studioForm.blurb; render(); }); el.value = ''; return; }
 });
 
 if (S.flow.step === 2) S.flow.step = 1;
-function fromHash(){ const m = location.hash.match(/^#aisle-(\d+)$/); if (!m) return false; const row = AISLES.find(a => a[1] === +m[1]); if (!row) return false; S.role = 'customer'; S.screen = 'shop'; render(); S.soDate = null; openSheet(aisleSheet(row[0])); return true; }
+function fromHash(){ const m = location.hash.match(/^#aisle-(\d+)$/); if (!m) return false; const row = AISLES.find(a => a[1] === +m[1]); if (!row) return false; S.role = 'customer'; S.screen = 'shop'; render(); window.scrollTo(0, 0); S.soDate = null; openSheet(aisleSheet(row[0])); return true; }
 window.addEventListener('hashchange', fromHash);
 if (!fromHash()) render();
 })();
 </script>
-</body>
-</html>
