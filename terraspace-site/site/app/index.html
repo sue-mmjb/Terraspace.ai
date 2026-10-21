@@ -9,14 +9,14 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <!-- Asset paths are absolute (/app/...) so the app works at / and at /app. -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: white app shell. Phone: sticky top bar + bottom tab bar with a raised Create button. Desktop: left rail + content column (max 1120px). Single light look by design. */
 :root{
   --bg:#FFFFFF; --soft:#F3F5F2; --soft-2:#E9EDE7; --ink:#14211A; --muted:#617066; --line:#E4E8E2;
   --forest:#1F4D36; --forest-2:#2C6A4B; --mint:#DCEBE0; --gold:#B8862E; --gold-t:#F6ECD6; --gold-ink:#7A5714;
   --warn:#A5502C; --warn-t:#F6E1D6;
-  --font:'DM Sans','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+  --font:'Inter','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
   --r:18px; --ease:cubic-bezier(.25,.46,.45,.94);
   color-scheme:light;
 }
@@ -345,7 +345,7 @@ body.landing .topbar:not(.solid) .open-app{background:#fff;color:var(--forest)}
   --forest:#1B1E1C; --forest-2:#3B403D; --mint:#F2F2EF; --gold:#1B1E1C; --gold-t:#F7F7F5; --gold-ink:#1B1E1C;
   --warn:#8A5A3A; --warn-t:#F5EFEA;
   --ease:cubic-bezier(.25,.46,.45,.94); --ease-h:cubic-bezier(.215,.61,.355,1);
-  --font:'DM Sans','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
+  --font:'Inter','Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
 }
 body{font-weight:300;line-height:1.7;letter-spacing:.005em}
 h1,h2{font-weight:300;letter-spacing:.005em;line-height:1.08}
@@ -808,12 +808,150 @@ body.ar-open{overflow:hidden}
 .iozera{height:11px;width:auto;display:inline-block;vertical-align:-1px;margin:0 2px}
 .foot-brand{white-space:normal}
 
+/* ===== App screens skin (from TerraSpace_App_Screens.pdf) =====
+   Soft grey ground, white rounded cards, black pill buttons, bold two-tone headlines. */
+:root{--page:#F3F3F4;--card:#FFFFFF;--ink:#111211;--muted:#6E716F;--tone:#9B9D9C;--line:#E8E8E9;--rc:18px;--soft:#EDEDEE;--soft-2:#E3E3E5}
+html,body,body::before{background:var(--page)}
+body{font-weight:400;letter-spacing:-.006em;line-height:1.55}
+p,li,dd,dt,td{font-weight:400}
+h1,h2{font-weight:650;letter-spacing:-.035em;line-height:1.05}
+h3{font-weight:600;letter-spacing:-.012em}
+b,strong{font-weight:600}
+.tone{color:var(--tone)}
+.eyebrow,.rr-label,.lp-copy .lbl{font-size:11px!important;font-weight:500!important;letter-spacing:.16em!important;color:var(--muted)}
+/* top bar and menu */
+.topbar,body.landing .topbar,body.landing .topbar:not(.solid),body.landing .topbar.solid{background:rgba(243,243,244,.86)!important;border-bottom-color:transparent!important}
+.topbar.solid{border-bottom-color:var(--line)!important}
+.brand{font-weight:700;letter-spacing:.2em;font-size:12px}
+.rr-link{text-transform:none;letter-spacing:-.005em;font-size:14px;font-weight:500;color:var(--muted);padding:7px 12px;border-radius:999px;transition:background .3s,color .3s}
+.rr-link::after,.nav-cta::after{display:none}
+.rr-link:hover{color:var(--ink);background:rgba(0,0,0,.04)}
+.rr-link[aria-current="page"],.rr-link.on{color:var(--ink);background:#fff}
+.topnav{gap:4px!important}
+.nav-cta{text-transform:none;letter-spacing:0;font-size:14px;font-weight:500;background:var(--ink);color:#fff!important;padding:9px 16px;border-radius:999px}
+.cur{text-transform:none;letter-spacing:0;font-size:13px;border:0;background:#fff;border-radius:999px;padding:7px 12px;color:var(--ink)}
+.menu-ov{background:rgba(243,243,244,.97)}
+.menu-item{font-weight:650;letter-spacing:-.03em;text-transform:none}
+/* buttons */
+.btn,.lp-copy .btn,.lp-copy .btn.light,.lp-scene .lp-copy .btn,.lp-scene .lp-copy .btn.light,.shop-hero .btn,.lp-duo .btn{min-height:50px;padding:0 24px;border:0!important;border-radius:999px;background:var(--ink)!important;color:#fff!important;text-transform:none;letter-spacing:-.005em;font-size:15px;font-weight:500;transition:background .25s,transform .25s}
+.btn:hover,.lp-copy .btn:hover,.lp-scene .lp-copy .btn:hover,.shop-hero .btn:hover,.lp-duo .btn:hover{background:#2B2D2C!important;color:#fff!important}
+.btn:active{transform:scale(.98)}
+.btn.ghost,.btn.soft,.lp-copy .btn.ghost{background:#E6E6E8!important;color:var(--ink)!important}
+.btn.ghost:hover,.btn.soft:hover{background:#DADADD!important;color:var(--ink)!important}
+.btn.gold{background:var(--ink)!important;color:#fff!important}
+.btn.sm{min-height:40px;padding:0 16px;font-size:13.5px;border-radius:999px}
+.btn[disabled]{opacity:.45}.btn[disabled]:hover{background:var(--ink)!important}
+.lp-copy .btn.line,.lp-scene .lp-copy .btn.line{background:none!important;color:var(--ink)!important;padding:0 4px;min-height:44px;text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--line)}
+.lp-copy .btn.line::after{display:none}
+.sheet-close{border:0;background:#E6E6E8;border-radius:999px;text-transform:none;letter-spacing:0;font-size:13.5px}
+.auth-social .btn{background:#fff!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.auth-social .lg{border-radius:50%}
+.hero-new span{border-radius:999px;letter-spacing:.04em;text-transform:none;font-size:12px;padding:4px 10px}
+.hero-new{font-weight:500}
+/* chips, pills, statuses, toasts */
+.chips{gap:8px}
+.chip{height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;text-transform:none;letter-spacing:0;font-size:13.5px;font-weight:500;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pill{padding:4px 10px;border-radius:999px;background:#EDEDEE;text-transform:none;letter-spacing:0;font-size:12px;font-weight:500;color:var(--ink)}
+.pill.mint,.pill.gold,.pill.warn{background:#E7F3EA;color:#1F5A36}
+.pill.dark{border-radius:999px}.pill.white{border-radius:999px}
+.st{border-radius:999px;text-transform:none;letter-spacing:0;font-size:12px;padding:3px 10px}
+.stock{text-transform:none;letter-spacing:0;font-size:12.5px}
+.toast{border-radius:999px;text-transform:none;letter-spacing:0;font-size:14px;padding:13px 20px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.ex{border-radius:999px}
+/* cards */
+.card,.card.pad,.pkg,.pk,.total,.earn,.promo,.promo.gold,.promo.green,.empty,.lp-duo > div,.finance,.diag,.ppl,.villa,.sign{background:var(--card)!important;border:0!important;border-radius:var(--rc)!important;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.card.pad,.pad,.pkg,.pk,.total,.earn,.promo,.empty,.finance,.diag{padding:20px!important}
+.lp-duo > div{padding:12px!important}
+.lp-duo img{border-radius:12px}
+.lp-duo .c{padding:18px 8px 8px!important}
+.pkg[aria-pressed="true"],.pk.on,.ppl[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink)!important}
+.diag.ok{box-shadow:inset 3px 0 0 #2F6B47}.diag.warn{box-shadow:inset 3px 0 0 #C9A24A}.diag.bad{box-shadow:inset 3px 0 0 #B44A4A}
+.villa.on{box-shadow:inset 0 0 0 2px #C9A24A}.villa.done{box-shadow:inset 0 0 0 2px #9CC8AA}
+.tile{background:var(--card);border:0;border-radius:14px;padding:14px 16px}
+.card .tile,.total .tile,.sheet .tile{background:var(--page)}
+.total{border-top:0!important}
+.photo,.tcard .photo,.aisle .photo,.rowi .photo,.vcard .photo,.lp-steps .ph,.swap .photo,.ecard img,.scanwrap,.cmp,.lp-proof .cmp{border-radius:14px!important;overflow:hidden}
+.drop{border:1.5px dashed #CFCFD2;border-radius:var(--rc);background:#fff}
+.drop .mark{border-radius:50%!important;background:var(--page)!important}
+.ecard{background:transparent}
+.ecard .c{padding:14px 4px 6px}
+.ecard h3{font-weight:600;letter-spacing:-.015em;font-size:18px}
+.lp-float{border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.qr{border-radius:12px}
+.vpick .vcard{border-radius:14px;background:#fff;border-color:transparent}
+.vpick .vcard[aria-pressed="true"]{border-color:var(--ink)}
+/* numbers: bold, not hairline */
+.kpis .tile b,.facts b,.aisle .price,.earn b,.pk .price,.total .grand dd,.lp-float b,.villa b,.chain .k,.lp-statement,.lp-head h2,.lp-copy h2,.lp-duo h2,.ar-cc h2{font-weight:650!important;letter-spacing:-.03em}
+.lp-copy h1,.shop-hero h1{font-weight:650;letter-spacing:-.04em}
+.lp-statement em{color:var(--tone);font-style:normal}
+.facts > div{background:#fff;border:0;border-radius:14px;padding:14px 16px}
+/* forms */
+input[type=text],input[type=number],input[type=tel],input[type=search],input[type=email],select,textarea,.lp-form input,.lp-form select{border:1px solid var(--line)!important;border-radius:12px;padding:12px 14px;background:#fff;font-weight:400}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)!important;box-shadow:0 0 0 3px rgba(17,18,17,.08)}
+label.field,.lp-form label{text-transform:none!important;letter-spacing:-.005em!important;font-size:13.5px!important;font-weight:500!important;color:var(--ink)}
+.or{text-transform:none;letter-spacing:0}
+/* lists and tables */
+.lines td{border-bottom-color:var(--line)}
+.lines tr.grp td{text-transform:none;letter-spacing:0;font-weight:600;color:var(--ink);font-size:13px!important}
+.opt{background:#fff;border:0!important;border-radius:0;padding:14px 16px!important;border-bottom:1px solid var(--line)!important}
+.opt:first-child{border-radius:14px 14px 0 0}.opt:last-child{border-radius:0 0 14px 14px;border-bottom:0!important}.opt:only-child{border-radius:14px}
+.opt[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink);border-radius:14px}
+.opt .mark{border-radius:50%!important}
+/* create flow */
+.stepper{gap:6px}
+.stepper li{padding:6px 12px!important;border-radius:999px;border:0!important;background:#E6E6E8!important;text-transform:none!important;letter-spacing:0!important;font-size:12.5px!important;font-weight:500;color:var(--muted)!important}
+.stepper li.on{background:var(--ink)!important;color:#fff!important}
+.swap button[aria-pressed="true"] .photo{outline:2px solid var(--ink);outline-offset:3px}
+/* calendar: round day cells, black selected, struck-through full days */
+.dates{gap:6px}
+.date{border:0!important;border-radius:16px!important;background:#fff!important;padding:9px 2px!important;color:var(--muted)}
+.date b{font-weight:600;font-size:16px;color:var(--ink)}
+.date[aria-pressed="true"]{background:var(--ink)!important;color:#fff}
+.date[aria-pressed="true"] b{color:#fff}
+.date:disabled{background:transparent!important}
+.date:disabled b{color:#B9BBBA}
+/* tracking timeline */
+.track li{border-top-width:2px}
+.next li{border-top-color:var(--line)}
+/* sheet: grey ground, white cards, rounded top */
+.sheet{background:var(--page)!important;border-radius:22px 22px 0 0!important}
+@media (min-width:900px){.sheet{border-radius:22px!important}}
+.sheet-bar{background:var(--page);border-bottom:0}
+.sheet-img img{border-radius:0}
+/* sticky bottom tabs on phones (Home, Design, Orders, Garden) */
+@media (max-width:900px){
+  .tabbar,body.landing .tabbar{display:grid!important;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:4px 6px env(safe-area-inset-bottom,0px)}
+  .tabbar button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 9px;border:0;background:none;font-size:11.5px;font-weight:500;color:#8E908F;letter-spacing:0}
+  .tabbar button svg{width:22px;height:22px}
+  .tabbar button[aria-current="page"]{color:var(--ink);font-weight:600}
+  main{padding-bottom:110px!important}
+  .lp-foot,footer{padding-bottom:84px}
+}
+body.ar-open .tabbar{display:none!important}
+/* area stepper and care switch */
+.qty{display:flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:5px;width:max-content;margin-top:8px}
+.qty button{width:40px;height:40px;border-radius:50%;border:0;background:var(--page);font-size:20px;line-height:1;color:var(--ink)}
+.qty button:hover{background:#E3E3E5}
+.qty input{width:5.5em!important;text-align:center;border:0!important;box-shadow:none!important;padding:6px 0!important;font-size:17px;font-weight:600;background:transparent}
+.qty span{font-size:14px;color:var(--muted);padding-right:12px}
+.switchrow{display:flex;gap:14px;align-items:center;justify-content:space-between;background:var(--page);border-radius:14px;padding:14px 16px;text-align:left;border:0;width:100%;cursor:pointer}
+.sw{flex:none;position:relative;width:46px;height:28px;border-radius:999px;background:#CFCFD2;transition:background .25s}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .25s}
+.switchrow[aria-pressed="true"] .sw{background:#34A853}
+.switchrow[aria-pressed="true"] .sw::after{transform:translateX(18px)}
+.lp-steps .ph.ico{background:#fff}
+.lp-foot{text-transform:none;letter-spacing:0;font-size:12.5px}
+.stock,.pill,.lines tr.grp td,.acct,.st,.by,.cur,.btn,.chip,.toast{letter-spacing:0!important}
+.pill,.stock{text-transform:none!important}
+.lp-scene,.lp-scene.short,.lp,body.landing main,.lp section{background:var(--page)!important}
+.shop-hero img{border-radius:20px}
+.lp-copy h1 .tone{white-space:nowrap}
+
 /* Review note (22 Oct): too much side margin on wide screens. Widen the content
-   column from 1240px to 1480px and cut the side padding from 5vw to about 3vw.
-   Phones keep the 16px gutter. */
+   column and cut the side padding. Phones keep the 16px gutter. */
 .lp-wrap,.shell{max-width:1480px;padding-left:max(16px,3vw,env(safe-area-inset-left,0px));padding-right:max(16px,3vw,env(safe-area-inset-right,0px))}
 .topbar-in{padding-left:max(16px,3vw,env(safe-area-inset-left,0px));padding-right:max(16px,3vw,env(safe-area-inset-right,0px))}
-.lp-copy p{max-width:60ch}
 </style>
 </head>
 <body>
@@ -1118,7 +1256,8 @@ const NAVS = {
 const ROLE_NAME = { customer:'Customer', designer:'Designer', developer:'Developer', nursery:'Hoang Lam' };
 function chrome(){
   const nav = NAVS[S.role], key = { flow:'create', theme:'themes' }[S.screen] || S.screen;
-  $('#tabbar').innerHTML = nav.map(([k, l, ic]) => k === 'create' || k === 'upload' ? `<button class="plus" data-go="${k}" ${k === key ? 'aria-current="page"' : ''}><span>${icon(ic)}</span>${l}</button>` : `<button data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${icon(ic)}${l}</button>`).join('');
+  const tabs = S.role === 'customer' ? [['home','Home','home'],['create','Design','plus'],['billing','Orders','req'],['projects','Garden','leaf']] : nav.slice(0, 4);
+  $('#tabbar').innerHTML = tabs.map(([k, l, ic]) => `<button data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${icon(ic)}${l}</button>`).join('');
   $('#rail').innerHTML = nav.filter(n => n[0] !== 'create' && n[0] !== 'upload').map(([k, l, ic]) => `<button data-go="${k}" ${k === key ? 'aria-current="page"' : ''}>${icon(ic)}${l}</button>`).join('')
     + (S.role === 'customer' ? `<button data-go="account" ${key === 'account' ? 'aria-current="page"' : ''}>${icon('user')}Account</button><button class="create" data-go="create">${icon('plus')}New design</button>` : '')
     + (S.role === 'designer' ? `<button class="create" data-go="upload">${icon('plus')}Upload a theme</button>` : '')
@@ -1150,7 +1289,7 @@ function vHome(){
   <section class="hero"><img src="/app/hero.jpg" alt="A frangipani terrace with palms and the sea">
     <div class="hero-c">
       <p class="eyebrow" style="color:#A9DDB9">AI outdoor design · ready-made projects</p>
-      <h1>Design your outdoor space from one photo.</h1>
+      <h1>Design your outdoor space, <span class="tone">from one photo.</span></h1>
       <p>Designed by AI and designers. Grown in Hoang Lam's nursery at TERA Park 2. Installed by Hoang Lam crews.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><button class="btn light" data-go="create">${icon('cam')}Start with a photo</button><button class="btn ghost" data-go="themes">Browse themes</button></div>
     </div>
@@ -1183,7 +1322,7 @@ function filteredThemes(){
 }
 function vThemes(){
   return `
-  <div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Theme marketplace</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Themes</h1></div><span class="pill mint">Designers earn 10% when their theme is built</span></div>
+  <div class="head" style="margin-bottom:16px"><div><p class="eyebrow">Theme marketplace</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Themes, <span class="tone">ready to plant.</span></h1></div><span class="pill mint">Designers earn 10% when their theme is built</span></div>
   <input type="search" id="tq" placeholder="Search themes or designers" value="${esc(S.q)}" aria-label="Search themes" style="max-width:520px">
   <div class="chips scroll" style="margin:12px 0 20px">${['All','By designers','By AI','Saved'].concat(TAGS).map(f => `<button class="chip" data-act="filter" data-f="${f}" aria-pressed="${S.filter === f}">${f}</button>`).join('')}</div>
   <div class="tgrid" id="tgrid">${themeGrid()}</div>`;
@@ -1208,7 +1347,7 @@ function stockTag(id, need){ const p = PLANT[id]; if (!p) return ''; const free 
 
 /* --- Create flow --- */
 const STEPS = ['Space','Generate','Design','Quote','Book'];
-function flowHead(){ return `<div class="flow-head"><div><p class="eyebrow">New design</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">${['Add your space','Generating your design','Your design','Your quote','Book installation'][S.flow.step - 1]}</h1></div><ol class="stepper">${STEPS.map((s, i) => `<li class="${i < S.flow.step ? 'on' : ''}">${i + 1} ${s}</li>`).join('')}</ol></div>`; }
+function flowHead(){ return `<div class="flow-head"><div><p class="eyebrow">New design</p><h1 style="font-size:clamp(26px,3vw,34px);margin-top:6px">${['Add your space, <span class="tone">from one photograph.</span>','Generating <span class="tone">your design.</span>','Your design, <span class="tone">ready to walk.</span>','Your garden, <span class="tone">priced.</span>','Choose a day, <span class="tone">we do the rest.</span>'][S.flow.step - 1]}</h1></div><ol class="stepper">${STEPS.map((s, i) => `<li class="${i < S.flow.step ? 'on' : ''}">${i + 1} ${s}</li>`).join('')}</ol></div>`; }
 function vCreate(){
   const f = S.flow;
   if (f.step === 2) return flowHead() + vGenerate();
@@ -1324,8 +1463,10 @@ function vQuote(){
         <div class="grand"><dt>Total</dt><dd>${money2(q.total)}</dd></div>
       </dl>
       <p class="sm muted num">${money(q.perM2)} per m² · ${q.plantsN} plants · confirmed at the site visit</p>
-      <div class="tile" style="display:flex;justify-content:space-between;align-items:center"><span class="sm" style="font-weight:400">Deposit · 30%</span><b class="num" style="font-size:18px">${money(q.deposit)}</b></div>
-      <button class="btn block" data-act="toStep" data-s="5">Book installation</button>
+      <button type="button" class="switchrow" data-act="careToggle" aria-pressed="${f.care !== false}"><span><b class="sm">Monthly care</b><br><span class="xs muted">Two visits a month. Replacements included. ${money(careMonthly(f.area, 'plus'))} a month.</span></span><span class="sw" aria-hidden="true"></span></button>
+      <p class="xs muted">Includes VAT and delivery. Your crew confirms the area on site; the price changes only if the area does.</p>
+      <button class="btn block" data-act="toStep" data-s="5">Reserve with ${money(q.deposit)}</button>
+      <p class="xs muted" style="text-align:center">30% deposit today. The balance on handover.</p>
       ${t.by !== 'ai' ? `<p class="note">${esc(DESIGNERS[t.by].name)} earns 10% of this project.</p>` : ''}
     </aside>`}
   </div>`;
@@ -1416,7 +1557,7 @@ function payLine(o){
 }
 function vProjects(){
   const mine = S.orders.slice().reverse(), bl = S.buildings.slice().reverse();
-  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">My projects</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Projects</h1></div><button class="btn sm" data-go="create">${icon('plus')}New design</button></div>
+  return `<div class="head" style="margin-bottom:16px"><div><p class="eyebrow">My projects</p><h1 style="font-size:clamp(28px,3.4vw,38px);margin-top:6px">Your gardens, <span class="tone">growing.</span></h1></div><button class="btn sm" data-go="create">${icon('plus')}New design</button></div>
   ${bl.length ? `<section style="margin-bottom:28px"><p class="eyebrow" style="margin-bottom:10px">Buildings</p>${bl.map(b => `<div class="rowi"><div style="flex:1;min-width:0"><p class="sm" style="font-weight:500">${esc(b.name)} · ${esc(b.city)}</p><p class="xs muted">${esc(b.type)} · ${b.scope.join(', ')} · est. ${money(b.build)} + ${money(b.care)}/month care</p></div><span class="st due">${esc(b.status)}</span></div>`).join('')}</section>` : ''}
   ${mine.length ? `<div class="stack">${mine.map(o => { const t = theme(o.themeId), si = STAGES.indexOf(o.status); return `<div class="card pad projcard"><span class="photo" style="aspect-ratio:4/3"><img src="${imgOf(t)}" alt=""></span><div class="stack" style="gap:12px"><div class="head"><div><h3 style="font-size:18px">${esc(t.name)} · ${PKGS[o.pkg].name}</h3><p class="xs muted">${o.area} m² · Order ${o.id} · ${esc(crewOf(o.crew).name)}</p></div><span class="pill gold">${o.status}</span></div><ol class="track">${STAGES.map((s, i) => `<li class="${i < si ? 'done' : i === si ? 'now' : ''}"><b>${s}</b><span class="muted">${i === 0 ? pretty(o.created) : i === 2 && o.date ? pretty(o.date) + ', ' + o.slot : ''}</span></li>`).join('')}</ol>${payLine(o)}${(() => { const c = careOf(o.id); return c ? `<p class="sm"><span class="st paid">${CARE[c.plan][0]}</span> <span class="muted">${money(c.monthly)} a month · next visit ${pretty((careVisits(c).find(v => !v.done) || {}).date || todayISO())}</span></p>` : ''; })()}<div class="actions"><button class="btn sm" data-act="care" data-id="${o.id}">${careOf(o.id) ? 'Care plan' : 'Add a care plan'}</button><button class="btn ghost sm" data-act="passport" data-id="${o.id}">Plant passport</button><button class="btn ghost sm" data-act="doctor" data-id="${o.id}">Plant doctor</button><button class="btn ghost sm" data-act="arOpen" data-order="${o.id}">Virtual tour</button><button class="btn ghost sm" data-act="advance" data-id="${o.id}">Demo: next stage</button></div></div></div>`; }).join('')}</div>`
   : `<div class="tile empty"><h3>No projects yet</h3><p class="sm muted">Design your space and book an installation to track it here.</p><button class="btn" data-go="create">Start a design</button></div>`}`;
@@ -1483,7 +1624,7 @@ function vNursery(){
 function vShop(){
   const list = AISLES.map(([id, n]) => ({ t: theme(id), n })).filter(x => x.t && x.t.id === x.n && false || x.t);
   return `<section class="shop-hero"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles at the foot of the hill, TERA Park 2">
-    <div class="c"><p class="eyebrow">Shop the Themes · TERA Park 2, Hoang Lam</p><h1>Every garden, built full size.</h1><p>Walk the showcase aisles at the foot of the hill. Each garden carries a QR price per square metre. Order on the spot, and a Hoang Lam crew installs it.</p><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-act="planVisit">Plan a visit</button></div></div>
+    <div class="c"><p class="eyebrow">Shop the Themes · TERA Park 2, Hoang Lam</p><h1>Every garden, <span class="tone">built full size.</span></h1><p>Walk the showcase aisles at the foot of the hill. Each garden carries a QR price per square metre. Order on the spot, and a Hoang Lam crew installs it.</p><div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" data-act="planVisit">Plan a visit</button></div></div>
   </section>
   <div class="facts">
     <div><span class="eyebrow">Aisles</span><b>${AISLES.length} gardens</b></div>
@@ -1515,7 +1656,7 @@ function aisleSheet(id){
   <div class="sheet-c">
     <div><p class="eyebrow">Order on the spot · TERA Park 2</p><h2 style="margin-top:6px">${esc(t.name)}</h2><div style="margin-top:8px">${byline(t)}</div></div>
     <div class="form2">
-      <label class="field">Your area, m²<input type="number" id="soArea" min="5" value="${area}"><span class="hint">${S.flow.measured && area === S.flow.area ? 'Measured from your photo · approximate' : 'Typed'}</span></label>
+      <label class="field">Your area<span class="qty"><button type="button" data-act="areaStep" data-d="-5" aria-label="Less area">−</button><input type="number" id="soArea" min="5" value="${area}"><span>m²</span><button type="button" data-act="areaStep" data-d="5" aria-label="More area">+</button></span><span class="hint">${S.flow.measured && area === S.flow.area ? 'Measured from your photo · approximate' : 'Typed'}</span></label>
       <div><p class="eyebrow">Price per m²</p><p class="num" style="font-size:24px;font-weight:300;margin-top:6px">${money2(pm)}</p></div>
     </div>
     <button class="btn ghost sm" data-act="measure" data-ret="${id}" style="justify-self:start">${icon('cam')}Measure from a photo</button>
@@ -1660,7 +1801,7 @@ function vLanding(){
   <section class="lp-scene"><div class="media"><img src="/app/hero.jpg" alt="A frangipani terrace with palms, a stone pool and the sea at golden hour" style="object-position:60% 55%" fetchpriority="high"></div><div class="shade"></div>
     <div class="lp-wrap" style="width:100%"><div class="lp-copy">
       <p class="lbl">AI outdoor design · Virtual tour · Ready-made projects</p>
-      <h1>Design it. Walk it. Plant it.</h1>
+      <h1>Design it. <span class="tone">Walk it.</span> Plant it.</h1>
       <p>Upload one photo. See it designed by AI and designers, then walk through it in a virtual tour, at real size, in your own space. Priced from Hoang Lam's nursery at TERA Park 2 and installed by Hoang Lam crews.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px"><button class="btn light" data-go="create">${icon('cam')}Start with a photo</button><button class="btn hero-tour" data-go="tour">Take the virtual tour</button><button class="btn line" data-go="themes">Browse themes</button></div>
       <button class="hero-new" data-go="tour"><span>New</span>Walk your garden before it's planted: on screen, or through your phone's camera</button>
@@ -1963,7 +2104,7 @@ function vBuildings(){
   const num = (k, l) => `<label class="field">${l}<input type="number" min="0" data-bf="${k}" value="${b[k]}"></label>`;
   const prog = S.devApproved.map(theme);
   return `<section class="shop-hero"><img src="/app/building-green.jpg" alt="A seafront tower in Nha Trang with roof gardens, green walls and flame trees along the street" style="object-position:55% 40%">
-    <div class="c"><p class="eyebrow">TerraSpace for buildings · terraforming service</p><h1>Turn your building green.</h1><p>Rooftop gardens, green walls, podiums and grounds for offices, hotels, malls and apartments. Designed in TerraSpace, grown at TERA Park 2, built and cared for by Hoang Lam crews.</p></div></section>
+    <div class="c"><p class="eyebrow">TerraSpace for buildings · terraforming service</p><h1>Turn your building <span class="tone">green.</span></h1><p>Rooftop gardens, green walls, podiums and grounds for offices, hotels, malls and apartments. Designed in TerraSpace, grown at TERA Park 2, built and cared for by Hoang Lam crews.</p></div></section>
   <div class="facts"><div><span class="eyebrow">Scope</span><b>Roofs, walls, grounds</b></div><div><span class="eyebrow">Plants</span><b>Grown at TERA Park 2</b></div><div><span class="eyebrow">Build</span><b>Hoang Lam crews</b></div><div><span class="eyebrow">Care</span><b>Monthly contract</b></div></div>
   <section class="section" id="bForm"><div class="head"><div><p class="eyebrow">Your building</p><h2 style="margin-top:8px">Scope it in a minute.</h2></div></div>
     <div class="two"><div class="card pad stack">
@@ -2103,7 +2244,7 @@ function devReport(){
 function vPartners(){
   const plans = [['Starter', 149, 'Up to 3 crews', ['Plant catalogue and stock','AI designs and real quotes','Accounts, milestone invoices, payments','Crew calendar']], ['Growth', 449, 'Up to 15 crews', ['Everything in Starter','Showroom QR aisles','Care plans and plant passports','Designer marketplace','Investor and bank reports']], ['Network', 0, 'Multi-site and joint ventures', ['Everything in Growth','Several nursery parks','Developer and resort portals','Green Brain heat maps','Your own brand']]];
   return `<section class="shop-hero"><img src="/app/showcase-aisles.jpg" alt="The showcase aisles at TERA Park 2">
-    <div class="c"><p class="eyebrow">TerraSpace for nurseries and landscapers</p><h1>Run your landscaping business on TerraSpace.</h1><p>The same app Hoang Lam runs on: designs, quotes, bookings, crews, invoices, payments and care plans. No ERP to build, and a payment record banks and investors can read.</p></div></section>
+    <div class="c"><p class="eyebrow">TerraSpace for nurseries and landscapers</p><h1>Run your landscaping business <span class="tone">on TerraSpace.</span></h1><p>The same app Hoang Lam runs on: designs, quotes, bookings, crews, invoices, payments and care plans. No ERP to build, and a payment record banks and investors can read.</p></div></section>
   <div class="facts"><div><span class="eyebrow">Set up</span><b>In a week</b></div><div><span class="eyebrow">Customers</span><b>Order and pay in the app</b></div><div><span class="eyebrow">Fee</span><b>Monthly + 1% of payments</b></div><div><span class="eyebrow">Proof</span><b>Investor-ready reports</b></div></div>
   <section class="section"><div class="head"><div><p class="eyebrow">Plans · example pricing</p><h2 style="margin-top:8px">Pay as you grow.</h2></div></div>
     <div class="pk3">${plans.map(([n, usd, sub, f], i) => `<div class="pk ${i === 1 ? 'on' : ''}"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:20px">${n}</h3>${i === 1 ? '<span class="pill gold">Most chosen</span>' : ''}</div><p class="sm muted">${sub}</p><p class="price">${usd ? money2(usd) + '<span class="xs muted"> /month</span>' : 'Custom'}</p><ul class="feat">${f.map(x => `<li class="sm">${x}</li>`).join('')}</ul><p class="xs muted">Plus 1% of payments processed in the app</p></div>`).join('')}</div></section>
@@ -2447,7 +2588,7 @@ function arSwapTheme(id){
 function vTour(){
   const pick = S.tourTheme || (S.tourTheme = S.flow.themeId);
   return `<section class="shop-hero"><img src="/app/step-generate.jpg" alt="A phone showing the finished garden over a bare yard" style="object-position:50% 45%">
-    <div class="c"><p class="eyebrow">Virtual tour</p><h1>Walk through your design before it's planted.</h1><p>Tour any garden in 3D on your screen, or stand in your own space and see it at real size through your phone's camera.</p><div><button class="btn" data-act="tourStart">${icon('cam')}Start the virtual tour</button></div></div></section>
+    <div class="c"><p class="eyebrow">Virtual tour</p><h1>Walk through your design <span class="tone">before it's planted.</span></h1><p>Tour any garden in 3D on your screen, or stand in your own space and see it at real size through your phone's camera.</p><div><button class="btn" data-act="tourStart">${icon('cam')}Start the virtual tour</button></div></div></section>
   <div class="facts"><div><span class="eyebrow">On screen</span><b>Any phone or computer</b></div><div><span class="eyebrow">In your space</span><b>iPhone and Android</b></div><div><span class="eyebrow">Size</span><b>Real metres</b></div><div><span class="eyebrow">Themes</span><b>Swap while you walk</b></div></div>
   <section class="section"><div class="head"><div><p class="eyebrow">Pick a garden</p><h2 style="margin-top:8px">Which design do you want to walk?</h2></div><label class="field" style="max-width:180px">Your area, m²<input type="number" id="tourArea" min="20" value="${S.flow.area}"></label></div>
     <div class="vgrid v4">${themes().filter(t => !t.mine).map(t => `<button class="vcard" data-act="tourPick" data-id="${t.id}" aria-pressed="${t.id === pick}"><span class="photo"><img src="${t.img}" alt="" loading="lazy"></span><b>${esc(t.name)}</b><span class="xs muted">${money(perM2(t.id))} per m²</span></button>`).join('')}</div>
@@ -2689,6 +2830,8 @@ document.addEventListener('click', e => {
     case 'swapTheme': f.themeId = a.dataset.id; save(); render(); toast(theme(f.themeId).name); break;
     case 'toStep': if (+a.dataset.s === 5 && !S.user){ openAuth({ act:'step5' }, 'Sign in to book. Your booking, invoices and receipts are kept in your account.'); break; } f.step = +a.dataset.s; save(); render(); window.scrollTo(0, 0); break;
     case 'pkg': f.pkg = a.dataset.k; save(); render(); break;
+    case 'areaStep': { const el = $('#soArea'); if (!el) break; el.value = Math.max(5, (Math.round(+el.value) || 0) + (+a.dataset.d)); el.dispatchEvent(new Event('input', { bubbles:true })); break; }
+    case 'careToggle': f.care = f.care === false; save(); render(); break;
     case 'estate': { const n = $('#esName').value.trim(), ha = +$('#esHa').value; if (!n || !ha){ toast('Add the site name and area in hectares.'); return; } toast('Sent. Hoang Lam\'s estate team will prepare a phased plan for ' + n + '.'); f.pkg = 'essential'; save(); render(); break; }
     case 'crew': f.crew = a.dataset.id; save(); render(); break;
     case 'date': f.date = a.dataset.d; save(); $$('.date').forEach(b => b.setAttribute('aria-pressed', b.dataset.d === f.date)); break;
@@ -2701,7 +2844,7 @@ document.addEventListener('click', e => {
       const q = quote(f.themeId, f.area, f.pkg), plants = {}; q.lines.filter(l => l.g === 'plants').forEach(l => plants[l.id] = l.qty);
       const id = 'TS-' + String(Date.now()).slice(-5);
       const o = { id, themeId:f.themeId, area:f.area, pkg:f.pkg, total:q.total, payPlan:S.payPlan, plants, crew:crewOf(f.crew).id, date:f.date, slot:f.slot, status:'Booked', created:iso(new Date()), by:q.t.by };
-      addOrder(o);
+      addOrder(o); if (f.care !== false && S.user) startCare(o, 'plus');
       f.step = 1; f.date = null; f.slot = null; save(); go('projects'); openSheet(confirmSheet(o));
       break; }
     case 'advance': { const o = S.orders.find(x => x.id === a.dataset.id); if (o){ o.status = STAGES[Math.min(STAGES.length - 1, STAGES.indexOf(o.status) + 1)]; if (o.status === 'Handed over' && !o.planted) o.planted = todayISO(); const inv = S.invoices.filter(x => x.orderId === o.id && !x.kind), k = o.payPlan && o.payPlan !== 'ms' ? -1 : o.status === 'Installing' ? 1 : o.status === 'Handed over' ? 2 : -1; if (k > 0 && inv[k] && !inv[k].issued){ inv[k].issued = todayISO(); inv[k].due = addDays(inv[k].issued, 7); toast(inv[k].label + ' invoice issued'); } save(); render(); } break; }
@@ -2742,7 +2885,7 @@ document.addEventListener('input', e => {
   if (el.id === 'lpCmpIn'){ S.lpCmp = +el.value; $('#lpCmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'cmpIn'){ S.flow.cmp = +el.value; $('#cmp').style.setProperty('--p', el.value + '%'); }
   if (el.id === 'rBrief'){ S.reqForm.brief = el.value; }
-  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').innerHTML = money2(q.total); $('#soDep').innerHTML = money2(q.deposit); if ($('#soPlan')) $('#soPlan').innerHTML = payPlanHTML(q.total); const h = el.parentElement.querySelector('.hint'); if (h) h.textContent = 'Typed'; } }
+  if (el.id === 'soArea'){ const a2 = Math.max(0, +el.value || 0), id = $('[data-act="soPlace"]').dataset.id; if (a2 >= 5){ const q = quote(id, a2, 'essential'); $('#soTotal').innerHTML = money2(q.total); $('#soDep').innerHTML = money2(q.deposit); if ($('#soPlan')) $('#soPlan').innerHTML = payPlanHTML(q.total); const h = el.closest('label').querySelector('.hint'); if (h) h.textContent = 'Typed'; } }
   if (el.dataset && el.dataset.bf && S.bForm){ const k = el.dataset.bf; S.bForm[k] = ['name','city','type','ref'].includes(k) ? el.value : Math.max(0, Math.round(+el.value || 0)); if ($('#bOut')) $('#bOut').innerHTML = bOut(); }
   if (el.id === 'arDist' && AR.st && AR.st.garden){ AR.st.dist = +el.value; AR.st.garden.position.z = -AR.st.dist; }
   if (el.id === 'measEdgeIn' && S.meas){ S.meas.edge = Math.max(0, +el.value || 0); measDraw(); }
