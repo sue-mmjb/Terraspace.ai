@@ -3,6 +3,7 @@
 Static site. No build step.
 
 - `app/` — the TerraSpace app (Sofia's design). Served at the root address `/` through a rewrite in `vercel.json`, and also at `/app` so the printed QR signs keep working. One HTML file plus its photos; photo paths are absolute (`/app/...`) so both addresses work. Edit data in `app/index.html` (search for `const PLANTS`, `const BASE_THEMES`, `const AISLES`, `const CREWS`, `const CURRENCIES`). No backend: everything a visitor does stays in their own browser.
+- `app/models/` — 3D plant models (.glb), the lawn texture and grass tuft used by the hero model and the Virtual tour, plus the CC BY 4.0 "Cloud Garden" scan by Brendan Harmon. Keep it next to `app/index.html`; paths are absolute (`/app/models/...`).
 - `marketing/` — the light marketing page, served at `/marketing`. Its photos are in `marketing/assets/`.
 - `vercel.json` — root rewrite, clean URLs and long cache for photos
 
